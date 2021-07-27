@@ -1,5 +1,5 @@
-import Component from '../../../lib/Component';
-import router from '../../../lib/Router';
+import router from '@lib/Router';
+import Component from '@lib/Component';
 import './LoginPage.scss';
 
 const onClickMainBitton = () => {

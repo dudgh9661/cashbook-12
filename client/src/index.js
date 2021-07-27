@@ -1,5 +1,5 @@
-import router from './lib/Router';
-import { LoginPage, MainPage, NotFoundPage } from './views/pages';
+import router from '@lib/Router';
+import { LoginPage, MainPage, NotFoundPage } from '@pages';
 
 const $app = document.getElementById('app');
 

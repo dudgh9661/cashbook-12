@@ -1,8 +1,8 @@
-import Component from '../../../lib/Component';
-import { Count, Name } from '../../../store';
+import Component from '@lib/Component';
+import { Count, Name } from '@store';
+import calendarIcon from '@icons/calendar.svg';
+import router from '@lib/Router';
 import './MainPage.scss';
-import calendarIcon from '../../../assets/icons/calendar.svg';
-import router from '../../../lib/Router';
 
 const onClickButton = () => {
   Count.incrementCount();

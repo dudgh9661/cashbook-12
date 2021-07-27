@@ -1,4 +1,4 @@
-import Observable from '../lib/Observable';
+import Observable from '@lib/Observable';
 
 class Count extends Observable {
   incrementCount() {

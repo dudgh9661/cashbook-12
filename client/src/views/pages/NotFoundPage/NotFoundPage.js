@@ -1,5 +1,5 @@
-import Component from '../../../lib/Component';
-import router from '../../../lib/Router';
+import Component from '@lib/Component';
+import router from '@lib/Router';
 
 const onClickBackButton = () => {
   router.back();

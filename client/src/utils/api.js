@@ -1,4 +1,4 @@
-import env from '../../config/env';
+import env from '@config/env';
 
 const API_END_POINT = `${env.API_URI}/api`;
 
