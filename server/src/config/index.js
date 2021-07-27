@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
+  port: process.env.PORT,
   database: {
-    DATABASE_NAME: process.env.DATABASE_NAME,
-    DATABASE_USERNAME: process.env.DATABASE_USERNAME,
-    DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
-    DATABASE_HOST: process.env.DATABASE_HOST,
+    host: process.env.DATABASE_HOST,
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    dbname: process.env.DATABASE_NAME,
   },
-  PORT: process.env.PORT,
 };

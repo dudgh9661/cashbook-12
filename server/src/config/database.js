@@ -1,18 +1,12 @@
 import { Sequelize } from 'sequelize';
-import config from './index.js';
+import config from './index';
 
-console.log(
-  config.database.DATABASE_NAME,
-  config.database.DATABASE_USERNAME,
-  config.database.DATABASE_PASSWORD,
-  config.database.DATABASE_HOST,
-);
 const sequelize = new Sequelize(
-  config.database.DATABASE_NAME,
-  config.database.DATABASE_USERNAME,
-  config.database.DATABASE_PASSWORD,
+  config.database.dbname,
+  config.database.username,
+  config.database.password,
   {
-    host: config.database.DATABASE_HOST,
+    host: config.database.host,
     dialect: 'mysql',
     dialectOptions: {
       timezone: 'Etc/GMT+9',

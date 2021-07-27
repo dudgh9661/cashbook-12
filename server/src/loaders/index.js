@@ -1,7 +1,10 @@
-import expressLoader from './express.js';
-import sequelizeLoader from './sequelize.js';
+import expressLoader from './express';
+import sequelizeLoader from './sequelize';
 
-export default async ({ expressApp }) => {
+export default async app => {
   await sequelizeLoader();
-  expressLoader({ app: expressApp });
+  console.info('DB successfully connected');
+
+  expressLoader(app);
+  console.info('Express loaded');
 };
