@@ -1,6 +1,6 @@
-import Main from './views/pages';
+import { MainPage } from './views/pages';
 
 const $app = document.querySelector('#app');
-const main = new Main($app);
+const mainPage = new MainPage($app);
 
-main.render();
+mainPage.render();
