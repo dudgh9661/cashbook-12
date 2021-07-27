@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "dev": "nodemon ./src/app.js"
+    "dev": "NODE_ENV=development nodemon -r esm src/app.js",
+    "start": "NODE_ENV=production node -r esm src/app.js"
   },
   "author": "dongqui, Seogeurim",
   "license": "MIT",
@@ -16,15 +17,16 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.5"
-  },
-  "type": "module"
+  }
 }

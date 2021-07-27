@@ -1,13 +1,18 @@
 import express from 'express';
-import env from './config/index.js';
-import loadApp from './loaders/index.js';
+import env from './config';
+import loadApp from './loaders';
 
 async function startServer() {
-  const app = express();
   const { PORT } = env;
-  await loadApp({ expressApp: app });
-  app.listen(PORT, () => {
-    console.log(`Server Run on ${PORT}`);
+  const app = express();
+
+  await loadApp(app);
+  app.listen(PORT, err => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    console.info(`Server Run on ${PORT}`);
   });
 }
 
