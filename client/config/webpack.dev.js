@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 
 const common = require('./webpack.common');
 const paths = require('./paths');
+const env = require('./env');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -10,6 +11,6 @@ module.exports = merge(common, {
     contentBase: paths.build,
     compress: true,
     hot: true,
-    port: 8000,
+    port: env.PORT,
   },
 });
