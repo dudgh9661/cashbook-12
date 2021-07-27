@@ -1,3 +1,4 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const paths = require('./paths');
@@ -56,6 +57,9 @@ module.exports = {
       template: paths.public + '/index.html',
       favicon: paths.public + '/favicon.png',
       filename: 'index.html',
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['!app.bundle.js'],
     }),
   ],
   resolve: {
