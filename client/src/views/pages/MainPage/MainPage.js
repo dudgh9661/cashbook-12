@@ -1,6 +1,7 @@
 import Component from '../../../lib/Component';
 import { Count, Name } from '../../../store';
 import './MainPage.scss';
+import calendarIcon from '../../../assets/icons/calendar.svg';
 
 const onClickButton = () => {
   Count.incrementCount();
@@ -26,6 +27,7 @@ class MainPage extends Component {
     return `
       <div class="main-page">
         <h1 class="main-page__header">${count} ${name}</h1>
+        <img src="${calendarIcon}" alt="icon" />
         <button id="increment"> + </button>
         <button id="async"> async + </button>
         <button id="name">name</button>
