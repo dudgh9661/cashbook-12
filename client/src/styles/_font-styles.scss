@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+@mixin font-display-base() {
+  font-family: 'Do Hyeon', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font-normal-base() {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+}
+
+@mixin font-display($size) {
+  @include font-display-base();
+  @if $size == 'small' {
+    font-size: 24px;
+    line-height: 24px;
+  } @else if $size == 'large' {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+@mixin font-body($size) {
+  @include font-normal-base();
+  font-weight: 400;
+  @if $size == 'regular' {
+    font-size: 16px;
+    line-height: 24px;
+  } @else if $size == 'medium' {
+    font-size: 18px;
+    line-height: 24px;
+  } @else if $size == 'large' {
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+
+@mixin font-bold($size) {
+  @include font-normal-base();
+  font-weight: 500;
+  @if $size == 'small' {
+    font-size: 12px;
+    line-height: 16px;
+  } @else if $size == 'medium' {
+    font-size: 14px;
+    line-height: 24px;
+  } @else if $size == 'large' {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
