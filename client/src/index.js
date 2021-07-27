@@ -1,3 +1,6 @@
-const $app = document.querySelector('#app');
+import Main from './views/pages';
 
-console.log($app);
+const $app = document.querySelector('#app');
+const main = new Main($app);
+
+main.render();
