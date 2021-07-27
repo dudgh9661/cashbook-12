@@ -1,5 +1,6 @@
-import Component from '../../lib/Component';
-import { Count, Name } from '../../store';
+import Component from '../../../lib/Component';
+import { Count, Name } from '../../../store';
+import './MainPage.scss';
 
 const onClickButton = () => {
   Count.incrementCount();
@@ -23,12 +24,12 @@ class MainPage extends Component {
     const { count } = Count.state;
     const { name } = Name.state;
     return `
-    <div>
-      <h1>${count} ${name}</h1>
-      <button id="increment"> + </button>
-      <button id="async"> async + </button>
-      <button id="name">name</button>
-    </div>
+      <div class="main-page">
+        <h1 class="main-page__header">${count} ${name}</h1>
+        <button id="increment"> + </button>
+        <button id="async"> async + </button>
+        <button id="name">name</button>
+      </div>
     `;
   }
 

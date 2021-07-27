@@ -46,7 +46,16 @@ module.exports = {
       },
       {
         test: /\.(scss|sass|css)$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: '@import "./src/styles/base.scss";',
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
     ],

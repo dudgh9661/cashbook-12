@@ -1,9 +1,9 @@
-import Component from '../../lib/Component';
+import Component from '../../../lib/Component';
 
 class NotFoundPage extends Component {
   template() {
     return `
-      <div>
+      <div class="not-found-page">
         Not Found Page
       </div>
     `;
