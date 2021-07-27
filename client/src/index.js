@@ -6,7 +6,7 @@ const $app = document.getElementById('app');
 router.initRoutes($app, {
   '/': MainPage,
   '/login': LoginPage,
-  '/not-found': NotFoundPage,
+  NotFound: NotFoundPage,
 });
 
 router.render(window.location.pathname);
