@@ -2,6 +2,7 @@ import Component from '../../../lib/Component';
 import { Count, Name } from '../../../store';
 import './MainPage.scss';
 import calendarIcon from '../../../assets/icons/calendar.svg';
+import router from '../../../lib/Router';
 
 const onClickButton = () => {
   Count.incrementCount();
@@ -13,6 +14,9 @@ const onClickAsyncButton = () => {
 
 const onClickNameButton = () => {
   Name.changeName();
+};
+const onClickLoginButton = () => {
+  router.push('/login');
 };
 
 class MainPage extends Component {
@@ -31,6 +35,7 @@ class MainPage extends Component {
         <button id="increment"> + </button>
         <button id="async"> async + </button>
         <button id="name">name</button>
+        <button id="login">login</button>
       </div>
     `;
   }
@@ -39,6 +44,7 @@ class MainPage extends Component {
     this.addEvent('click', '#increment', onClickButton);
     this.addEvent('click', '#async', onClickAsyncButton);
     this.addEvent('click', '#name', onClickNameButton);
+    this.addEvent('click', '#login', onClickLoginButton);
   }
 }
 

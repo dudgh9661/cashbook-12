@@ -1,6 +1,12 @@
-import { MainPage } from './views/pages';
+import router from './lib/Router';
+import { LoginPage, MainPage, NotFoundPage } from './views/pages';
 
-const $app = document.querySelector('#app');
-const mainPage = new MainPage($app);
+const $app = document.getElementById('app');
 
-mainPage.render();
+router.initRoutes($app, {
+  '/': MainPage,
+  '/login': LoginPage,
+  '/not-found': NotFoundPage,
+});
+
+router.render(window.location.pathname);
