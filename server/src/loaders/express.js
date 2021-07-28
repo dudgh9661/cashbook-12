@@ -21,17 +21,17 @@ export default app => {
 
   app.use(express.static(path.resolve('./dist')));
 
-  app.get('*', (req, res) => {
+  app.get('*', (_req, res) => {
     res.sendFile('index.html', { root: path.resolve('./dist') });
   });
 
-  app.use((req, res, next) => {
+  app.use((_req, _res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
   });
 
-  app.use((err, req, res, next) => {
+  app.use((err, _req, res, _next) => {
     res.status(err.status || 500).json({
       message: err.message,
       error: err.name,
