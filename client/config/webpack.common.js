@@ -81,7 +81,7 @@ module.exports = {
     extensions: ['.js', '.json', '.css', '.scss', 'sass'],
     alias: {
       '@config': paths.config,
-      '@icons': paths.icons,
+      '@assets': paths.assets,
       '@lib': paths.lib,
       '@store': paths.store,
       '@styles': paths.styles,

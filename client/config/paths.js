@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   config: path.resolve(__dirname),
   src: path.resolve(__dirname, '../src'),
-  icons: path.resolve(__dirname, '../src/assets/icons'),
+  assets: path.resolve(__dirname, '../src/assets'),
   lib: path.resolve(__dirname, '../src/lib'),
   store: path.resolve(__dirname, '../src/store'),
   styles: path.resolve(__dirname, '../src/styles'),
