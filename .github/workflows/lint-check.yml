@@ -25,8 +25,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+    - name: client install & lint check
+      working-directory: ./client
+      run: |
+        yarn install --frozen-lockfile
+        yarn lint
 
-    - name: Lint check
-      run: yarn lint
+
+    - name: server install & lint check
+      working-directory: ./server
+      run: |
+        yarn install --frozen-lockfile
+        yarn lint
