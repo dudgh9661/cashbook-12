@@ -10,6 +10,6 @@ module.exports = {
   utils: path.resolve(__dirname, '../src/utils'),
   components: path.resolve(__dirname, '../src/views/components'),
   pages: path.resolve(__dirname, '../src/views/pages'),
-  build: path.resolve(__dirname, '../dist'),
+  build: path.resolve(__dirname, '../../server/dist'),
   public: path.resolve(__dirname, '../public'),
 };
