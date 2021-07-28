@@ -15,12 +15,9 @@ export const handleCreateUser = async (req, res, next) => {
 export const handleGetAllUser = async (req, res, next) => {
   try {
     const result = await getAllUser();
-    if (result) {
-      res.status(200).json(result);
-    } else {
-      throw new Error();
-    }
+    res.status(200).json(result);
   } catch (err) {
+    Logger.error(err);
     next(err);
   }
 };

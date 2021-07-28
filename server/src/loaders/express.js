@@ -24,10 +24,10 @@ export default app => {
     next(err);
   });
 
-  app.use((err, req, res) => {
+  app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
       message: err.message,
-      error: err,
+      error: err.name,
     });
   });
 };
