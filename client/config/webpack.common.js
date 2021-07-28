@@ -79,5 +79,15 @@ module.exports = {
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.json', '.css', '.scss', 'sass'],
+    alias: {
+      '@config': paths.config,
+      '@assets': paths.assets,
+      '@lib': paths.lib,
+      '@store': paths.store,
+      '@styles': paths.styles,
+      '@utils': paths.utils,
+      '@components': paths.components,
+      '@pages': paths.pages,
+    },
   },
 };

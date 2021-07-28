@@ -1,7 +1,9 @@
-import Component from '../../../lib/Component';
-import { Count, Name } from '../../../store';
+import Component from '@lib/Component';
+import router from '@lib/Router';
+import { Count, Name } from '@store';
+import calendarIcon from '@assets/icons/calendar.svg';
+import { Layout } from '@components';
 import './MainPage.scss';
-import calendarIcon from '../../../assets/icons/calendar.svg';
 
 const onClickButton = () => {
   Count.incrementCount();
@@ -14,9 +16,12 @@ const onClickAsyncButton = () => {
 const onClickNameButton = () => {
   Name.changeName();
 };
+const onClickLoginButton = () => {
+  router.push('/login');
+};
 
 class MainPage extends Component {
-  init() {
+  setObserver() {
     Count.observe('count', this.render.bind(this));
     Name.observe('name', this.render.bind(this));
   }
@@ -24,6 +29,7 @@ class MainPage extends Component {
   template() {
     const { count } = Count.state;
     const { name } = Name.state;
+
     return `
       <div class="main-page">
         <h1 class="main-page__header">${count} ${name}</h1>
@@ -31,6 +37,7 @@ class MainPage extends Component {
         <button id="increment"> + </button>
         <button id="async"> async + </button>
         <button id="name">name</button>
+        <button id="login">login</button>
       </div>
     `;
   }
@@ -39,6 +46,14 @@ class MainPage extends Component {
     this.addEvent('click', '#increment', onClickButton);
     this.addEvent('click', '#async', onClickAsyncButton);
     this.addEvent('click', '#name', onClickNameButton);
+    this.addEvent('click', '#login', onClickLoginButton);
+  }
+
+  didRender() {
+    const { count } = Count.state;
+    new Layout(this.$target, {
+      count,
+    });
   }
 }
 

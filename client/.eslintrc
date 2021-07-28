@@ -13,13 +13,11 @@
     "class-methods-use-this": [
       "error",
       {
-        "exceptMethods": [
-          "init",
-          "setEvent",
-          "template",
-          "didRender"
-        ]
+        "exceptMethods": ["setObserver", "setEvent", "template", "didRender"]
       }
     ],
+    "no-new": "off",
+    "import/no-unresolved": "off",
+    "no-bitwise": ["error", { "int32Hint": true }]
   }
 }
