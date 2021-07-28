@@ -1,13 +1,13 @@
 import Component from '@lib/Component';
 
-class Child extends Component {
+class Layout extends Component {
   template() {
     return `
-      <div class="child">
+      <div class="layout">
         ${this.props.count}
       </div>
     `;
   }
 }
 
-export default Child;
+export default Layout;

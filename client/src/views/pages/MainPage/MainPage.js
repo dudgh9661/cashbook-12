@@ -2,7 +2,7 @@ import Component from '@lib/Component';
 import router from '@lib/Router';
 import { Count, Name } from '@store';
 import calendarIcon from '@icons/calendar.svg';
-import { Child } from '../../components';
+import { Layout } from '@components';
 import './MainPage.scss';
 
 const onClickButton = () => {
@@ -51,7 +51,7 @@ class MainPage extends Component {
 
   didRender() {
     const { count } = Count.state;
-    new Child(this.$target, {
+    new Layout(this.$target, {
       count,
     });
   }
