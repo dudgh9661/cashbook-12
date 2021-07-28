@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "rules": {
+    "class-methods-use-this": [
+      "error",
+      {
+        "exceptMethods": ["setObserver", "setEvent", "template", "didRender"]
+      }
+    ],
+    "no-new": "off",
+    "import/no-unresolved": "off",
+    "no-bitwise": ["error", { "int32Hint": true }]
+  }
+}
