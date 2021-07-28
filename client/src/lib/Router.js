@@ -24,6 +24,7 @@ class Router {
   }
 
   render(pathname) {
+    this.$app.innerHTML = '';
     if (!this.routes[pathname]) {
       const page404 = new this.routes.NotFound(this.$app);
       page404.render();
