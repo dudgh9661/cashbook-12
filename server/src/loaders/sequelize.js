@@ -1,12 +1,14 @@
 import { Sequelize } from 'sequelize';
 import sequelize from '../config/database';
-import { User, History } from '../models';
+import { User, Category, Payment, History } from '../models';
 
 export default async () => {
   const db = {
     sequelize,
     Sequelize,
     User,
+    Category,
+    Payment,
     History,
   };
 

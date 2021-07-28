@@ -1,2 +1,4 @@
-export { default as User } from './history.js';
-export { default as History } from './user.js';
+export { default as User } from './user';
+export { default as Category } from './category';
+export { default as Payment } from './payment';
+export { default as History } from './history';

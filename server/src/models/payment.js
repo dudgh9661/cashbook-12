@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 
-const User = sequelize.define(
-  'User',
+const Payment = sequelize.define(
+  'Payment',
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -10,15 +10,15 @@ const User = sequelize.define(
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(20),
       allowNull: false,
       unique: true,
     },
   },
   {
-    tableName: 'user',
+    tableName: 'payment',
     underscored: true,
   },
 );
 
-export default User;
+export default Payment;

@@ -1,22 +1,50 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config/database.js';
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database';
+import User from './user';
+import Category from './category';
+import Payment from './payment';
 
-const { Model, DataTypes } = Sequelize;
-export default class History extends Model {}
-
-History.init(
+const History = sequelize.define(
+  'History',
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
+    content: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    category_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+    },
+    payment_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+    },
   },
   {
     tableName: 'history',
-    sequelize,
-    timestamps: true,
-    updatedAt: false,
     underscored: true,
   },
 );
+
+History.belongsTo(Category, { foreignKey: 'category_id' });
+History.belongsTo(Payment, { foreignKey: 'payment_id' });
+History.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+
+export default History;
