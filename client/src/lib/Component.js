@@ -1,10 +1,10 @@
 import { uuid } from '@utils/helper';
 
 export default class Component {
-  constructor($parent) {
+  constructor($parent, props) {
     this.$parent = $parent;
+    this.props = props;
     this.key = uuid();
-
     this.init();
   }
 

@@ -1,7 +1,8 @@
 import Component from '@lib/Component';
+import router from '@lib/Router';
 import { Count, Name } from '@store';
 import calendarIcon from '@icons/calendar.svg';
-import router from '@lib/Router';
+import { Child } from '../../components';
 import './MainPage.scss';
 
 const onClickButton = () => {
@@ -46,6 +47,13 @@ class MainPage extends Component {
     this.addEvent('click', '#async', onClickAsyncButton);
     this.addEvent('click', '#name', onClickNameButton);
     this.addEvent('click', '#login', onClickLoginButton);
+  }
+
+  didRender() {
+    const { count } = Count.state;
+    new Child(this.$target, {
+      count,
+    });
   }
 }
 
