@@ -10,4 +10,7 @@ export default {
     password: process.env.DATABASE_PASSWORD,
     dbname: process.env.DATABASE_NAME,
   },
+  api: {
+    prefix: '/api',
+  },
 };

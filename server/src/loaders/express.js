@@ -1,6 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import config from '../config';
+import routes from '../api';
 
 export default app => {
   app.use(express.json());
@@ -13,6 +15,8 @@ export default app => {
   app.use(cors());
 
   app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
+
+  app.use(config.api.prefix, routes);
 
   app.use((req, res, next) => {
     const err = new Error('Not Found');

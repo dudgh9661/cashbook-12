@@ -1,9 +1,10 @@
-import User from '../models/user.js';
+import { User } from '../models';
 
 export const createUser = async name => {
-  await User.create({
-    name,
-  });
+  await User.create({ name });
 };
 
-export const getUser = async () => {};
+export const getAllUser = async () => {
+  const allUser = await User.findAll();
+  return allUser;
+};
