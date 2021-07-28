@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -46,7 +48,16 @@ module.exports = {
       },
       {
         test: /\.(scss|sass|css)$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: '@import "./src/styles/base.scss";',
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
     ],
@@ -60,6 +71,9 @@ module.exports = {
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['!app.bundle.js'],
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed),
     }),
   ],
   resolve: {

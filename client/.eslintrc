@@ -9,5 +9,17 @@
   },
   "plugins": ["prettier"],
   "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "rules": {}
+  "rules": {
+    "class-methods-use-this": [
+      "error",
+      {
+        "exceptMethods": [
+          "init",
+          "setEvent",
+          "template",
+          "didRender"
+        ]
+      }
+    ],
+  }
 }

@@ -1,3 +1,2 @@
-import Main from './Main';
-
-export default Main;
+export { default as MainPage } from './MainPage/MainPage';
+export { default as NotFoundPage } from './NotFoundPage/NotFoundPage';

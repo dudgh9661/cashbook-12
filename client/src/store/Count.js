@@ -1,6 +1,6 @@
-import Observable from '../core/Observable';
+import Observable from '../lib/Observable';
 
-class MainModel extends Observable {
+class Count extends Observable {
   incrementCount() {
     this.state.count += 1;
   }
@@ -21,4 +21,4 @@ const initialState = {
   count: 0,
 };
 
-export default new MainModel(initialState);
+export default new Count(initialState);
