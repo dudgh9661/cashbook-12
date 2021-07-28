@@ -1,24 +1,45 @@
+import { uuid } from '@utils/helper';
+
 export default class Component {
-  constructor($target) {
-    this.$target = $target;
+  constructor($parent) {
+    this.$parent = $parent;
+    this.key = uuid();
+
     this.init();
+  }
+
+  init() {
+    this.setObserver();
+    this.appendTemplateToParent();
+    this.initTarget();
     this.setEvent();
   }
 
-  init() {}
+  appendTemplateToParent() {
+    const $fragment = this.getFragmentFromTemplate();
+    this.$parent.append($fragment);
+  }
 
-  template() {
-    return '';
+  initTarget() {
+    this.$target = document.querySelector(`[data-key="${this.key}"]`);
   }
 
   render() {
-    this.$target.innerHTML = this.template();
+    const targetInnerHTML =
+      this.getFragmentFromTemplate().firstElementChild.innerHTML;
+
+    this.$target.innerHTML = targetInnerHTML;
     this.didRender();
   }
 
-  didRender() {}
+  getFragmentFromTemplate() {
+    const $template = document.createElement('template');
+    $template.innerHTML = this.template()
+      .trim()
+      .replace(' ', ` data-key="${this.key}" `);
 
-  setEvent() {}
+    return $template.content.cloneNode(true);
+  }
 
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
@@ -31,4 +52,12 @@ export default class Component {
       return true;
     });
   }
+
+  setObserver() {}
+
+  template() {}
+
+  setEvent() {}
+
+  didRender() {}
 }

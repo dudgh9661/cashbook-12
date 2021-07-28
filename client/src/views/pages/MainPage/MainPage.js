@@ -20,7 +20,7 @@ const onClickLoginButton = () => {
 };
 
 class MainPage extends Component {
-  init() {
+  setObserver() {
     Count.observe('count', this.render.bind(this));
     Name.observe('name', this.render.bind(this));
   }
@@ -28,6 +28,7 @@ class MainPage extends Component {
   template() {
     const { count } = Count.state;
     const { name } = Name.state;
+
     return `
       <div class="main-page">
         <h1 class="main-page__header">${count} ${name}</h1>
