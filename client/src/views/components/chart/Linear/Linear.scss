@@ -6,5 +6,6 @@
 
   &__title {
     @include font-body(large);
+    color: $color-title-active;
   }
 }

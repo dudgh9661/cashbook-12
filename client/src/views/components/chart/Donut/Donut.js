@@ -25,7 +25,7 @@ class Donut extends Component {
     $chartContent.className = 'chart-content';
 
     const $chart = document.createElement('div');
-    $chart.className = 'chart-content__chart';
+    $chart.className = 'chart-content-chart';
 
     const $canvas = document.createElement('canvas');
     $canvas.id = 'donutChart';
@@ -41,7 +41,37 @@ class Donut extends Component {
     $chart.appendChild($canvas);
 
     const $info = document.createElement('div');
-    $info.className = 'chart-content__info';
+    $info.className = 'chart-content-info';
+
+    const $chartTitle = document.createElement('h1');
+    $chartTitle.className = 'chart-content-info__title';
+    $chartTitle.innerText = '이번 달 지출 금액 834,640';
+    $info.appendChild($chartTitle);
+
+    const $list = document.createElement('ul');
+    $list.className = 'chart-content-info__list';
+
+    data.forEach(({ label, value, color }) => {
+      const $item = document.createElement('li');
+
+      const $tag = document.createElement('span');
+      $tag.innerText = label;
+      $tag.style = `background-color: ${color}`;
+
+      const $pct = document.createElement('span');
+      $pct.innerText = `${Math.round((value / 834640) * 100)}%`;
+
+      const $value = document.createElement('span');
+      $value.innerText = value;
+
+      $item.appendChild($tag);
+      $item.appendChild($pct);
+      $item.appendChild($value);
+
+      $list.appendChild($item);
+    });
+
+    $info.appendChild($list);
 
     $chartContent.appendChild($chart);
     $chartContent.appendChild($info);
