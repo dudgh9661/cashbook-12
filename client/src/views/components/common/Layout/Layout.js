@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import { Header } from '@components';
 
 class Layout extends Component {
   constructor() {
@@ -10,6 +11,8 @@ class Layout extends Component {
   render() {
     const $layout = document.createElement('div');
     $layout.className = 'layout';
+
+    $layout.appendChild(new Header().getElement());
 
     return $layout;
   }
