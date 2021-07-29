@@ -13,7 +13,7 @@
     "class-methods-use-this": [
       "error",
       {
-        "exceptMethods": ["setObserver", "setEvent", "template", "didRender"]
+        "exceptMethods": ["setObserver", "setEvent", "render", "didMount"]
       }
     ],
     "no-new": "off",

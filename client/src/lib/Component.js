@@ -1,44 +1,33 @@
-import { uuid } from '@utils/helper';
-
 export default class Component {
-  constructor($parent, props) {
-    this.$parent = $parent;
+  constructor(props) {
     this.props = props;
-    this.key = uuid();
-    this.init();
   }
 
   init() {
+    this.$element = this.render();
     this.setObserver();
-    this.appendTemplateToParent();
-    this.initTarget();
     this.setEvent();
+    this.didMount();
   }
 
-  appendTemplateToParent() {
-    const $fragment = this.getFragmentFromTemplate();
-    this.$parent.append($fragment);
+  getElement() {
+    return this.$element;
   }
 
-  initTarget() {
-    this.$target = document.querySelector(`[data-key="${this.key}"]`);
+  setObserver() {}
+
+  setEvent() {}
+
+  render() {}
+
+  didMount() {}
+
+  unmount() {
+    this.$element.remove();
   }
 
-  render() {
-    const targetInnerHTML =
-      this.getFragmentFromTemplate().firstElementChild.innerHTML;
-
-    this.$target.innerHTML = targetInnerHTML;
-    this.didRender();
-  }
-
-  getFragmentFromTemplate() {
-    const $template = document.createElement('template');
-    $template.innerHTML = this.template()
-      .trim()
-      .replace(' ', ` data-key="${this.key}" `);
-
-    return $template.content.cloneNode(true);
+  reRender() {
+    this.$element = this.render();
   }
 
   addEvent(eventType, selector, callback) {
@@ -52,12 +41,4 @@ export default class Component {
       return true;
     });
   }
-
-  setObserver() {}
-
-  template() {}
-
-  setEvent() {}
-
-  didRender() {}
 }
