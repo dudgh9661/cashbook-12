@@ -2041,6 +2041,11 @@ dotenv@^10.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
+doughnut-chart-js@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/doughnut-chart-js/-/doughnut-chart-js-1.1.0.tgz#3cfc2a4cc4b908b05cf0b84d3906417750a2a533"
+  integrity sha512-r5WYSU3KVzXRhHloSfGc+TCRCCctdMKFTi2WePnN4EMBRAn3gzZgNbjBJNrffa6EMa5pAbh+YxY9YWmbzZw5+g==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -3404,6 +3409,11 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
+
+linear-chart-js@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/linear-chart-js/-/linear-chart-js-1.0.4.tgz#0bc3b7b998e9cee9099255da79f820e2ca4b4e68"
+  integrity sha512-jXwguI67xZ6HIrST7W9PqOAi304rK61pqTcgF44KwdBNpy6nEdq1hgjNfE/8AytjJYFw1danpFGwLb37z1LYPg==
 
 load-json-file@^4.0.0:
   version "4.0.0"

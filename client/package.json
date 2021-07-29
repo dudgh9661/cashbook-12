@@ -33,5 +33,9 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "doughnut-chart-js": "^1.1.0",
+    "linear-chart-js": "^1.0.4"
   }
 }

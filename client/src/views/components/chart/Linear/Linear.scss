@@ -1,0 +1,10 @@
+.chart-content {
+  &.linear {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include font-body(large);
+  }
+}
