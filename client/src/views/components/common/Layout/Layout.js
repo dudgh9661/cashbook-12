@@ -3,13 +3,15 @@ import { Header } from '@components';
 import './Layout.scss';
 
 class Layout extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.init();
   }
 
   render() {
+    const { content } = this.props;
+
     const $layout = document.createElement('div');
     $layout.className = 'layout';
 
@@ -24,6 +26,8 @@ class Layout extends Component {
     $container.appendChild(new Header().getElement());
 
     const $main = document.createElement('main');
+    $main.appendChild(content);
+
     $container.appendChild($main);
 
     return $layout;
