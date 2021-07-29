@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import LinearChart from 'linear-chart-js';
+// import LinearChart from 'linear-chart-js';
 import ChartWrapper from '../Wrapper/Wrapper';
 import './Linear.scss';
 
