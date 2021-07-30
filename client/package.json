@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "doughnut-chart-js": "^1.1.0",
-    "linear-chart-js": "^1.0.4"
+    "linear-chart-js": "1.0.5"
   }
 }

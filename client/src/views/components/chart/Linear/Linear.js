@@ -29,6 +29,7 @@ class Linear extends Component {
         [616929, 509637, 563283, 590106, 643752, 568647, 536460],
         {
           highlightIndex: 6,
+          wayPointsCount: 10,
         },
       );
     }, 0);
