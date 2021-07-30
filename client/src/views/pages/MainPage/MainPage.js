@@ -1,59 +1,29 @@
 import Component from '@lib/Component';
-import router from '@lib/Router';
-import { Count, Name } from '@store';
-import calendarIcon from '@assets/icons/calendar.svg';
-import { Layout } from '@components';
+import { Layout, DonutChart, LinearChart } from '@components';
 import './MainPage.scss';
 
-const onClickButton = () => {
-  Count.incrementCount();
-};
-
-const onClickAsyncButton = () => {
-  Count.asyncIncrementCount();
-};
-
-const onClickNameButton = () => {
-  Name.changeName();
-};
-const onClickLoginButton = () => {
-  router.push('/login');
-};
-
 class MainPage extends Component {
-  setObserver() {
-    Count.observe('count', this.render.bind(this));
-    Name.observe('name', this.render.bind(this));
+  constructor() {
+    super();
+
+    this.init();
   }
 
-  template() {
-    const { count } = Count.state;
-    const { name } = Name.state;
+  render() {
+    const $mainPage = document.createElement('div');
+    $mainPage.className = 'main-page';
 
-    return `
-      <div class="main-page">
-        <h1 class="main-page__header">${count} ${name}</h1>
-        <img src="${calendarIcon}" alt="icon" />
-        <button id="increment"> + </button>
-        <button id="async"> async + </button>
-        <button id="name">name</button>
-        <button id="login">login</button>
-      </div>
-    `;
-  }
+    const $mainPageFrag = document.createDocumentFragment();
+    $mainPageFrag.appendChild(new DonutChart().getElement());
+    $mainPageFrag.appendChild(new LinearChart().getElement());
 
-  setEvent() {
-    this.addEvent('click', '#increment', onClickButton);
-    this.addEvent('click', '#async', onClickAsyncButton);
-    this.addEvent('click', '#name', onClickNameButton);
-    this.addEvent('click', '#login', onClickLoginButton);
-  }
+    $mainPage.appendChild(
+      new Layout({
+        content: $mainPageFrag,
+      }).getElement(),
+    );
 
-  didRender() {
-    const { count } = Count.state;
-    new Layout(this.$target, {
-      count,
-    });
+    return $mainPage;
   }
 }
 

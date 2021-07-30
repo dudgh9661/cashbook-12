@@ -64,7 +64,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'cashbook',
+      title: '우아한 가계부',
       template: paths.public + '/index.html',
       favicon: paths.public + '/favicon.png',
       filename: 'index.html',
