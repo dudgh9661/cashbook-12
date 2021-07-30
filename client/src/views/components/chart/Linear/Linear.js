@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-// import LinearChart from 'linear-chart-js';
+import LinearChart from 'linear-chart-js';
 import ChartWrapper from '../Wrapper/Wrapper';
 import './Linear.scss';
 
@@ -22,14 +22,16 @@ class Linear extends Component {
     const $canvas = document.createElement('canvas');
     $canvas.id = 'target';
 
-    // LinearChart(
-    //   'target',
-    //   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    //   [616929, 509637, 563283, 590106, 643752, 568647, 536460],
-    //   {
-    //     highlightIndex: 6,
-    //   },
-    // );
+    setTimeout(function () {
+      LinearChart(
+        'target',
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        [616929, 509637, 563283, 590106, 643752, 568647, 536460],
+        {
+          highlightIndex: 6,
+        },
+      );
+    }, 0);
 
     $chartContent.appendChild($canvas);
 
