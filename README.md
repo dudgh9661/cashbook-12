@@ -2,7 +2,15 @@
 
 > **TEAM. `🧑🏻‍💻 동진 && 👩🏻‍💻 그림`**
 
-우아한 소비 습관을 만들어주는 우아한 가계부 프로젝트
+<p align="center">
+<img src="https://user-images.githubusercontent.com/22045163/127591247-b1285eea-8499-40f8-902a-04daf0ed1739.png" alt="preview" width="18%" />
+<p>
+    
+<h3 align="center">
+  <a href="http://13.125.71.167:5000">http://13.125.71.167:5000</a>
+</h3>
+
+<p align="center">✨&nbsp; 우아한 소비 습관을 만들어주는 우아한 가계부 프로젝트 ✨</p>
 
 ## 사용 기술
 
