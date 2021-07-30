@@ -22,7 +22,7 @@ class Linear extends Component {
     const $canvas = document.createElement('canvas');
     $canvas.id = 'target';
 
-    setTimeout(function () {
+    setTimeout(() => {
       LinearChart(
         'target',
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
