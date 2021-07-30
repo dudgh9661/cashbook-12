@@ -23,14 +23,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: client build & test
+      - name: client install & lint check
         working-directory: ./client
         run: |
-          yarn install
+          yarn install --frozen-lockfile
           yarn lint
 
-      - name: server build & test
+      - name: server install & lint check
         working-directory: ./server
         run: |
-          yarn install
+          yarn install --frozen-lockfile
           yarn lint
