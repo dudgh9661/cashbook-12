@@ -27,7 +27,10 @@ export default class Component {
   }
 
   reRender() {
-    this.$element = this.render();
+    const $newElement = this.render();
+    this.$element.replaceWith($newElement);
+    this.$element = $newElement;
+    this.setEvent();
   }
 
   addEvent(eventType, selector, callback) {
