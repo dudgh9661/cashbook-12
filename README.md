@@ -11,6 +11,16 @@
 - **Back-End** Node.js / Express / Sequelize ORM
 - **ETC** AWS EC2 / Github / Slack
 
+## Chart 패키지 배포
+
+### Donut Chart ([doughnut-chart-js](https://www.npmjs.com/package/doughnut-chart-js))
+
+<img src="https://user-images.githubusercontent.com/22045163/127589185-a683f09f-f61d-48b6-960a-5d9ba81ef264.gif" alt="donut-chart" width="30%" />
+
+### Linear Chart ([linear-chart-js](https://www.npmjs.com/package/linear-chart-js))
+    
+<img src="https://user-images.githubusercontent.com/22045163/127590785-6e2b9bc6-a76e-4d8c-a708-58f23f24cbf8.gif" alt="linear-chart" width="60%" />
+
 ## 프로젝트 구조
 
 ### Client
