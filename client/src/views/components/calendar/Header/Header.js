@@ -13,7 +13,11 @@ class CalendarHeader extends Component {
     $calendarHeader.className = 'calendar-header';
 
     $calendarHeader.innerHTML = `
-      <h1>Calendar Header</h1>
+      ${['일', '월', '화', '수', '목', '금', '토']
+        .map(day => {
+          return `<div class="calendar-header__day">${day}</div>`;
+        })
+        .join('')}
     `;
 
     return $calendarHeader;
