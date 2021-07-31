@@ -5,7 +5,7 @@
   }
 
   &__title {
-    @include font-body(large);
+    font: $font-body-large;
     color: $color-title-active;
   }
 }
