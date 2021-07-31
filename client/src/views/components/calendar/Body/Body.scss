@@ -9,11 +9,16 @@
   border-collapse: collapse;
   border-style: hidden;
   margin-bottom: 20px;
+  table-layout: fixed;
 
   &__day {
-    height: 70px;
+    height: 80px;
     padding: 10px;
     border: 1px solid $color-line;
+
+    &.today {
+      background-color: $color-background;
+    }
   }
 }
 
@@ -22,6 +27,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &__info {
+    font: $font-body-small;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      &.plus {
+        color: $color-primary-dark;
+      }
+
+      &.minus {
+        color: $color-error;
+      }
+    }
+  }
 
   &__num {
     font: $font-bold-small;

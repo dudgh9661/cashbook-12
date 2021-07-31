@@ -1,9 +1,10 @@
 import Component from '@lib/Component';
-import { DateInfo } from '@store';
+import { DateInfo, History } from '@store';
 import './Body.scss';
 
 const prevMonthHandler = () => {
   DateInfo.setPrevMonth();
+  History.getCurrentMonthHistory();
 };
 
 class CalendarBody extends Component {
@@ -15,27 +16,48 @@ class CalendarBody extends Component {
 
   setObserver() {
     DateInfo.observe('current', this.reRender.bind(this));
+    History.observe('history', this.reRender.bind(this));
   }
 
   render() {
-    const { current } = DateInfo.state;
+    const { today, current } = DateInfo.state;
+    const { history } = History.state;
+    const hasToday =
+      today.year === current.year && today.month === current.month;
 
     const $calendarBody = document.createElement('table');
     $calendarBody.className = 'calendar-body';
 
     let date = -current.firstDay + 1;
-    while (date <= current.date) {
+    while (date <= current.lastDate) {
       const $dayRow = document.createElement('tr');
       $dayRow.className = 'calendar-body__week';
 
       for (let day = 0; day < 7; day += 1) {
+        const curHistory = history.find(h => h.date === date);
+
         $dayRow.innerHTML += `
-          <td class="calendar-body__day">
+          <td class="calendar-body__day ${
+            hasToday && today.date === date ? 'today' : ''
+          }">
             <div class="day-content">
-              <span></span>
-              <span class="day-content__num">
-                ${date > 0 && date <= current.date ? date : ''}
-              </span>
+              <div class="day-content__info">
+              ${
+                curHistory
+                  ? `<span class="plus">${
+                      curHistory.income === 0 ? '' : curHistory.income
+                    }</span>
+                    <span class="minus">${
+                      curHistory.expenses === 0 ? '' : curHistory.expenses
+                    }</span>
+                    <span>${curHistory.earning}</span>
+                    `
+                  : ''
+              }
+              </div>
+              <div class="day-content__num">
+                ${date > 0 && date <= current.lastDate ? date : ''}
+              </div>
             </div>
           </td>
         `;
@@ -50,6 +72,10 @@ class CalendarBody extends Component {
 
   setEvent() {
     this.addEvent('click', '.calendar-body', prevMonthHandler);
+  }
+
+  didMount() {
+    History.getCurrentMonthHistory();
   }
 }
 
