@@ -8,14 +8,14 @@ class DateInfo extends Observable {
       this.state.current = {
         year: current.year + 1,
         month: 1,
-        date: new Date(current.year + 1, 1, 0).getDate(),
+        lastDate: new Date(current.year + 1, 1, 0).getDate(),
         firstDay: new Date(current.year + 1, 0, 1).getDay(),
       };
     } else {
       this.state.current = {
         year: current.year,
         month: current.month + 1,
-        date: new Date(current.year, current.month + 1, 0).getDate(),
+        lastDate: new Date(current.year, current.month + 1, 0).getDate(),
         firstDay: new Date(current.year, current.month, 1).getDay(),
       };
     }
@@ -28,14 +28,14 @@ class DateInfo extends Observable {
       this.state.current = {
         year: current.year - 1,
         month: 12,
-        date: new Date(current.year - 1, 12, 0).getDate(),
+        lastDate: new Date(current.year - 1, 12, 0).getDate(),
         firstDay: new Date(current.year - 1, 11, 1).getDay(),
       };
     } else {
       this.state.current = {
         year: current.year,
         month: current.month - 1,
-        date: new Date(current.year, current.month - 1, 0).getDate(),
+        lastDate: new Date(current.year, current.month - 1, 0).getDate(),
         firstDay: new Date(current.year, current.month - 2, 1).getDay(),
       };
     }
@@ -53,7 +53,7 @@ const initialState = {
   current: {
     year: date.getFullYear(),
     month: date.getMonth() + 1,
-    date: new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+    lastDate: new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
     firstDay: new Date(date.getFullYear(), date.getMonth(), 1).getDay(),
   },
 };
