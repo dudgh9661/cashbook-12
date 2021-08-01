@@ -1,0 +1,15 @@
+.history-header {
+  padding: 38px 0;
+  display: flex;
+  justify-content: space-between;
+  color: $color-primary-dark;
+  > span {
+    font-size: 22px;
+  }
+  &-category {
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,37 @@
+.checkbox {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  input {
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    &:checked ~ .checkmark {
+      background: $color-primary;
+      svg {
+        path {
+          stroke: $color-off-white;
+        }
+      }
+    }
+  }
+
+  .checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    background: $color-off-white;
+    border: 2px solid $color-primary;
+    margin-right: 12px;
+    svg {
+      path {
+        stroke: $color-primary;
+        stroke-width: 3px;
+      }
+    }
+  }
+}
