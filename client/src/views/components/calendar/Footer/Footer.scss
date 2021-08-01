@@ -1,0 +1,16 @@
+.calendar-footer {
+  font: $font-bold-medium;
+  color: $color-grey1;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 0 10px;
+
+  &__left {
+    display: flex;
+
+    &--pr {
+      padding-right: 10px;
+    }
+  }
+}

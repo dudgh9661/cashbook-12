@@ -7,13 +7,13 @@
   box-sizing: border-box;
 
   &__logo {
-    @include font-display(small);
+    font: $font-display-small;
     color: $color-off-white;
     flex: 1;
   }
 
   &__nav {
-    @include font-display(large);
+    font: $font-display-large;
     color: $color-off-white;
     text-align: center;
     flex: 1;
