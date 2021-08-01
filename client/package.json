@@ -35,7 +35,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "doughnut-chart-js": "^1.1.0",
+    "donut-chart-js": "^1.0.1",
     "linear-chart-js": "1.0.5"
   }
 }

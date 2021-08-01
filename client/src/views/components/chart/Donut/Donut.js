@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import DonutChart from 'doughnut-chart-js';
+import DonutChart from 'donut-chart-js';
 import ChartWrapper from '../Wrapper/Wrapper';
 import './Donut.scss';
 
