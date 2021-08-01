@@ -82,6 +82,7 @@ module.exports = {
     alias: {
       '@config': paths.config,
       '@assets': paths.assets,
+      '@constants': paths.constants,
       '@lib': paths.lib,
       '@store': paths.store,
       '@styles': paths.styles,

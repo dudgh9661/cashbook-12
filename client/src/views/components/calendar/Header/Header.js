@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import { DAYS_OF_WEEK } from '@constants';
 import './Header.scss';
 
 class CalendarHeader extends Component {
@@ -13,11 +14,9 @@ class CalendarHeader extends Component {
     $calendarHeader.className = 'calendar-header';
 
     $calendarHeader.innerHTML = `
-      ${['일', '월', '화', '수', '목', '금', '토']
-        .map(day => {
-          return `<div class="calendar-header__day">${day}</div>`;
-        })
-        .join('')}
+      ${DAYS_OF_WEEK.map(day => {
+        return `<div class="calendar-header__day">${day}</div>`;
+      }).join('')}
     `;
 
     return $calendarHeader;
