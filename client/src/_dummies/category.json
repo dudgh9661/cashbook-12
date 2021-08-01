@@ -1,0 +1,10 @@
+{
+  "categories": [
+    { "id": 1, "name": "생활", "value": "life", "color": "" },
+    { "id": 2, "name": "식비", "value": "food", "color": "" },
+    { "id": 3, "name": "교통", "value": "transportation", "color": "" },
+    { "id": 4, "name": "쇼핑/뷰티", "value": "beauty", "color": "" },
+    { "id": 4, "name": "의료", "value": "medical", "color": "" },
+    { "id": 5, "name": "건강", "vlaue": "healthy", "color": "" }
+  ]
+}
