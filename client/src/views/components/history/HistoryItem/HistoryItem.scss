@@ -6,18 +6,10 @@
     justify-content: space-between;
     padding: 20px 0;
     border-bottom: 1px solid $color-line;
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
     color: $color-body;
+    font: $font-bold-medium;
     b {
       color: $color-title-active;
-      font-family: Noto Sans KR;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 22px;
     }
   }
   table {
@@ -37,6 +29,7 @@
       flex: 0 0 50%;
       display: flex;
       align-items: center;
+      font: $font-body-medium;
       span {
         &:nth-child(2) {
           margin-left: 10px;
@@ -48,13 +41,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-family: Noto Sans KR;
-      font-size: 18px;
+      font: $font-body-medium;
       &-method {
         color: $color-body;
       }
       &-amount {
         color: $color-title-active;
+        font: $font-bold-large;
       }
     }
   }

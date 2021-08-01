@@ -30,16 +30,14 @@
     }
     &:nth-child(5) {
       border-right: 0;
-      flex: 1 1 168px;
+      flex: 1 1 170px;
     }
   }
 }
 
 .label {
   color: $color-primary-dark;
-  font-family: Noto Sans KR;
-  font-weight: bold;
-  font-size: 12px;
+  font: $font-bold-small;
   line-height: 17px;
 }
 
