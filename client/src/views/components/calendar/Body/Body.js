@@ -1,27 +1,16 @@
 import Component from '@lib/Component';
-import { DateInfo, History } from '@store';
 import './Body.scss';
 
-const prevMonthHandler = () => {
-  DateInfo.setPrevMonth();
-  History.getCurrentMonthHistory();
-};
-
 class CalendarBody extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.init();
   }
 
-  setObserver() {
-    DateInfo.observe('current', this.reRender.bind(this));
-    History.observe('history', this.reRender.bind(this));
-  }
-
   render() {
-    const { today, current } = DateInfo.state;
-    const { history } = History.state;
+    const { today, current, history } = this.props;
+
     const hasToday =
       today.year === current.year && today.month === current.month;
 
@@ -34,7 +23,7 @@ class CalendarBody extends Component {
       $dayRow.className = 'calendar-body__week';
 
       for (let day = 0; day < 7; day += 1) {
-        const curHistory = history.find(h => h.date === date);
+        const curHistory = history && history.find(h => h.date === date);
 
         $dayRow.innerHTML += `
           <td class="calendar-body__day ${
@@ -68,14 +57,6 @@ class CalendarBody extends Component {
     }
 
     return $calendarBody;
-  }
-
-  setEvent() {
-    this.addEvent('click', '.calendar-body', prevMonthHandler);
-  }
-
-  didMount() {
-    History.getCurrentMonthHistory();
   }
 }
 
