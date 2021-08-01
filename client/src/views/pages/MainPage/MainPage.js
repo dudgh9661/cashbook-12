@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { Layout, DonutChart, LinearChart } from '@components';
+import { Layout, Form } from '@components';
 import './MainPage.scss';
 
 class MainPage extends Component {
@@ -14,9 +14,7 @@ class MainPage extends Component {
     $mainPage.className = 'main-page';
 
     const $mainPageFrag = document.createDocumentFragment();
-    $mainPageFrag.appendChild(new DonutChart().getElement());
-    $mainPageFrag.appendChild(new LinearChart().getElement());
-
+    $mainPageFrag.append(new Form({}).getElement());
     $mainPage.appendChild(
       new Layout({
         content: $mainPageFrag,
