@@ -1,6 +1,6 @@
 .calendar-footer {
-  font: $font-bold-medium;
-  color: $color-grey1;
+  font: var(--font-bold-medium);
+  color: var(--color-grey1);
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
