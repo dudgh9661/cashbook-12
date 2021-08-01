@@ -1,0 +1,35 @@
+import Component from '@lib/Component';
+import './Input.scss';
+
+class Input extends Component {
+  constructor(props) {
+    super(props);
+
+    this.init();
+  }
+
+  render() {
+    const {
+      label,
+      prefixClass,
+      prefix,
+      placeholder,
+      suffixClass,
+      suffix,
+      customClass,
+    } = this.props;
+    const $input = document.createElement('div');
+    $input.classList.add('input-container');
+    $input.innerHTML = `
+      <label class="label">${label}</label>
+      <div class="input-wrapper ${customClass || ''}">
+        ${prefix ? `<span class="${prefixClass}">${prefix}</span>` : ''}
+        <input class="input" type="text" placeholder="${placeholder}"/>
+        ${suffix ? `<span class="${suffixClass}">${suffix}</span>` : ''}
+      </div>      
+    `;
+
+    return $input;
+  }
+}
+export default Input;

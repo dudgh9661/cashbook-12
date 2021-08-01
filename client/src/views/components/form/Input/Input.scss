@@ -1,0 +1,25 @@
+.input {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 4px 0;
+  display: block;
+  width: 100%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix {
+  width: 50px;
+  padding-left: 5px;
+  padding-top: 4px;
+}
+
+.input-suffix {
+}
+
+.input-amount {
+}
