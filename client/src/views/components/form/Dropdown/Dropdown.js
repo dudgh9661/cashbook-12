@@ -2,16 +2,10 @@ import Component from '@lib/Component';
 import { chevronDown } from '@assets/icons';
 import './Dropdown.scss';
 
-const renderList = listItems =>
-  listItems
-    .map(
-      item => `      
-              <li>
-                <button class="dropdown-list-button">${item}</button>
-              </li>
-            `,
-    )
-    .join('');
+const onClickDropdown = e => {
+  const $dropdownList = e.target.closest('label').nextElementSibling;
+  $dropdownList.classList.toggle('dropdown-list-active');
+};
 
 class Dropdown extends Component {
   constructor(props) {
@@ -23,21 +17,35 @@ class Dropdown extends Component {
   render() {
     const $dropdown = document.createElement('div');
     $dropdown.classList.add('dropdown');
-
     $dropdown.innerHTML = `
       <label class="label">
         ${this.props.label}
-        <button>          
-          <span>선택하세요</span>        
-          ${chevronDown}
+        <button type="button" id="dropdown-${this.props.id}">
+          ${
+            this.props.selectedValue
+              ? `<span></span>`
+              : `<span class="placeholder">선택하세요</span>${chevronDown}`
+          }          
         </button>
       </label>
       <ul class="dropdown-list">
-        ${renderList(this.props.listItems)}
+        ${this.props.listItems
+          .map(
+            item => `      
+                    <li>
+                      <button type="button" id="dropdown-${item.value}" class="dropdown-list-button">${item.name}</button>
+                    </li>
+                  `,
+          )
+          .join('')}
       </ul>
     `;
 
     return $dropdown;
+  }
+
+  setEvent() {
+    this.addEvent('click', `#dropdown-${this.props.id}`, onClickDropdown);
   }
 }
 export default Dropdown;

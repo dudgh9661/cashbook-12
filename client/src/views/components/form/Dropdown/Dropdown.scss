@@ -3,7 +3,10 @@
   display: inline-block;
   label {
     button {
-      color: $color-label;
+      .placeholder {
+        color: $color-label;
+      }
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -25,6 +28,7 @@
     left: -5px;
     display: none;
     &-active {
+      z-index: 1;
       display: flex;
     }
     li {

@@ -13,7 +13,6 @@ class History extends Component {
     const $history = document.createElement('div');
     $history.classList.add('history');
 
-    console.log(HistoryList);
     $history.append(
       new HistoryHeader({}).getElement(),
       new HistoryList({}).getElement(),

@@ -4,9 +4,7 @@ import { minus, check } from '@assets/icons';
 import './Form.scss';
 
 const onInputDate = e => console.log(e.target.value);
-const onChangeCategory = e => console.log(e.target.value);
 const onInputContent = e => console.log(e.target.value);
-const onChangeMethod = e => console.log(e.target.value);
 const onInputAmount = e => console.log(e.target.value);
 
 class Form extends Component {
@@ -31,8 +29,16 @@ class Form extends Component {
         placeholder: '입력하세요',
       }).getElement(),
       new Dropdown({
+        id: 'category',
         label: '분류',
-        listItems: ['생활', '식비', '교통', '쇼핑/뷰티', '의료', '건강'],
+        listItems: [
+          { name: '생활', value: 'life' },
+          { name: '식비', value: 'food' },
+          { name: '교통', value: 'transportation' },
+          { name: '쇼핑/뷰티', value: 'beauty' },
+          { name: '의료', value: 'medical' },
+          { name: '건강', vlaue: 'healthy' },
+        ],
       }).getElement(),
       new Input({
         id: 'input-content',
@@ -40,8 +46,16 @@ class Form extends Component {
         placeholder: '입력하세요',
       }).getElement(),
       new Dropdown({
+        id: 'method',
         label: '결제수단',
-        listItems: ['생활', '식비', '교통', '쇼핑/뷰티', '의료', '건강'],
+        listItems: [
+          { name: '생활', value: 'life' },
+          { name: '식비', value: 'food' },
+          { name: '교통', value: 'transportation' },
+          { name: '쇼핑/뷰티', value: 'beauty' },
+          { name: '의료', value: 'medical' },
+          { name: '건강', vlaue: 'healthy' },
+        ],
       }).getElement(),
       new Input({
         id: 'input-amount',
