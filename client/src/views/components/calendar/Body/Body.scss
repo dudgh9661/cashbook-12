@@ -15,6 +15,7 @@
     height: 80px;
     padding: 10px;
     border: 1px solid var(--color-line);
+    overflow: hidden;
 
     &.today {
       background-color: var(--color-background);
@@ -48,5 +49,23 @@
     font: var(--font-bold-small);
     color: var(--color-label);
     text-align: right;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-body__day {
+    border-left-style: hidden;
+    border-right-style: hidden;
+    height: 30px;
+  }
+
+  .day-content {
+    &__info span {
+      display: none;
+    }
+
+    &__num {
+      text-align: center;
+    }
   }
 }
