@@ -6,8 +6,8 @@ import CalendarFooter from './Footer/Footer';
 
 const prevMonthHandler = () => {
   DateInfo.setPrevMonth();
-  History.getCurrentMonthHistory();
-  History.getCurrentMonthTotal();
+  History.setCurrentMonthHistory();
+  History.setCurrentMonthTotal();
 };
 
 class Calendar extends Component {
@@ -44,8 +44,8 @@ class Calendar extends Component {
   }
 
   didMount() {
-    History.getCurrentMonthHistory();
-    History.getCurrentMonthTotal();
+    History.setCurrentMonthHistory();
+    History.setCurrentMonthTotal();
   }
 }
 

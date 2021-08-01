@@ -1,5 +1,6 @@
 import router from '@lib/Router';
 import { MainPage, LoginPage, CalendarPage, NotFoundPage } from '@pages';
+import '@styles/base.scss';
 
 const $app = document.getElementById('app');
 
