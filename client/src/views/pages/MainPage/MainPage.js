@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { Layout, Form } from '@components';
+import { Layout, Form, History } from '@components';
 import './MainPage.scss';
 
 class MainPage extends Component {
@@ -14,7 +14,10 @@ class MainPage extends Component {
     $mainPage.className = 'main-page';
 
     const $mainPageFrag = document.createDocumentFragment();
-    $mainPageFrag.append(new Form({}).getElement());
+    $mainPageFrag.append(
+      new Form({}).getElement(),
+      new History({}).getElement(),
+    );
     $mainPage.appendChild(
       new Layout({
         content: $mainPageFrag,
