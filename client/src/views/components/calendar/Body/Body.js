@@ -45,6 +45,7 @@ class CalendarBody extends Component {
                         : `-${moneyWithComma(curHistory.expenses)}`
                     }</span>
                     <span>${moneyWithComma(curHistory.earning)}</span>
+                    <div class="circle"></div>
                     `
                   : ''
               }
