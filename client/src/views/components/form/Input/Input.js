@@ -10,6 +10,7 @@ class Input extends Component {
 
   render() {
     const {
+      id,
       label,
       prefixClass,
       prefix,
@@ -24,7 +25,7 @@ class Input extends Component {
       <label class="label">${label}</label>
       <div class="input-wrapper ${customClass || ''}">
         ${prefix ? `<span class="${prefixClass}">${prefix}</span>` : ''}
-        <input class="input" type="text" placeholder="${placeholder}"/>
+        <input class="input" type="text" placeholder="${placeholder}" id="${id}"/>
         ${suffix ? `<span class="${suffixClass}">${suffix}</span>` : ''}
       </div>      
     `;
