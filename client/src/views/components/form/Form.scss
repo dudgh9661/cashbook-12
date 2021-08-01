@@ -3,18 +3,18 @@
   flex-direction: row;
   align-items: center;
   padding: 16px 32px;
-  background: $color-off-white;
-  border: 1px solid $color-placeholder;
+  background: var(--color-off-white);
+  border: 1px solid var(--color-placeholder);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 904px;
   height: 76px;
-  color: $color-title-active;
+  color: var(--color-title-active);
   margin: 0 auto;
   box-sizing: border-box;
   > * {
     padding: 0 24px;
-    border-right: 1px solid $color-placeholder;
+    border-right: 1px solid var(--color-placeholder);
     &:nth-child(1) {
       padding-left: 0;
       flex: 1 1 104px;
@@ -36,8 +36,8 @@
 }
 
 .label {
-  color: $color-primary-dark;
-  font: $font-bold-small;
+  color: var(--color-primary-dark);
+  font: var(--font-bold-small);
   line-height: 17px;
 }
 
@@ -49,18 +49,18 @@
   flex: 0 0 40px;
   height: 40px;
   border-radius: 10px;
-  background: $color-off-white;
-  border: 2px solid $color-primary;
+  background: var(--color-off-white);
+  border: 2px solid var(--color-primary);
   svg {
     path {
-      stroke: $color-primary;
+      stroke: var(--color-primary);
     }
   }
   &.active {
-    background: $color-primary;
+    background: var(--color-primary);
     svg {
       path {
-        stroke: $color-off-white;
+        stroke: var(--color-off-white);
       }
     }
   }

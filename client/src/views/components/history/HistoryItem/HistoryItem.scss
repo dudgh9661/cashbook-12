@@ -5,11 +5,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    border-bottom: 1px solid $color-line;
-    color: $color-body;
-    font: $font-bold-medium;
+    border-bottom: 1px solid var(--color-line);
+    color: var(--color-body);
+    font: var(--font-bold-medium);
     b {
-      color: $color-title-active;
+      color: var(--color-title-active);
     }
   }
   table {
@@ -22,14 +22,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 12px;
-    border-bottom: 1px solid $color-line;
+    border-bottom: 1px solid var(--color-line);
   }
   &-col {
     &-description {
       flex: 0 0 50%;
       display: flex;
       align-items: center;
-      font: $font-body-medium;
+      font: var(--font-body-medium);
       span {
         &:nth-child(2) {
           margin-left: 10px;
@@ -41,13 +41,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font: $font-body-medium;
+      font: var(--font-body-medium);
       &-method {
-        color: $color-body;
+        color: var(--color-body);
       }
       &-amount {
-        color: $color-title-active;
-        font: $font-bold-large;
+        color: var(--color-title-active);
+        font: var(--font-bold-large);
       }
     }
   }

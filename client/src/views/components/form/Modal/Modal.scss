@@ -19,10 +19,10 @@
     height: 230px;
     padding: 40px;
 
-    background: $color-off-white;
+    background: var(--color-off-white);
     border-radius: 10px;
     header {
-      font: $font-body-medium;
+      font: var(--font-body-medium);
     }
     main {
       margin-top: 24px;
@@ -30,8 +30,8 @@
         width: 100%;
         height: 42px;
         padding: 10px;
-        background: $color-background;
-        border: 1px solid $color-line;
+        background: var(--color-background);
+        border: 1px solid var(--color-line);
         border-radius: 10px;
         outline: none;
       }
@@ -40,12 +40,12 @@
       margin-top: 40px;
       display: flex;
       justify-content: space-between;
-      font: $font-body-medium;
+      font: var(--font-body-medium);
       .cancel {
-        color: $color-label;
+        color: var(--color-label);
       }
       .confirm {
-        color: $color-primary-dark;
+        color: var(--color-primary-dark);
       }
     }
   }

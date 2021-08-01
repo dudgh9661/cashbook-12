@@ -2,9 +2,9 @@
   padding: 38px 0;
   display: flex;
   justify-content: space-between;
-  color: $color-primary-dark;
+  color: var(--color-primary-dark);
   > span {
-    font: $font-body-large;
+    font: var(--font-body-large);
   }
   &-category {
     width: 270px;

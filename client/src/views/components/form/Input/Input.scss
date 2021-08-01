@@ -5,10 +5,10 @@
   padding: 4px 0;
   display: block;
   width: 100%;
-  color: $color-title-active;
+  color: var(--color-title-active);
 
   &::placeholder {
-    color: $color-label;
+    color: var(--color-label);
   }
 }
 
