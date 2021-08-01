@@ -1,12 +1,31 @@
 import Component from '@lib/Component';
+import { DateInfo } from '@store';
+import router from '@lib/Router';
 import './Header.scss';
-import { calendar, chart, fileText } from '@assets/icons';
+import {
+  calendar,
+  chart,
+  fileText,
+  chevronLeft,
+  chevronRight,
+} from '@assets/icons';
+
+const onClickNextMonth = () => DateInfo.setNextMonth();
+const onClickPrevtMonth = () => DateInfo.setPrevMonth();
+const onClickMainTab = () => router.push('/');
+const onClickCalendarTab = () => router.push('/calendar');
+const onClickChartTab = () => router.push('/chart');
 
 class Header extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    this.currentPahth = window.location.pathname;
     this.init();
+  }
+
+  setObserver() {
+    DateInfo.observe('current', this.reRender.bind(this));
   }
 
   render() {
@@ -18,20 +37,47 @@ class Header extends Component {
     $logo.innerText = '우아한 가계부';
 
     const $nav = document.createElement('nav');
+    $nav.innerHTML = `
+      <button id="go-left">${chevronLeft}</button>
+        <div class="header__nav-middle">
+          <span class="month">${DateInfo.state.current.month}월</span>
+          <span class="year">${DateInfo.state.current.year}</span>
+        </div>
+      <button id="go-right">${chevronRight}</button>
+    `;
     $nav.className = 'header__nav';
-    $nav.innerText = '7월';
 
     const $tab = document.createElement('div');
     $tab.className = 'header__tab';
-    $tab.innerHTML += fileText;
-    $tab.innerHTML += calendar;
-    $tab.innerHTML += chart;
+    $tab.innerHTML = `
+      <button id="tab-main" class="${
+        this.currentPahth === '/' ? 'header__tab-active' : ''
+      }">
+      ${fileText}
+      </button> 
+      <button id="tab-calendar" class="${
+        this.currentPahth === '/calendar' ? 'header__tab-active' : ''
+      }">
+      ${calendar}
+      </button> 
+      <button id="tab-chart" class="${
+        this.currentPahth === '/chart' ? 'header__tab-active' : ''
+      }">
+        ${chart}
+      </button> 
+    `;
 
-    $header.appendChild($logo);
-    $header.appendChild($nav);
-    $header.appendChild($tab);
+    $header.append($logo, $nav, $tab);
 
     return $header;
+  }
+
+  setEvent() {
+    this.addEvent('click', '#go-left', onClickPrevtMonth);
+    this.addEvent('click', '#go-right', onClickNextMonth);
+    this.addEvent('click', '#tab-main', onClickMainTab);
+    this.addEvent('click', '#tab-calendar', onClickCalendarTab);
+    this.addEvent('click', '#tab-chart', onClickChartTab);
   }
 }
 

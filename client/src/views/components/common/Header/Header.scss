@@ -5,6 +5,12 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
 
   &__logo {
     font: var(--font-display-small);
@@ -13,10 +19,23 @@
   }
 
   &__nav {
-    font: var(--font-display-large);
-    color: var(--color-off-white);
-    text-align: center;
     flex: 1;
+    display: flex;
+    align-items: center;
+    color: var(--color-off-white);
+    &-middle {
+      margin: 0 52px;
+      .month {
+        text-align: center;
+        display: block;
+        font: var(--font-display-large);
+      }
+      .year {
+        display: block;
+        text-align: center;
+        font: var(--font-display-small);
+      }
+    }
   }
 
   &__tab {
@@ -31,8 +50,12 @@
       }
     }
 
-    svg:last-child path {
-      stroke: var(--color-off-white);
+    &-active {
+      svg {
+        path {
+          stroke: var(--color-off-white);
+        }
+      }
     }
   }
 }
