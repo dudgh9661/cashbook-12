@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import { moneyWithComma } from '@utils';
 import './Body.scss';
 
 class CalendarBody extends Component {
@@ -34,12 +35,16 @@ class CalendarBody extends Component {
               ${
                 curHistory
                   ? `<span class="plus">${
-                      curHistory.income === 0 ? '' : curHistory.income
+                      curHistory.income === 0
+                        ? ''
+                        : moneyWithComma(curHistory.income)
                     }</span>
                     <span class="minus">${
-                      curHistory.expenses === 0 ? '' : curHistory.expenses
+                      curHistory.expenses === 0
+                        ? ''
+                        : `-${moneyWithComma(curHistory.expenses)}`
                     }</span>
-                    <span>${curHistory.earning}</span>
+                    <span>${moneyWithComma(curHistory.earning)}</span>
                     `
                   : ''
               }
