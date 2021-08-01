@@ -33,7 +33,7 @@ class Dropdown extends Component {
           .map(
             item => `      
                     <li>
-                      <button type="button" id="dropdown-${item.value}" class="dropdown-list-button">${item.name}</button>
+                      <button type="button" id="dropdown-${item.id}" class="dropdown-list-button">${item.name}</button>
                     </li>
                   `,
           )

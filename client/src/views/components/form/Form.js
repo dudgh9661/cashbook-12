@@ -1,15 +1,22 @@
 import Component from '@lib/Component';
-import { Dropdown, Input } from '@components';
-import { minus, check } from '@assets/icons';
+import { Dropdown, Input, Modal } from '@components';
+import { minus, check, cancel } from '@assets/icons';
 import './Form.scss';
 
 const onInputDate = e => console.log(e.target.value);
 const onInputContent = e => console.log(e.target.value);
 const onInputAmount = e => console.log(e.target.value);
+const onClickAddMethod = e => {
+  const $modal = document.querySelector('.modal');
+  $modal.classList.add('open');
+};
+
+const methodsDropdownListItem = name =>
+  `<span class="dropdown-method-item">${name}${cancel}</span>`;
 
 class Form extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.init();
   }
@@ -31,14 +38,7 @@ class Form extends Component {
       new Dropdown({
         id: 'category',
         label: '분류',
-        listItems: [
-          { name: '생활', value: 'life' },
-          { name: '식비', value: 'food' },
-          { name: '교통', value: 'transportation' },
-          { name: '쇼핑/뷰티', value: 'beauty' },
-          { name: '의료', value: 'medical' },
-          { name: '건강', vlaue: 'healthy' },
-        ],
+        listItems: this.props.categories,
       }).getElement(),
       new Input({
         id: 'input-content',
@@ -49,12 +49,11 @@ class Form extends Component {
         id: 'method',
         label: '결제수단',
         listItems: [
-          { name: '생활', value: 'life' },
-          { name: '식비', value: 'food' },
-          { name: '교통', value: 'transportation' },
-          { name: '쇼핑/뷰티', value: 'beauty' },
-          { name: '의료', value: 'medical' },
-          { name: '건강', vlaue: 'healthy' },
+          ...this.props.paymentMethods.map(method => ({
+            name: methodsDropdownListItem(method.name),
+            id: method.id,
+          })),
+          { name: '추가하기', id: 'add-method' },
         ],
       }).getElement(),
       new Input({
@@ -68,6 +67,7 @@ class Form extends Component {
         customClass: 'input-amount',
       }).getElement(),
       $btn,
+      new Modal({}).getElement(),
     );
     return $form;
   }
@@ -78,6 +78,7 @@ class Form extends Component {
     this.addEvent('input', '#input-content', onInputContent);
     // this.addEvent('click', '#input-date', onInputDate);
     this.addEvent('input', '#input-amount', onInputAmount);
+    this.addEvent('click', '#dropdown-add-method', onClickAddMethod);
   }
 }
 

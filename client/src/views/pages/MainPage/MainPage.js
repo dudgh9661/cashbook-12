@@ -1,5 +1,7 @@
 import Component from '@lib/Component';
 import { Layout, Form, History } from '@components';
+import categoryData from '../../../_dummies/category.json';
+import paymentMethod from '../../../_dummies/paymentMethod.json';
 import './MainPage.scss';
 
 class MainPage extends Component {
@@ -15,7 +17,10 @@ class MainPage extends Component {
 
     const $mainPageFrag = document.createDocumentFragment();
     $mainPageFrag.append(
-      new Form({}).getElement(),
+      new Form({
+        categories: categoryData.categories,
+        paymentMethods: paymentMethod.methods,
+      }).getElement(),
       new History({}).getElement(),
     );
     $mainPage.appendChild(
