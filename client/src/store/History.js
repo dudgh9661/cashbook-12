@@ -1,66 +1,23 @@
 import Observable from '@lib/Observable';
 import DateInfo from './DateInfo';
+import historyData from '../_dummies/history.json';
 
 class History extends Observable {
   getCurrentMonthHistory() {
-    console.log(DateInfo.state.current);
-    this.state.history = [
-      {
-        date: 2,
-        income: 0,
-        expenses: 5400,
-        earning: -5400,
-      },
-      {
-        date: 4,
-        income: 0,
-        expenses: 132000,
-        earning: -132000,
-      },
-      {
-        date: 7,
-        income: 0,
-        expenses: 65900,
-        earning: -65900,
-      },
-      {
-        date: 9,
-        income: 1822480,
-        expenses: 9500,
-        earning: 1812980,
-      },
-      {
-        date: 10,
-        income: 0,
-        expenses: 519140,
-        earning: -519140,
-      },
-      {
-        date: 13,
-        income: 0,
-        expenses: 10000,
-        earning: -10000,
-      },
-      {
-        date: 15,
-        income: 0,
-        expenses: 56240,
-        earning: -56240,
-      },
-      {
-        date: 18,
-        income: 0,
-        expenses: 36460,
-        earning: -36460,
-      },
-    ];
+    const { year, month } = DateInfo.state.current;
+    const dataName = `data-${year}-${month}`;
+
+    this.state.history = historyData[dataName];
   }
 
   getCurrentMonthTotal() {
+    const { year, month } = DateInfo.state.current;
+    const data = historyData[`data-${year}-${month}`];
+
     this.state.total = {
-      income: 1822480,
-      expenses: 834640,
-      earning: 987840,
+      income: data ? data.reduce((acc, cur) => acc + cur.income, 0) : 0,
+      expenses: data ? data.reduce((acc, cur) => acc + cur.expenses, 0) : 0,
+      earning: data ? data.reduce((acc, cur) => acc + cur.earning, 0) : 0,
     };
   }
 }
