@@ -1,0 +1,61 @@
+.history-item {
+  width: 100%;
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid $color-line;
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: $color-body;
+    b {
+      color: $color-title-active;
+      font-family: Noto Sans KR;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+  table {
+    width: 100%;
+  }
+
+  &-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 12px;
+    border-bottom: 1px solid $color-line;
+  }
+  &-col {
+    &-description {
+      flex: 0 0 50%;
+      display: flex;
+      align-items: center;
+      span {
+        &:nth-child(2) {
+          margin-left: 10px;
+        }
+      }
+    }
+    &-payment {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: Noto Sans KR;
+      font-size: 18px;
+      &-method {
+        color: $color-body;
+      }
+      &-amount {
+        color: $color-title-active;
+      }
+    }
+  }
+}
