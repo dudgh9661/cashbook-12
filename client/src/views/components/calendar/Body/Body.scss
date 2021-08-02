@@ -36,16 +36,6 @@
     display: flex;
     flex-direction: column;
 
-    span {
-      &.plus {
-        color: var(--color-primary-dark);
-      }
-
-      &.minus {
-        color: var(--color-error);
-      }
-    }
-
     .circle {
       display: none;
     }
@@ -58,11 +48,50 @@
   }
 }
 
+span {
+  &.plus {
+    color: var(--color-primary-dark);
+  }
+
+  &.minus {
+    color: var(--color-error);
+  }
+}
+
 @media (max-width: #{$breakpoint-tablet}) {
   .calendar-body__day {
     border-left-style: hidden;
     border-right-style: hidden;
     height: 30px;
+    position: relative;
+    overflow: visible;
+
+    &.exist:hover {
+      cursor: pointer;
+
+      .day-content {
+        &__info .circle {
+          background-color: var(--color-primary-light);
+        }
+
+        &__num {
+          color: var(--color-primary-light);
+        }
+      }
+    }
+
+    &.active,
+    &.active:hover {
+      .day-content {
+        &__info .circle {
+          background-color: var(--color-primary);
+        }
+
+        &__num {
+          color: var(--color-primary);
+        }
+      }
+    }
   }
 
   .day-content {
@@ -89,5 +118,11 @@
     &__num {
       text-align: center;
     }
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet + 1px}) {
+  .calendar-body__day .tooltip {
+    display: none;
   }
 }

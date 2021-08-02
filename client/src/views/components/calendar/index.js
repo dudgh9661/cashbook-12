@@ -40,7 +40,7 @@ class Calendar extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '.calendar', prevMonthHandler);
+    this.addEvent('click', '.calendar-footer', prevMonthHandler);
   }
 
   didMount() {

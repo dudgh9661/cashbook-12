@@ -1,10 +1,30 @@
 import Component from '@lib/Component';
 import { moneyWithComma } from '@utils';
+import Tooltip from '../../common/Tooltip/Tooltip';
 import './Body.scss';
+
+const hideTooltip = $target => {
+  $target.classList.remove('active');
+  $target.removeChild($target.querySelector('.tooltip'));
+};
+
+const showTooltip = $target => {
+  $target.classList.add('active');
+
+  const $info = document.createDocumentFragment();
+  $target
+    .querySelectorAll('.day-content__info span')
+    .forEach(element => $info.appendChild(element.cloneNode(true)));
+
+  $target.appendChild(new Tooltip({ content: $info }).getElement());
+};
 
 class CalendarBody extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      $curTooltipTarget: null,
+    };
 
     this.init();
   }
@@ -27,9 +47,10 @@ class CalendarBody extends Component {
         const curHistory = history && history.find(h => h.date === date);
 
         $dayRow.innerHTML += `
-          <td class="calendar-body__day ${
-            hasToday && today.date === date ? 'today' : ''
-          }">
+          <td 
+            class="calendar-body__day 
+            ${hasToday && today.date === date ? 'today' : ''} 
+            ${curHistory ? 'exist' : ''}">
             <div class="day-content">
               <div class="day-content__info">
               ${
@@ -63,6 +84,34 @@ class CalendarBody extends Component {
     }
 
     return $calendarBody;
+  }
+
+  setEvent() {
+    this.addEvent(
+      'click',
+      '.calendar-body__day.exist',
+      this.toggleTooltip.bind(this),
+    );
+  }
+
+  toggleTooltip(e) {
+    if (window.innerWidth > 768) return;
+
+    const { $curTooltipTarget } = this.state;
+    const $target = e.target.closest('.calendar-body__day');
+
+    if ($curTooltipTarget) {
+      if ($target !== $curTooltipTarget) {
+        hideTooltip($curTooltipTarget);
+      } else {
+        hideTooltip($target);
+        this.state.$curTooltipTarget = null;
+        return;
+      }
+    }
+
+    showTooltip($target);
+    this.state.$curTooltipTarget = $target;
   }
 }
 
