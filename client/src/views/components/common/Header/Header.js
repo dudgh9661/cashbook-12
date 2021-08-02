@@ -20,7 +20,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.currentPahth = window.location.pathname;
+    this.currentPath = window.location.pathname;
     this.init();
   }
 
@@ -51,17 +51,17 @@ class Header extends Component {
     $tab.className = 'header__tab';
     $tab.innerHTML = `
       <button id="tab-main" class="${
-        this.currentPahth === '/' ? 'header__tab-active' : ''
+        this.currentPath === '/' ? 'header__tab-active' : ''
       }">
       ${fileText}
       </button> 
       <button id="tab-calendar" class="${
-        this.currentPahth === '/calendar' ? 'header__tab-active' : ''
+        this.currentPath === '/calendar' ? 'header__tab-active' : ''
       }">
       ${calendar}
       </button> 
       <button id="tab-chart" class="${
-        this.currentPahth === '/chart' ? 'header__tab-active' : ''
+        this.currentPath === '/chart' ? 'header__tab-active' : ''
       }">
         ${chart}
       </button> 
