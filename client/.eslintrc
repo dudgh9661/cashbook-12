@@ -18,6 +18,7 @@
     ],
     "no-new": "off",
     "import/no-unresolved": "off",
-    "no-bitwise": ["error", { "int32Hint": true }]
+    "no-bitwise": ["error", { "int32Hint": true }],
+    "no-loop-func": "off"
   }
 }

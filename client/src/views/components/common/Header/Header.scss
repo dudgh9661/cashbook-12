@@ -1,22 +1,37 @@
+@import '@styles/_responsive.scss';
+
 .header {
   width: 100%;
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
 
   &__logo {
-    @include font-display(small);
-    color: $color-off-white;
+    font: var(--font-display-small);
+    color: var(--color-off-white);
     flex: 1;
   }
 
   &__nav {
-    @include font-display(large);
-    color: $color-off-white;
-    text-align: center;
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-off-white);
+    &--middle {
+      width: 160px;
+      &-month {
+        text-align: center;
+        display: block;
+        font: var(--font-display-large);
+      }
+      &-year {
+        display: block;
+        text-align: center;
+        font: var(--font-display-small);
+      }
+    }
   }
 
   &__tab {
@@ -27,12 +42,62 @@
       margin: 0 7px;
 
       path {
-        stroke: $color-primary-light;
+        stroke: var(--color-primary-light);
       }
     }
 
-    svg:last-child path {
-      stroke: $color-off-white;
+    &--active {
+      svg {
+        path {
+          stroke: var(--color-off-white);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .header {
+    flex-wrap: wrap;
+
+    &__logo {
+      flex: 1 1 100%;
+      font: var(--font-display-x-small);
+      margin-bottom: 5px;
+    }
+
+    &__nav {
+      color: var(--color-off-white);
+      justify-content: start;
+      &--middle {
+        width: 60px;
+        &-month {
+          font: var(--font-display-medium);
+        }
+        &-year {
+          font: var(--font-bold-large);
+          margin-left: 4px;
+        }
+      }
+    }
+
+    &__tab {
+      text-align: right;
+      flex: 0 0 122px;
+      svg {
+        margin: 0 7px;
+
+        path {
+          stroke: var(--color-primary-light);
+        }
+      }
+      &--active {
+        svg {
+          path {
+            stroke: var(--color-off-white);
+          }
+        }
+      }
     }
   }
 }

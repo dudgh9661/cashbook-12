@@ -1,0 +1,33 @@
+.input {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 4px 0;
+  display: block;
+  width: 100%;
+  color: var(--color-title-active);
+
+  &::placeholder {
+    color: var(--color-label);
+  }
+
+  &__label {
+    color: var(--color-primary-dark);
+    font: var(--font-bold-small);
+    line-height: 17px;
+  }
+}
+
+.input__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input--prefix {
+  width: 50px;
+  padding-top: 4px;
+}
+
+.input--suffix {
+  margin-left: 8px;
+}

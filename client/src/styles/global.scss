@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+:root {
+  /* colors */
+  --color-title-active: #1e2222;
+
+  --color-grey1: #888888;
+  --color-grey2: #bbbbbb;
+  --color-grey3: #d7d7d7;
+
+  --color-body: #626666;
+  --color-label: #8d9393;
+  --color-placeholder: #c1c5c5;
+
+  --color-line: #ccd3d3;
+  --color-background: #f5f5f5;
+  --color-off-white: #fcfcfc;
+
+  --color-primary: #2ac1bc;
+  --color-primary-light: #a0e1e0;
+  --color-primary-dark: #219a95;
+
+  --color-error: #f45452;
+
+  --color-cg-1: #6ed5eb;
+  --color-cg-2: #4cb8b8;
+  --color-cg-3: #94d3cc;
+  --color-cg-4: #4ca1de;
+  --color-cg-5: #d092e2;
+  --color-cg-6: #817dce;
+  --color-cg-7: #4a6cc3;
+  --color-cg-8: #b9d58c;
+  --color-cg-9: #e6d267;
+  --color-cg-10: #e2b765;
+
+  /* font styles */
+  --font-display-x-small: normal 400 20px/22px 'Do Hyeon', sans-serif;
+  --font-display-small: normal 400 24px/24px 'Do Hyeon', sans-serif;
+  --font-display-medium: normal 400 32px/32px 'Do Hyeon', sans-serif;
+  --font-display-large: normal 400 48px/56px 'Do Hyeon', sans-serif;
+
+  --font-body-x-small: normal 400 12px/16px 'Noto Sans KR', sans-serif;
+  --font-body-small: normal 400 14px/22px 'Noto Sans KR', sans-serif;
+  --font-body-regular: normal 400 16px/24px 'Noto Sans KR', sans-serif;
+  --font-body-medium: normal 400 18px/24px 'Noto Sans KR', sans-serif;
+  --font-body-large: normal 400 22px/32px 'Noto Sans KR', sans-serif;
+
+  --font-bold-small: normal 500 12px/16px 'Noto Sans KR', sans-serif;
+  --font-bold-medium: normal 500 14px/24px 'Noto Sans KR', sans-serif;
+  --font-bold-large: normal 500 18px/24px 'Noto Sans KR', sans-serif;
+}

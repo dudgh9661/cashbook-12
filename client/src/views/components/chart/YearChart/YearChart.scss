@@ -1,0 +1,59 @@
+@import '@styles/_responsive.scss';
+
+.year-chart {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font: var(--font-body-large);
+    color: var(--color-title-active);
+  }
+
+  &__content canvas {
+    width: 100%;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet-landscape}) {
+  .year-chart {
+    &__content {
+      overflow-x: scroll;
+
+      canvas {
+        width: 150%;
+      }
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .year-chart {
+    &__title {
+      font: var(--font-body-medium);
+    }
+
+    &__content {
+      overflow-x: scroll;
+
+      canvas {
+        width: 200%;
+      }
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .year-chart {
+    &__title {
+      font: var(--font-body-regular);
+    }
+
+    &__content {
+      overflow-x: scroll;
+
+      canvas {
+        width: 300%;
+      }
+    }
+  }
+}

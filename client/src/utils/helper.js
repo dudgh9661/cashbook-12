@@ -6,4 +6,11 @@ export const uuid = () => {
   });
 };
 
-export const lint = () => {};
+export const debounce = (func, wait) => {
+  let timeout;
+  return function result(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+};

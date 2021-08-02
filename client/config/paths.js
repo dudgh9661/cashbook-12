@@ -4,6 +4,7 @@ module.exports = {
   config: path.resolve(__dirname),
   src: path.resolve(__dirname, '../src'),
   assets: path.resolve(__dirname, '../src/assets'),
+  constants: path.resolve(__dirname, '../src/constants'),
   lib: path.resolve(__dirname, '../src/lib'),
   store: path.resolve(__dirname, '../src/store'),
   styles: path.resolve(__dirname, '../src/styles'),

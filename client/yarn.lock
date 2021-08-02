@@ -2028,6 +2028,11 @@ domutils@^2.5.2, domutils@^2.6.0:
     domelementtype "^2.2.0"
     domhandler "^4.2.0"
 
+donut-chart-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/donut-chart-js/-/donut-chart-js-1.0.1.tgz#473baf6f35f6a0f8fcbef0736ed796690b24410a"
+  integrity sha512-MJyRMDDwCPL9dDfK4xi7sVsY1UyGaaFe0FIbQbZwojgeo8iCXOkLkerODvRUTzaPR2Pbj6Szlg0ojhyTGpG9UA==
+
 dot-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/dot-case/-/dot-case-3.0.4.tgz#9b2b670d00a431667a8a75ba29cd1b98809ce751"
@@ -2040,11 +2045,6 @@ dotenv@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
-
-doughnut-chart-js@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/doughnut-chart-js/-/doughnut-chart-js-1.1.0.tgz#3cfc2a4cc4b908b05cf0b84d3906417750a2a533"
-  integrity sha512-r5WYSU3KVzXRhHloSfGc+TCRCCctdMKFTi2WePnN4EMBRAn3gzZgNbjBJNrffa6EMa5pAbh+YxY9YWmbzZw5+g==
 
 ee-first@1.1.1:
   version "1.1.1"

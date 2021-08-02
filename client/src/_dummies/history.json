@@ -1,0 +1,92 @@
+{
+  "data-2021-6": [
+    {
+      "date": 3,
+      "income": 0,
+      "expenses": 64300,
+      "earning": -64300
+    },
+    {
+      "date": 10,
+      "income": 0,
+      "expenses": 9800,
+      "earning": -9800
+    },
+    {
+      "date": 15,
+      "income": 1000000,
+      "expenses": 240000,
+      "earning": 760000
+    }
+  ],
+  "data-2021-7": [
+    {
+      "date": 2,
+      "income": 0,
+      "expenses": 5400,
+      "earning": -5400
+    },
+    {
+      "date": 4,
+      "income": 0,
+      "expenses": 132000,
+      "earning": -132000
+    },
+    {
+      "date": 7,
+      "income": 0,
+      "expenses": 65900,
+      "earning": -65900
+    },
+    {
+      "date": 9,
+      "income": 1822480,
+      "expenses": 9500,
+      "earning": 1812980
+    },
+    {
+      "date": 10,
+      "income": 0,
+      "expenses": 519140,
+      "earning": -519140
+    },
+    {
+      "date": 13,
+      "income": 0,
+      "expenses": 10000,
+      "earning": -10000
+    },
+    {
+      "date": 15,
+      "income": 0,
+      "expenses": 56240,
+      "earning": -56240
+    },
+    {
+      "date": 18,
+      "income": 0,
+      "expenses": 36460,
+      "earning": -36460
+    }
+  ],
+  "data-2021-8": [
+    {
+      "date": 10,
+      "income": 300000,
+      "expenses": 200000,
+      "earning": 100000
+    },
+    {
+      "date": 19,
+      "income": 0,
+      "expenses": 298400,
+      "earning": -298400
+    },
+    {
+      "date": 25,
+      "income": 1238000,
+      "expenses": 47320,
+      "earning": 1190680
+    }
+  ]
+}

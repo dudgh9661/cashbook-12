@@ -1,0 +1,24 @@
+@import '@styles/_responsive.scss';
+
+.calendar-footer {
+  font: var(--font-bold-medium);
+  color: var(--color-grey1);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 0 10px;
+
+  &__left {
+    display: flex;
+
+    &--pr {
+      padding-right: 10px;
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .calendar-footer {
+    flex-direction: column;
+  }
+}
