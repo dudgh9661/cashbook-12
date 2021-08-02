@@ -14,8 +14,8 @@ class History extends Component {
     $history.classList.add('history');
 
     $history.append(
-      new HistoryHeader({}).getElement(),
-      new HistoryList({}).getElement(),
+      new HistoryHeader().getElement(),
+      new HistoryList().getElement(),
     );
 
     return $history;
