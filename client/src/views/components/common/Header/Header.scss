@@ -21,12 +21,12 @@
     color: var(--color-off-white);
     &--middle {
       width: 160px;
-      .month {
+      &-month {
         text-align: center;
         display: block;
         font: var(--font-display-large);
       }
-      .year {
+      &-year {
         display: block;
         text-align: center;
         font: var(--font-display-small);
@@ -69,12 +69,12 @@
     &__nav {
       color: var(--color-off-white);
       justify-content: start;
-      &-middle {
+      &--middle {
         width: 60px;
-        .month {
+        &-month {
           font: var(--font-display-medium);
         }
-        .year {
+        &-year {
           font: var(--font-bold-large);
           margin-left: 4px;
         }
@@ -91,7 +91,7 @@
           stroke: var(--color-primary-light);
         }
       }
-      &-active {
+      &--active {
         svg {
           path {
             stroke: var(--color-off-white);

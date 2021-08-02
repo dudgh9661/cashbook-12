@@ -48,8 +48,8 @@ class Header extends Component {
     $nav.innerHTML = `
       <button id="go-left">${chevronLeft}</button>
         <div class="header__nav--middle">
-          <span class="month">${DateInfo.state.current.month}월</span>
-          <span class="year">${DateInfo.state.current.year}</span>
+          <span class="header__nav--middle-month">${DateInfo.state.current.month}월</span>
+          <span class="header__nav--middle-year">${DateInfo.state.current.year}</span>
         </div>
       <button id="go-right">${chevronRight}</button>
     `;
