@@ -10,6 +10,7 @@ const setPositionTooltip = ($target, $tooltip) => {
   document.querySelector('.tooltip').style.left = `${
     (parentWidth - tooltipWidth) / 2
   }px`;
+  document.querySelector('.tooltip').style.top = '103%';
 };
 
 const hideTooltip = $target => {

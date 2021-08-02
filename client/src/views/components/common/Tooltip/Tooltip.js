@@ -9,10 +9,10 @@ class Tooltip extends Component {
   }
 
   render() {
-    const { content } = this.props;
+    const { content, position = 'bottom' } = this.props;
 
     const $tooptip = document.createElement('div');
-    $tooptip.className = 'tooltip';
+    $tooptip.className = `tooltip tooltip--${position}`;
 
     $tooptip.appendChild(content);
 
