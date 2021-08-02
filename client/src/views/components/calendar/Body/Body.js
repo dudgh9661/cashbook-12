@@ -3,16 +3,6 @@ import { moneyWithComma } from '@utils';
 import Tooltip from '../../common/Tooltip/Tooltip';
 import './Body.scss';
 
-const setPositionTooltip = ($target, $tooltip) => {
-  const parentWidth = $target.getBoundingClientRect().width;
-  const tooltipWidth = $tooltip.getBoundingClientRect().width;
-
-  document.querySelector('.tooltip').style.left = `${
-    (parentWidth - tooltipWidth) / 2
-  }px`;
-  document.querySelector('.tooltip').style.top = '103%';
-};
-
 const hideTooltip = $target => {
   $target.classList.remove('active');
   $target.removeChild($target.querySelector('.tooltip'));
@@ -26,10 +16,15 @@ const showTooltip = $target => {
     .querySelectorAll('.day-content__info span')
     .forEach(element => $info.appendChild(element.cloneNode(true)));
 
-  const $tooltip = new Tooltip({ content: $info }).getElement();
-  $target.appendChild($tooltip);
+  const tooltip = new Tooltip({ content: $info });
+  $target.appendChild(tooltip.getElement());
 
-  setPositionTooltip($target, $tooltip);
+  const parentWidth = $target.getBoundingClientRect().width;
+  const tooltipWidth = tooltip.getDOMRect().width;
+  tooltip.setPosition({
+    top: '103%',
+    left: `${(parentWidth - tooltipWidth) / 2}px`,
+  });
 };
 
 class CalendarBody extends Component {
