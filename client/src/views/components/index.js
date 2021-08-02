@@ -9,7 +9,7 @@ export { default as Checkbox } from './form/Checkbox/Checkbox';
 export { default as Modal } from './form/Modal/Modal';
 
 export { default as MonthChart } from './chart/MonthChart/MonthChart';
-export { default as LinearChart } from './chart/Linear/Linear';
+export { default as YearChart } from './chart/YearChart/YearChart';
 
 export { default as History } from './history/History';
 export { default as HistoryHeader } from './history/HistoryHeader/HistoryHeader';
