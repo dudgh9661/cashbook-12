@@ -1,8 +1,9 @@
+@import '@styles/_responsive.scss';
+
 .calendar-body {
   width: 100%;
   background-color: var(--color-off-white);
   border: 1px solid #ccd3d3;
-  box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1),
     0 0 0 1px var(--color-line);
   border-radius: 10px;
@@ -12,9 +13,11 @@
   table-layout: fixed;
 
   &__day {
+    box-sizing: content-box;
     height: 80px;
     padding: 10px;
     border: 1px solid var(--color-line);
+    overflow: hidden;
 
     &.today {
       background-color: var(--color-background);
@@ -33,14 +36,8 @@
     display: flex;
     flex-direction: column;
 
-    span {
-      &.plus {
-        color: var(--color-primary-dark);
-      }
-
-      &.minus {
-        color: var(--color-error);
-      }
+    .circle {
+      display: none;
     }
   }
 
@@ -48,5 +45,84 @@
     font: var(--font-bold-small);
     color: var(--color-label);
     text-align: right;
+  }
+}
+
+span {
+  &.plus {
+    color: var(--color-primary-dark);
+  }
+
+  &.minus {
+    color: var(--color-error);
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .calendar-body__day {
+    border-left-style: hidden;
+    border-right-style: hidden;
+    height: 30px;
+    position: relative;
+    overflow: visible;
+
+    &.exist:hover {
+      cursor: pointer;
+
+      .day-content {
+        &__info .circle {
+          background-color: var(--color-primary-light);
+        }
+
+        &__num {
+          color: var(--color-primary-light);
+        }
+      }
+    }
+
+    &.active,
+    &.active:hover {
+      .day-content {
+        &__info .circle {
+          background-color: var(--color-primary);
+        }
+
+        &__num {
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+
+  .day-content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+
+    &__info {
+      span {
+        display: none;
+      }
+
+      .circle {
+        display: block;
+        margin-top: 5px;
+        margin-bottom: -12px;
+        width: 6px;
+        height: 6px;
+        background-color: var(--color-grey3);
+        border-radius: 50%;
+      }
+    }
+
+    &__num {
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet + 1px}) {
+  .calendar-body__day .tooltip {
+    display: none;
   }
 }

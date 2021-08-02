@@ -1,0 +1,68 @@
+.tooltip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  border-radius: 10px;
+  padding: 10px;
+  font: var(--font-body-x-small);
+  z-index: 1;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    border-style: solid;
+  }
+
+  &--top {
+    bottom: 100%;
+    left: 0;
+
+    &::after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px 8px 0;
+      border-color: var(--color-background) transparent;
+    }
+  }
+
+  &--bottom {
+    top: 100%;
+    left: 0;
+
+    &::after {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 8px 10px;
+      border-color: var(--color-background) transparent;
+    }
+  }
+
+  &--left {
+    top: 0;
+    right: 100%;
+
+    &::after {
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      border-width: 8px 0 8px 10px;
+      border-color: transparent var(--color-background);
+    }
+  }
+
+  &--right {
+    left: 100%;
+    top: 0;
+
+    &::after {
+      top: 50%;
+      right: 100%;
+      transform: translateY(-50%);
+      border-width: 8px 10px 8px 0;
+      border-color: transparent var(--color-background);
+    }
+  }
+}
