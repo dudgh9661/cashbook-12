@@ -66,8 +66,6 @@ class Form extends Component {
         label: '금액',
         prefix: minus,
         suffix: '원',
-        prefixClass: 'input-prefix',
-        suffixClass: 'input-suffix',
         placeholder: '입력하세요',
         customClass: 'input-amount',
       }).getElement(),

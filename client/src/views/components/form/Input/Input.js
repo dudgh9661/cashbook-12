@@ -12,10 +12,10 @@ class Input extends Component {
     const {
       id,
       label,
-      prefixClass,
+      prefixClass = '',
       prefix,
       placeholder,
-      suffixClass,
+      suffixClass = '',
       suffix,
       customClass,
     } = this.props;
@@ -24,9 +24,17 @@ class Input extends Component {
     $input.innerHTML = `
       <label for="${id}" class="label">${label}</label>
       <div class="input-wrapper ${customClass || ''}">
-        ${prefix ? `<span class="${prefixClass}">${prefix}</span>` : ''}
+        ${
+          prefix
+            ? `<span class="input-prefix ${prefixClass}">${prefix}</span>`
+            : ''
+        }
         <input class="input" type="text" placeholder="${placeholder}" id="${id}"/>
-        ${suffix ? `<span class="${suffixClass}">${suffix}</span>` : ''}
+        ${
+          suffix
+            ? `<span class="input-suffix ${suffixClass}">${suffix}</span>`
+            : ''
+        }
       </div>      
     `;
 
