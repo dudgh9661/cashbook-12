@@ -20,16 +20,16 @@ class DataList extends Component {
       const $item = document.createElement('li');
       $item.className = 'data-list__item';
 
-      const $tag = document.createElement('span');
-      $tag.innerHTML = Tag(label, color);
+      $item.innerHTML = `
+        <div class="data-list__item--left">
+          <span class="tag">${Tag(label, color)}</span>
+          <span class="pct">${Math.round((value / 834640) * 100)}%</span>
+        </div>
+        <div class="data-list__item--right">
+          <span class="value">${moneyWithComma(value)}</span>
+        </div>
+      `;
 
-      const $pct = document.createElement('span');
-      $pct.innerText = `${Math.round((value / 834640) * 100)}%`;
-
-      const $value = document.createElement('span');
-      $value.innerText = moneyWithComma(value);
-
-      $item.append($tag, $pct, $value);
       $dataList.appendChild($item);
     });
 
