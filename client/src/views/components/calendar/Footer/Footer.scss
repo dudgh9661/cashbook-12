@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .calendar-footer {
   font: var(--font-bold-medium);
   color: var(--color-grey1);
@@ -15,7 +17,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: #{$breakpoint-tablet}) {
   .calendar-footer {
     flex-direction: column;
   }

@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .calendar-body {
   width: 100%;
   background-color: var(--color-off-white);
@@ -56,7 +58,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: #{$breakpoint-tablet}) {
   .calendar-body__day {
     border-left-style: hidden;
     border-right-style: hidden;
