@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { DateInfo } from '@store';
+import { DateInfo, History } from '@store';
 import router from '@lib/Router';
 import './Header.scss';
 import {
@@ -10,8 +10,16 @@ import {
   chevronRight,
 } from '@assets/icons';
 
-const onClickNextMonth = () => DateInfo.setNextMonth();
-const onClickPrevtMonth = () => DateInfo.setPrevMonth();
+const onClickNextMonth = () => {
+  DateInfo.setNextMonth();
+  History.setCurrentMonthHistory();
+  History.setCurrentMonthTotal();
+};
+const onClickPrevtMonth = () => {
+  DateInfo.setPrevMonth();
+  History.setCurrentMonthHistory();
+  History.setCurrentMonthTotal();
+};
 const onClickMainTab = () => router.push('/');
 const onClickCalendarTab = () => router.push('/calendar');
 const onClickChartTab = () => router.push('/chart');
