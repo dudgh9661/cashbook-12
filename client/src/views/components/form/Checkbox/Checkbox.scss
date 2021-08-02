@@ -2,6 +2,8 @@
   display: flex;
   position: relative;
   cursor: pointer;
+  user-select: none;
+  align-items: center;
   input {
     position: absolute;
     visibility: hidden;
