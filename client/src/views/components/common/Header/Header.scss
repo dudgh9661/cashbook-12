@@ -59,8 +59,11 @@
 @media (max-width: #{$breakpoint-tablet}) {
   .header {
     flex-wrap: wrap;
+
     &__logo {
       flex: 1 1 100%;
+      font: var(--font-display-x-small);
+      margin-bottom: 5px;
     }
 
     &__nav {
