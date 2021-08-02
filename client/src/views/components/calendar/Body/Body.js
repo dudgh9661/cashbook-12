@@ -105,6 +105,7 @@ class CalendarBody extends Component {
       '.calendar-body__day.exist',
       this.toggleTooltip.bind(this),
     );
+    window.addEventListener('resize', this.onResizeHandler.bind(this));
   }
 
   toggleTooltip(e) {
@@ -125,6 +126,16 @@ class CalendarBody extends Component {
 
     showTooltip($target);
     this.state.$curTooltipTarget = $target;
+  }
+
+  onResizeHandler() {
+    const { $curTooltipTarget } = this.state;
+    if (window.innerWidth > 768 || !$curTooltipTarget) return;
+
+    setPositionTooltip(
+      $curTooltipTarget,
+      $curTooltipTarget.querySelector('.tooltip'),
+    );
   }
 }
 
