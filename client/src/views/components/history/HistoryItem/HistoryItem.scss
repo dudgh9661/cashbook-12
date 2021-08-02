@@ -1,6 +1,6 @@
 .history-item {
   width: 100%;
-  &-header {
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,7 +16,7 @@
     width: 100%;
   }
 
-  &-row {
+  &__row {
     width: 100%;
     display: flex;
     align-items: center;
@@ -24,7 +24,7 @@
     padding: 20px 12px;
     border-bottom: 1px solid var(--color-line);
   }
-  &-col {
+  &__col {
     &-description {
       flex: 0 0 50%;
       display: flex;

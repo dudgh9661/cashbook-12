@@ -10,18 +10,24 @@
   &::placeholder {
     color: var(--color-label);
   }
+
+  &__label {
+    color: var(--color-primary-dark);
+    font: var(--font-bold-small);
+    line-height: 17px;
+  }
 }
 
-.input-wrapper {
+.input__wrapper {
   display: flex;
   align-items: center;
 }
 
-.input-prefix {
+.input--prefix {
   width: 50px;
   padding-top: 4px;
 }
 
-.input-suffix {
+.input--suffix {
   margin-left: 8px;
 }

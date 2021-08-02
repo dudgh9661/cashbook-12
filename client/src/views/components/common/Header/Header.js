@@ -47,7 +47,7 @@ class Header extends Component {
     const $nav = document.createElement('nav');
     $nav.innerHTML = `
       <button id="go-left">${chevronLeft}</button>
-        <div class="header__nav-middle">
+        <div class="header__nav--middle">
           <span class="month">${DateInfo.state.current.month}월</span>
           <span class="year">${DateInfo.state.current.year}</span>
         </div>
@@ -59,17 +59,17 @@ class Header extends Component {
     $tab.className = 'header__tab';
     $tab.innerHTML = `
       <button id="tab-main" class="${
-        this.currentPath === '/' ? 'header__tab-active' : ''
+        this.currentPath === '/' ? 'header__tab--active' : ''
       }">
       ${fileText}
       </button> 
       <button id="tab-calendar" class="${
-        this.currentPath === '/calendar' ? 'header__tab-active' : ''
+        this.currentPath === '/calendar' ? 'header__tab--active' : ''
       }">
       ${calendar}
       </button> 
       <button id="tab-chart" class="${
-        this.currentPath === '/chart' ? 'header__tab-active' : ''
+        this.currentPath === '/chart' ? 'header__tab--active' : ''
       }">
         ${chart}
       </button> 

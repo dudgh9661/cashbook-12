@@ -8,11 +8,11 @@ const onInputContent = () => {};
 const onInputAmount = () => {};
 const onClickAddMethod = () => {
   const $modal = document.querySelector('.modal');
-  $modal.classList.add('open');
+  $modal.classList.add('modal--open');
 };
 
 const methodsDropdownListItem = name =>
-  `<span class="dropdown-method-item">${name}${cancel}</span>`;
+  `<span class="dropdown__method-item">${name}${cancel}</span>`;
 
 class Form extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Form extends Component {
     $form.classList.add('form');
 
     const $btn = document.createElement('button');
-    $btn.classList.add('btn', 'active');
+    $btn.classList.add('form__btn', 'form__btn--active');
     $btn.innerHTML = check();
 
     $form.append(

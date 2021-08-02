@@ -7,10 +7,10 @@
   left: 0;
   z-index: 99;
   display: none;
-  &.open {
+  &--open {
     display: block;
   }
-  .modal-input {
+  &__input {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,17 +36,17 @@
         outline: none;
       }
     }
-    footer {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
-      font: var(--font-body-medium);
-      .cancel {
-        color: var(--color-label);
-      }
-      .confirm {
-        color: var(--color-primary-dark);
-      }
+  }
+  &__footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    font: var(--font-body-medium);
+    &-cancel {
+      color: var(--color-label);
+    }
+    &-confirm {
+      color: var(--color-primary-dark);
     }
   }
 }

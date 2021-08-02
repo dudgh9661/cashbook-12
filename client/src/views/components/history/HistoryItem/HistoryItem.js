@@ -17,7 +17,7 @@ class HistoryItem extends Component {
     const $history = document.createElement('li');
     $history.classList.add('history-item');
     $history.innerHTML = `
-      <div class="history-item-header">
+      <div class="history-item__header">
         <span>
           <b>${month}월 ${date}일</b>
           ${day}
@@ -28,16 +28,16 @@ class HistoryItem extends Component {
         ${historyItemList
           .map(
             history =>
-              `<tr class="history-item-row">
-                <td class="history-item-col-description">
+              `<tr class="history-item__row">
+                <td class="history-item__col-description">
                   ${Tag(history.category.name, history.category.color)}
                   <span>${history.content}</span>
                 </td>          
-                <td class="history-item-col-payment">
-                  <span class="history-item-col-payment-method">${
+                <td class="history-item__col-payment">
+                  <span class="history-item__col-payment-method">${
                     history.payment
                   }</span>
-                  <span class="history-item-col-payment-amount">${moneyWithComma(
+                  <span class="history-item__col-payment-amount">${moneyWithComma(
                     history.amount,
                   )}원</span>
                 </td> 
