@@ -1,14 +1,7 @@
 import Component from '@lib/Component';
 import { Tag } from '@components';
+import { moneyWithComma, getDateFromString } from '@utils';
 import './HistoryItem.scss';
-
-const moneyFormat = number => `${number.toLocaleString()} 원`;
-const timestampFormat = date => {
-  const dateObj = new Date(date);
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
-
-  return [dateObj.getMonth() + 1, dateObj.getDate(), days[dateObj.getDay()]];
-};
 
 class HistoryItem extends Component {
   constructor(props) {
@@ -19,7 +12,7 @@ class HistoryItem extends Component {
 
   render() {
     const { historyItemList, timestamp } = this.props;
-    const [month, date, day] = timestampFormat(timestamp);
+    const [month, date, day] = getDateFromString(timestamp);
 
     const $history = document.createElement('li');
     $history.classList.add('history-item');
@@ -37,14 +30,14 @@ class HistoryItem extends Component {
             history =>
               `<tr class="history-item-row">
                 <td class="history-item-col-description">
-                  ${Tag(history.category.text, history.category.color)}
-                  <span>${history.description}</span>
+                  ${Tag(history.category.name, history.category.color)}
+                  <span>${history.content}</span>
                 </td>          
                 <td class="history-item-col-payment">
                   <span class="history-item-col-payment-method">${
-                    history.paymentMethod
+                    history.payment
                   }</span>
-                  <span>${moneyFormat(history.amount)}</span>
+                  <span>${moneyWithComma(history.amount)}원</span>
                 </td> 
               </tr>
             `,
