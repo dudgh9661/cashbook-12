@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .data-list {
   &__item {
     padding: 16px;
@@ -9,13 +11,6 @@
     &--left {
       .tag {
         display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 100px;
-        height: 30px;
-        border-radius: 999px;
-        color: var(--color-off-white);
-        font: var(--font-body-medium);
       }
 
       .pct {
@@ -36,6 +31,52 @@
     &:hover {
       cursor: pointer;
       background-color: var(--color-background);
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .data-list {
+    &__item {
+      padding: 14px 5px;
+
+      &--left {
+        .pct {
+          margin-left: 10px;
+          font: var(--font-body-regular);
+        }
+      }
+
+      &--right {
+        .value {
+          font: var(--font-body-medium);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .data-list {
+    &__item {
+      padding: 10px 5px;
+
+      &--left {
+        .tag {
+          width: 80px;
+          height: 25px;
+        }
+
+        .pct {
+          display: none;
+        }
+      }
+
+      &--right {
+        .value {
+          font: var(--font-body-medium);
+        }
+      }
     }
   }
 }

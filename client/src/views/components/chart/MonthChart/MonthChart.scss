@@ -42,5 +42,17 @@
     &__info--title {
       font: var(--font-body-medium);
     }
+
+    canvas {
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .month-chart {
+    canvas {
+      width: 80%;
+    }
   }
 }
