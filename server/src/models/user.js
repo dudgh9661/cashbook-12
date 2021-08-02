@@ -18,6 +18,7 @@ const User = sequelize.define(
   {
     tableName: 'user',
     underscored: true,
+    timestamps: false,
   },
 );
 
