@@ -135,8 +135,6 @@ class CalendarBody extends Component {
     const { curTooltip, $curTooltipTarget } = this.state;
     if (window.innerWidth > 768 || !curTooltip) return;
 
-    console.log('hello');
-
     const parentWidth = $curTooltipTarget.getBoundingClientRect().width;
     const tooltipWidth = curTooltip.getDOMRect().width;
     curTooltip.setPosition({
