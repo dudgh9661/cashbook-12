@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .layout {
   width: 100%;
   min-height: 100vh;
@@ -23,5 +25,13 @@
 
   main {
     margin-top: 3%;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .layout {
+    main {
+      margin-top: 0;
+    }
   }
 }
