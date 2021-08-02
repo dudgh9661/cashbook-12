@@ -91,29 +91,3 @@
     }
   }
 }
-
-// @media (max-width: #{$breakpoint-mobile-small}) {
-//   .header {
-//     flex-wrap: wrap;
-//     &__logo {
-//       flex: 1 1 100%;
-//     }
-
-//     &__nav {
-//       color: var(--color-off-white);
-//       &-middle {
-//         width: 60px;
-//         display: block;
-//         text-align: left;
-//         .month {
-//           font: var(--font-display-small);
-//         }
-//         .year {
-//           display: block;
-//           font: var(--font-bold-large);
-//           margin-left: 4px;
-//         }
-//       }
-//     }
-//   }
-// }
