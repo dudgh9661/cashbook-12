@@ -3,10 +3,10 @@ import { Dropdown, Input, Modal } from '@components';
 import { minus, check, cancel } from '@assets/icons';
 import './Form.scss';
 
-const onInputDate = e => console.log(e.target.value);
-const onInputContent = e => console.log(e.target.value);
-const onInputAmount = e => console.log(e.target.value);
-const onClickAddMethod = e => {
+const onInputDate = () => {};
+const onInputContent = () => {};
+const onInputAmount = () => {};
+const onClickAddMethod = () => {
   const $modal = document.querySelector('.modal');
   $modal.classList.add('open');
 };
@@ -38,7 +38,11 @@ class Form extends Component {
       new Dropdown({
         id: 'category',
         label: '분류',
-        listItems: this.props.categories,
+        listItems: this.props.categories.map(category => ({
+          content: category.name,
+          name: category.name,
+          id: category.id,
+        })),
       }).getElement(),
       new Input({
         id: 'input-content',
@@ -50,10 +54,11 @@ class Form extends Component {
         label: '결제수단',
         listItems: [
           ...this.props.paymentMethods.map(method => ({
-            name: methodsDropdownListItem(method.name),
+            content: methodsDropdownListItem(method.name),
+            name: method.name,
             id: method.id,
           })),
-          { name: '추가하기', id: 'add-method' },
+          { name: 'add-method', id: '0', content: '추가하기' },
         ],
       }).getElement(),
       new Input({
@@ -78,7 +83,7 @@ class Form extends Component {
     this.addEvent('input', '#input-content', onInputContent);
     // this.addEvent('click', '#input-date', onInputDate);
     this.addEvent('input', '#input-amount', onInputAmount);
-    this.addEvent('click', '#dropdown-add-method', onClickAddMethod);
+    this.addEvent('click', '#dropdown-add-method-0', onClickAddMethod);
   }
 }
 
