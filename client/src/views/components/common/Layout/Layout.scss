@@ -27,11 +27,3 @@
     margin-top: 3%;
   }
 }
-
-@media (max-width: #{$breakpoint-tablet}) {
-  .layout {
-    main {
-      margin-top: 0;
-    }
-  }
-}
