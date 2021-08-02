@@ -27,7 +27,7 @@ class Form extends Component {
 
     const $btn = document.createElement('button');
     $btn.classList.add('btn', 'active');
-    $btn.innerHTML = check;
+    $btn.innerHTML = check();
 
     $form.append(
       new Input({
