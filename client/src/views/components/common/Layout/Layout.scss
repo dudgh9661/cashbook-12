@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .layout {
   width: 100%;
   min-height: 100vh;
@@ -22,6 +24,6 @@
   }
 
   main {
-    margin-top: 3%;
+    margin-top: 27px;
   }
 }

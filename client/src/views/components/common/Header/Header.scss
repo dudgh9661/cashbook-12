@@ -1,16 +1,11 @@
+@import '@styles/_responsive.scss';
+
 .header {
   width: 100%;
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  button {
-    background: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-  }
 
   &__logo {
     font: var(--font-display-small);
@@ -55,6 +50,52 @@
       svg {
         path {
           stroke: var(--color-off-white);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .header {
+    flex-wrap: wrap;
+
+    &__logo {
+      flex: 1 1 100%;
+      font: var(--font-display-x-small);
+      margin-bottom: 5px;
+    }
+
+    &__nav {
+      color: var(--color-off-white);
+      justify-content: start;
+      &-middle {
+        width: 60px;
+        .month {
+          font: var(--font-display-medium);
+        }
+        .year {
+          font: var(--font-bold-large);
+          margin-left: 4px;
+        }
+      }
+    }
+
+    &__tab {
+      text-align: right;
+      flex: 0 0 122px;
+      svg {
+        margin: 0 7px;
+
+        path {
+          stroke: var(--color-primary-light);
+        }
+      }
+      &-active {
+        svg {
+          path {
+            stroke: var(--color-off-white);
+          }
         }
       }
     }
