@@ -22,7 +22,7 @@ class Input extends Component {
     const $input = document.createElement('div');
     $input.classList.add('input-container');
     $input.innerHTML = `
-      <label class="label">${label}</label>
+      <label for="${id}" class="label">${label}</label>
       <div class="input-wrapper ${customClass || ''}">
         ${prefix ? `<span class="${prefixClass}">${prefix}</span>` : ''}
         <input class="input" type="text" placeholder="${placeholder}" id="${id}"/>
