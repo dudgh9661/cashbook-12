@@ -37,7 +37,9 @@ class HistoryItem extends Component {
                   <span class="history-item-col-payment-method">${
                     history.payment
                   }</span>
-                  <span>${moneyWithComma(history.amount)}원</span>
+                  <span class="history-item-col-payment-amount">${moneyWithComma(
+                    history.amount,
+                  )}원</span>
                 </td> 
               </tr>
             `,
