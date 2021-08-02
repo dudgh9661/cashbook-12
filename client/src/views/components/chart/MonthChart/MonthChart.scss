@@ -1,0 +1,46 @@
+@import '@styles/_responsive.scss';
+
+.month-chart {
+  display: flex;
+  justify-content: space-between;
+
+  &__chart {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__info {
+    width: 50%;
+
+    &--title {
+      font: var(--font-body-large);
+      color: var(--color-title-active);
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet-landscape}) {
+  .month-chart {
+    flex-direction: column;
+
+    &__chart {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    &__info {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .month-chart {
+    &__info--title {
+      font: var(--font-body-medium);
+    }
+  }
+}
