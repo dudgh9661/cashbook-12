@@ -88,6 +88,13 @@
           stroke: var(--color-primary-light);
         }
       }
+      &-active {
+        svg {
+          path {
+            stroke: var(--color-off-white);
+          }
+        }
+      }
     }
   }
 }
