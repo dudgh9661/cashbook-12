@@ -5,4 +5,8 @@ const historyRouter = Router();
 
 historyRouter.post('/', controller.handleCreateHistory);
 
+historyRouter.get('/', controller.handleGetMonthHistory);
+historyRouter.get('/income', controller.handleGetMonthIncome);
+historyRouter.get('/expense', controller.handleGetMonthExpense);
+
 export default historyRouter;

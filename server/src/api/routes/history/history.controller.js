@@ -1,5 +1,10 @@
 import Logger from '../../../loaders/logger';
-import { createHistory } from '../../../services/history';
+import {
+  createHistory,
+  getMonthHistory,
+  getMonthIncome,
+  getMonthExpense,
+} from '../../../services/history';
 
 export const handleCreateHistory = async (req, res, next) => {
   try {
@@ -11,9 +16,45 @@ export const handleCreateHistory = async (req, res, next) => {
   }
 };
 
-export const handleWhat = async (req, res, next) => {
+export const handleGetMonthHistory = async (req, res, next) => {
   try {
-    res.status(200).json('test');
+    const { year, month } = req.query;
+    if (year && month) {
+      const result = await getMonthHistory(year, month);
+      res.status(200).json(result);
+    } else {
+      res.status(400).json('need year and month query');
+    }
+  } catch (err) {
+    Logger.error(err);
+    next(err);
+  }
+};
+
+export const handleGetMonthIncome = async (req, res, next) => {
+  try {
+    const { year, month } = req.query;
+    if (year && month) {
+      const result = await getMonthIncome(year, month);
+      res.status(200).json(result);
+    } else {
+      res.status(400).json('need year and month query');
+    }
+  } catch (err) {
+    Logger.error(err);
+    next(err);
+  }
+};
+
+export const handleGetMonthExpense = async (req, res, next) => {
+  try {
+    const { year, month } = req.query;
+    if (year && month) {
+      const result = await getMonthExpense(year, month);
+      res.status(200).json(result);
+    } else {
+      res.status(400).json('need year and month query');
+    }
   } catch (err) {
     Logger.error(err);
     next(err);
