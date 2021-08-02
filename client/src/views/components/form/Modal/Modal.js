@@ -36,7 +36,7 @@ class Modal extends Component {
 
   setEvent() {
     this.addEvent('click', '.modal-input__footer-cancel', closeModal);
-    this.addEvent('click', '.modal-input__foote-confirm', this.props.callback);
+    this.addEvent('click', '.modal-input__footer-confirm', this.props.callback);
   }
 }
 export default Modal;
