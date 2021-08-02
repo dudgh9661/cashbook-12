@@ -1,0 +1,50 @@
+{
+  "2021-6-3": [
+    {
+      "category": {
+        "id": 6,
+        "name": "문화/여가",
+        "value": "culture",
+        "color": "#D092E2"
+      },
+      "payment": "현대카드",
+      "content": "스트리밍 서비스 정기 결제",
+      "amount": 10000
+    },
+    {
+      "category": {
+        "id": 3,
+        "name": "교통",
+        "value": "transportation",
+        "color": "#94D3CC"
+      },
+      "payment": "현대카드",
+      "content": "후불 교통비 결제",
+      "amount": 10000
+    },
+    {
+      "category": {
+        "id": 6,
+        "name": "문화/여가",
+        "value": "culture",
+        "color": "#D092E2"
+      },
+      "payment": "현대카드",
+      "content": "스트리밍 서비스 정기 결제",
+      "amount": 10000
+    }
+  ],
+  "2021-6-10": [
+    {
+      "category": {
+        "id": 2,
+        "name": "식비",
+        "value": "food",
+        "color": "#4CA1DE"
+      },
+      "payment": "현금",
+      "content": "두유 4개",
+      "amount": 10000
+    }
+  ]
+}

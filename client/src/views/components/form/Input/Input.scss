@@ -1,0 +1,27 @@
+.input {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 4px 0;
+  display: block;
+  width: 100%;
+  color: var(--color-title-active);
+
+  &::placeholder {
+    color: var(--color-label);
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix {
+  width: 50px;
+  padding-top: 4px;
+}
+
+.input-suffix {
+  margin-left: 8px;
+}
