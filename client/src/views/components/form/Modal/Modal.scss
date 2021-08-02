@@ -7,10 +7,10 @@
   left: 0;
   z-index: 99;
   display: none;
-  &.open {
+  &--open {
     display: block;
   }
-  .modal-input {
+  &-input {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,15 +36,15 @@
         outline: none;
       }
     }
-    footer {
+    &__footer {
       margin-top: 40px;
       display: flex;
       justify-content: space-between;
       font: var(--font-body-medium);
-      .cancel {
+      &-cancel {
         color: var(--color-label);
       }
-      .confirm {
+      &-confirm {
         color: var(--color-primary-dark);
       }
     }

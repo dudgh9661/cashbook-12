@@ -15,7 +15,7 @@ class HistoryHeader extends Component {
 
     $header.innerHTML = `
       <span>전체 내역 13건</span>
-      <div class="history-header-category">
+      <div class="history-header__category">
         ${Checkbox('수입 1,882,480', 'income', 'checkbox-income')}
         ${Checkbox('지출 798,180', 'expenditure', 'checkbox-expenditure')}
       </div>

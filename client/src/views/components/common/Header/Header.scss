@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: center;
     color: var(--color-off-white);
-    &-middle {
+    &--middle {
       width: 160px;
       .month {
         text-align: center;
@@ -46,7 +46,7 @@
       }
     }
 
-    &-active {
+    &--active {
       svg {
         path {
           stroke: var(--color-off-white);

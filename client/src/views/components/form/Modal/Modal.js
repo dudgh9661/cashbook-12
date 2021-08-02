@@ -3,7 +3,7 @@ import './Modal.scss';
 
 const closeModal = () => {
   const $modal = document.querySelector('.modal');
-  $modal.classList.remove('open');
+  $modal.classList.remove('modal--open');
 };
 
 class Modal extends Component {
@@ -25,9 +25,9 @@ class Modal extends Component {
         <div>
           <input placeholder="입력하세요">
         </div>
-        <footer>
-          <button type="button" id="modal-cancel" class="cancel">취소</button>
-          <button type="button" id="modal-confirm" class="confirm">등록</button>
+        <footer class="modal-input__footer">
+          <button type="button" class="modal-input__footer-cancel">취소</button>
+          <button type="button" class="modal-input__footer-confirm">등록</button>
         </footer>
       </div>
     `;
@@ -35,8 +35,8 @@ class Modal extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '#modal-cancel', closeModal);
-    this.addEvent('click', '#modal-confirm', this.props.callback);
+    this.addEvent('click', '.modal-input__footer-cancel', closeModal);
+    this.addEvent('click', '.modal-input__footer-confirm', this.props.callback);
   }
 }
 export default Modal;

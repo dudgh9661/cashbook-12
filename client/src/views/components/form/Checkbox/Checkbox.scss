@@ -9,7 +9,7 @@
     visibility: hidden;
     width: 0;
     height: 0;
-    &:checked ~ .checkmark {
+    &:checked ~ .checkbox__checkmark {
       background: var(--color-primary);
       svg {
         path {
@@ -19,7 +19,7 @@
     }
   }
 
-  .checkmark {
+  &__checkmark {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -23,16 +23,16 @@ class Input extends Component {
     $input.classList.add('input-container');
     $input.innerHTML = `
       <label for="${id}" class="label">${label}</label>
-      <div class="input-wrapper ${customClass || ''}">
+      <div class="input__wrapper ${customClass || ''}">
         ${
           prefix
-            ? `<span class="input-prefix ${prefixClass}">${prefix}</span>`
+            ? `<span class="input--prefix ${prefixClass}">${prefix}</span>`
             : ''
         }
         <input class="input" type="text" placeholder="${placeholder}" id="${id}"/>
         ${
           suffix
-            ? `<span class="input-suffix ${suffixClass}">${suffix}</span>`
+            ? `<span class="input--suffix ${suffixClass}">${suffix}</span>`
             : ''
         }
       </div>      

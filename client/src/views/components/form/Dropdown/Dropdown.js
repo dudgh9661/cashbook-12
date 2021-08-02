@@ -4,7 +4,7 @@ import './Dropdown.scss';
 
 const onClickDropdown = e => {
   const $dropdownList = e.target.closest('label').nextElementSibling;
-  $dropdownList.classList.toggle('dropdown-list-active');
+  $dropdownList.classList.toggle('dropdown__list--active');
 };
 
 class Dropdown extends Component {
@@ -24,16 +24,16 @@ class Dropdown extends Component {
           ${
             this.props.selectedValue
               ? `<span></span>`
-              : `<span class="placeholder">선택하세요</span>${chevronDown}`
+              : `<span class="dropdown__placeholder">선택하세요</span>${chevronDown}`
           }          
         </button>
       </label>
-      <ul class="dropdown-list">
+      <ul class="dropdown__list">
         ${this.props.listItems
           .map(
             item => `      
                     <li>
-                      <button type="button" id="dropdown-${item.name}-${item.id}" class="dropdown-list-button">${item.content}</button>
+                      <button type="button" id="dropdown-${item.name}-${item.id}" class="dropdown__list-button">${item.content}</button>
                     </li>
                   `,
           )
