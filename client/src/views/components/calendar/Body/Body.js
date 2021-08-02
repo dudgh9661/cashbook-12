@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import { debounce } from '@utils/helper';
 import { moneyWithComma } from '@utils';
 import Tooltip from '../../common/Tooltip/Tooltip';
 import './Body.scss';
@@ -25,12 +26,15 @@ const showTooltip = $target => {
     top: '103%',
     left: `${(parentWidth - tooltipWidth) / 2}px`,
   });
+
+  return tooltip;
 };
 
 class CalendarBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      curTooltip: null,
       $curTooltipTarget: null,
     };
 
@@ -100,7 +104,10 @@ class CalendarBody extends Component {
       '.calendar-body__day.exist',
       this.toggleTooltip.bind(this),
     );
-    window.addEventListener('resize', this.onResizeHandler.bind(this));
+    window.addEventListener(
+      'resize',
+      debounce(this.onResizeHandler.bind(this), 100),
+    );
   }
 
   toggleTooltip(e) {
@@ -114,23 +121,27 @@ class CalendarBody extends Component {
         hideTooltip($curTooltipTarget);
       } else {
         hideTooltip($target);
+        this.state.curTooltip = null;
         this.state.$curTooltipTarget = null;
         return;
       }
     }
 
-    showTooltip($target);
+    this.state.curTooltip = showTooltip($target);
     this.state.$curTooltipTarget = $target;
   }
 
   onResizeHandler() {
-    const { $curTooltipTarget } = this.state;
-    if (window.innerWidth > 768 || !$curTooltipTarget) return;
+    const { curTooltip, $curTooltipTarget } = this.state;
+    if (window.innerWidth > 768 || !curTooltip) return;
 
-    setPositionTooltip(
-      $curTooltipTarget,
-      $curTooltipTarget.querySelector('.tooltip'),
-    );
+    console.log('hello');
+
+    const parentWidth = $curTooltipTarget.getBoundingClientRect().width;
+    const tooltipWidth = curTooltip.getDOMRect().width;
+    curTooltip.setPosition({
+      left: `${(parentWidth - tooltipWidth) / 2}px`,
+    });
   }
 }
 
