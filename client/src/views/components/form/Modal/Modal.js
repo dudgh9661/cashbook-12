@@ -18,16 +18,16 @@ class Modal extends Component {
     $modal.classList.add('modal');
 
     $modal.innerHTML = `
-      <div class="modal__input">
+      <div class="modal-input">
         <header>
           추가하실 결제수단을 적어주세요.
         </header>
         <div>
           <input placeholder="입력하세요">
         </div>
-        <footer class="modal__footer">
-          <button type="button" class="modal__footer-cancel">취소</button>
-          <button type="button" class="modal__footer-confirm">등록</button>
+        <footer class="modal-input__footer">
+          <button type="button" class="modal-input__footer-cancel">취소</button>
+          <button type="button" class="modal-input__footer-confirm">등록</button>
         </footer>
       </div>
     `;
@@ -35,8 +35,8 @@ class Modal extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '.modal__footer-cancel', closeModal);
-    this.addEvent('click', '.modal__foote-confirm', this.props.callback);
+    this.addEvent('click', '.modal-input__footer-cancel', closeModal);
+    this.addEvent('click', '.modal-input__foote-confirm', this.props.callback);
   }
 }
 export default Modal;

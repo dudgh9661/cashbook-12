@@ -10,7 +10,7 @@
   &--open {
     display: block;
   }
-  &__input {
+  &-input {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,17 +36,17 @@
         outline: none;
       }
     }
-  }
-  &__footer {
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    font: var(--font-body-medium);
-    &-cancel {
-      color: var(--color-label);
-    }
-    &-confirm {
-      color: var(--color-primary-dark);
+    &__footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      font: var(--font-body-medium);
+      &-cancel {
+        color: var(--color-label);
+      }
+      &-confirm {
+        color: var(--color-primary-dark);
+      }
     }
   }
 }
