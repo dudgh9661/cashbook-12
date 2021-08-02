@@ -1,10 +1,6 @@
 import Component from '@lib/Component';
 import { DAYS_OF_WEEK } from '@constants';
-import { DateInfo } from '@store';
 import './Header.scss';
-
-const onClickNextMonth = () => DateInfo.setNextMonth();
-const onClickPrevMonth = () => DateInfo.setPrevMonth();
 
 class CalendarHeader extends Component {
   constructor() {
