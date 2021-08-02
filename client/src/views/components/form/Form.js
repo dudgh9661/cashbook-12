@@ -79,9 +79,7 @@ class Form extends Component {
 
   setEvent() {
     this.addEvent('input', '#input-date', onInputDate);
-    // this.addEvent('click', '#input-date', onInputDate);
     this.addEvent('input', '#input-content', onInputContent);
-    // this.addEvent('click', '#input-date', onInputDate);
     this.addEvent('input', '#input-amount', onInputAmount);
     this.addEvent('click', '#dropdown-add-method-0', onClickAddMethod);
   }
