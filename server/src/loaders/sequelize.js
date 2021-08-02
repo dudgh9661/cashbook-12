@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
-import sequelize from '../config/database';
+import config from '../config';
 import { User, Category, Payment, History } from '../models';
+
+export const sequelize = new Sequelize(config.database);
 
 export default async () => {
   const db = {

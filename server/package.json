@@ -6,12 +6,16 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "sequelize": "sequelize $*",
     "dev": "NODE_ENV=development nodemon -r esm src/app.js",
     "start": "NODE_ENV=production pm2 start src/app.js --node-args='-r esm'"
   },
   "author": "dongqui, Seogeurim",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^7.31.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -19,7 +23,8 @@
     "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.12",
     "pm2": "^5.1.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
     "cors": "^2.8.5",

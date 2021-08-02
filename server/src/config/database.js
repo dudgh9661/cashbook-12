@@ -1,21 +1,42 @@
-import { Sequelize } from 'sequelize';
-import config from './index';
+import dotenv from 'dotenv';
 
-const sequelize = new Sequelize(
-  config.database.dbname,
-  config.database.username,
-  config.database.password,
-  {
-    host: config.database.host,
+dotenv.config();
+
+export default {
+  development: {
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: 3306,
     dialect: 'mysql',
     dialectOptions: {
       connectTimeout: 1000,
       typeCast: true,
     },
-    define: {
-      timestamps: false,
+  },
+  test: {
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: 3306,
+    dialect: 'mysql',
+    dialectOptions: {
+      connectTimeout: 1000,
+      typeCast: true,
     },
   },
-);
-
-export default sequelize;
+  production: {
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: 3306,
+    dialect: 'mysql',
+    dialectOptions: {
+      connectTimeout: 1000,
+      typeCast: true,
+    },
+  },
+};

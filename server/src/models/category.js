@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database';
+import { sequelize } from '../loaders/sequelize';
 
 const Category = sequelize.define(
   'Category',
@@ -11,6 +11,16 @@ const Category = sequelize.define(
     },
     name: {
       type: DataTypes.STRING(20),
+      allowNull: false,
+      unique: true,
+    },
+    value: {
+      type: DataTypes.STRING(40),
+      allowNull: false,
+      unique: true,
+    },
+    color: {
+      type: DataTypes.STRING(7),
       allowNull: false,
       unique: true,
     },
