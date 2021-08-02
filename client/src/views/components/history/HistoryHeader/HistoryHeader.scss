@@ -1,0 +1,15 @@
+.history-header {
+  padding: 38px 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-primary-dark);
+  > span {
+    font: var(--font-body-large);
+  }
+  &-category {
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

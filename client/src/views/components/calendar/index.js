@@ -4,12 +4,6 @@ import CalendarHeader from './Header/Header';
 import CalendarBody from './Body/Body';
 import CalendarFooter from './Footer/Footer';
 
-const prevMonthHandler = () => {
-  DateInfo.setPrevMonth();
-  History.setCurrentMonthHistory();
-  History.setCurrentMonthTotal();
-};
-
 class Calendar extends Component {
   constructor() {
     super();
@@ -37,10 +31,6 @@ class Calendar extends Component {
     );
 
     return $calendar;
-  }
-
-  setEvent() {
-    this.addEvent('click', '.calendar-footer', prevMonthHandler);
   }
 
   didMount() {
