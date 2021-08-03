@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { Layout, Form, History } from '@components';
+import { Layout, Form, History, LoginModal } from '@components';
 import './MainPage.scss';
 import categoryData from '../../../_dummies/category.json';
 import paymentMethod from '../../../_dummies/paymentMethod.json';

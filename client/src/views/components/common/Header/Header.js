@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { DateInfo, History } from '@store';
+import { DateInfo, History, User } from '@store';
 import router from '@lib/Router';
 import './Header.scss';
 import {
@@ -32,15 +32,19 @@ class Header extends Component {
 
   setObserver() {
     DateInfo.observe('current', this.reRender.bind(this));
+    User.observe('user', this.reRender.bind(this));
   }
 
   render() {
+    const { user } = User.state;
+    const name = user && user.name;
+
     const $header = document.createElement('header');
     $header.className = 'header';
 
     const $logo = document.createElement('div');
     $logo.className = 'header__logo';
-    $logo.innerText = '우아한 가계부';
+    $logo.innerText = `${name ? `${name}님의\n` : ''}우아한 가계부`;
 
     const $nav = document.createElement('nav');
     $nav.innerHTML = `
@@ -84,6 +88,10 @@ class Header extends Component {
     this.addEvent('click', '#tab-main', onClickMainTab);
     this.addEvent('click', '#tab-calendar', onClickCalendarTab);
     this.addEvent('click', '#tab-chart', onClickChartTab);
+  }
+
+  didMount() {
+    User.setUser();
   }
 }
 
