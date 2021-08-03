@@ -15,7 +15,7 @@ const requestGet = async url => {
 };
 
 export default {
-  fetchRoot: () => {
-    return requestGet(API_END_POINT);
+  fetchMonthHistories: (year, month) => {
+    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
   },
 };

@@ -56,7 +56,7 @@ class CalendarBody extends Component {
       $dayRow.className = 'calendar-body__week';
 
       for (let day = 0; day < 7; day += 1) {
-        const curHistory = history && history.find(h => h.date === date);
+        const curHistory = history && history[date];
 
         $dayRow.innerHTML += `
           <td 
@@ -75,7 +75,7 @@ class CalendarBody extends Component {
                     <span class="minus">${
                       curHistory.expenses === 0
                         ? ''
-                        : `-${moneyWithComma(curHistory.expenses)}`
+                        : `${moneyWithComma(curHistory.expenses)}`
                     }</span>
                     <span>${moneyWithComma(curHistory.earning)}</span>
                     <div class="circle"></div>
