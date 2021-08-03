@@ -12,11 +12,4 @@ export const handleCreateUser = async (req, res, next) => {
   }
 };
 
-export const handleGetUser = async (req, res, next) => {
-  try {
-    res.status(200).json(req.user);
-  } catch (err) {
-    Logger.error(err);
-    next(err);
-  }
-};
+export const lint = () => {};

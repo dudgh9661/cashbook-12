@@ -22,6 +22,11 @@ class MainPage extends Component {
       console.log('dd');
       fetch('http://localhost:5000/api/auth/logout', {
         method: 'POST',
+      }).then(res => {
+        console.log(res.ok, '@@');
+        if (res.ok) {
+          window.location.reload();
+        }
       });
     };
 

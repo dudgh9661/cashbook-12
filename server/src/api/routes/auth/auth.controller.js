@@ -16,7 +16,16 @@ export const handleGithubCallback = async (req, res, next) => {
       httpOnly: true,
     });
 
-    res.sendStatus(403);
+    res.redirect('/');
+  } catch (err) {
+    Logger.error(err);
+    next(err);
+  }
+};
+
+export const handleGetAuth = async (req, res, next) => {
+  try {
+    res.status(200).json(req.user);
   } catch (err) {
     Logger.error(err);
     next(err);
@@ -25,5 +34,7 @@ export const handleGithubCallback = async (req, res, next) => {
 
 export const handleLogout = async (req, res) => {
   res.clearCookie('token');
-  res.redirect('/');
+  res.clearCookie('secureToken');
+
+  res.sendStatus(205);
 };

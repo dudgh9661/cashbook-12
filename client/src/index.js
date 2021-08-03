@@ -18,18 +18,22 @@ router.initRoutes($app, {
   NotFound: NotFoundPage,
 });
 
-fetch('http://localhost:5000/api/users')
+fetch('http://localhost:5000/api/auth')
   .then(res => {
-    console.log(res);
-    return res;
+    console.log(res.ok);
+    if (res.ok) {
+      return res.json();
+    }
+    throw Error('no ok');
   })
   .then(user => {
-    console.log('d', user);
-    if (user) {
-      alert(`hi, ${user.name}`);
-      router.render(window.location.pathname);
-    } else {
-      router.render('/login');
+    if (!user) {
+      throw Error('no user');
     }
-    return user;
+    alert(`hi, ${user.name}`);
+    router.render(window.location.pathname);
+  })
+  .catch(e => {
+    console.log(e);
+    router.push('/login');
   });

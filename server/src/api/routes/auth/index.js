@@ -3,6 +3,7 @@ import * as controller from './auth.controller';
 
 const authRouter = Router();
 
+authRouter.get('/', controller.handleGetAuth);
 authRouter.get('/github', controller.handleGithubCallback);
 authRouter.post('/logout', controller.handleLogout);
 
