@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import handleGithubCallback from './auth.controller';
+import * as controller from './auth.controller';
 
 const authRouter = Router();
 
-authRouter.get('/github', handleGithubCallback);
+authRouter.get('/github', controller.handleGithubCallback);
+authRouter.post('/logout', controller.handleLogout);
 
 export default authRouter;

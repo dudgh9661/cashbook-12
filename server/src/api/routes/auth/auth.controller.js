@@ -3,24 +3,27 @@ import { getGihubUserInfo, getGithubAccessToken } from '../../../services/auth';
 import config from '../../../config';
 import jwt from '../../../utils/jwt';
 
-const handleGithubCallback = async (req, res, next) => {
+export const handleGithubCallback = async (req, res, next) => {
   try {
     const { code } = req.query;
     const accessToken = await getGithubAccessToken(code);
     const user = await getGihubUserInfo(accessToken);
 
-    const token = jwt.sign({ usernam: user.username, isLogin: true });
+    const token = jwt.sign({ ...user, isLogin: true });
 
-    res.cookie('secureCookie', JSON.stringify({ token }), {
-      secure: config.isDev,
+    res.cookie('token', token, {
+      secure: !config.isDev,
       httpOnly: true,
     });
 
-    res.redirect('/');
+    res.sendStatus(403);
   } catch (err) {
     Logger.error(err);
     next(err);
   }
 };
 
-export default handleGithubCallback;
+export const handleLogout = async (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/');
+};

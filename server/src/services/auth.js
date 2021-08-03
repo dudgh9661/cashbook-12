@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config';
+import User from '../models/user';
 
 export const getGithubAccessToken = async code => {
   const res = await axios.post(
@@ -26,5 +27,14 @@ export const getGihubUserInfo = async accessToken => {
     },
   });
 
-  return res.data;
+  let user = await User.findOne({ where: { github_uid: res.data.id } });
+  if (!user) {
+    user = await User.create({
+      name: res.data.login,
+      github_uid: res.data.id,
+      avatar_url: res.data.avatar_url,
+    });
+  }
+
+  return user.toJSON();
 };
