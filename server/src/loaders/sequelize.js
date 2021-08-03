@@ -12,5 +12,8 @@ export default async () => {
     History,
   };
 
+  User.associate(db);
+  Payment.associate(db);
+
   await db.sequelize.sync();
 };

@@ -22,4 +22,7 @@ const User = sequelize.define(
   },
 );
 
+User.associate = models => {
+  User.belongsToMany(models.Payment, { through: 'UsertToPayment' });
+};
 export default User;

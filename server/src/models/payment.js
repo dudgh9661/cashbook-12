@@ -22,4 +22,8 @@ const Payment = sequelize.define(
   },
 );
 
+Payment.associate = models => {
+  Payment.belongsToMany(models.User, { through: 'UsertToPayment' });
+};
+
 export default Payment;
