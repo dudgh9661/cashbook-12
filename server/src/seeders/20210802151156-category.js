@@ -43,6 +43,12 @@ module.exports = {
         value: 'unclassified',
         color: '#817DCE',
       },
+      {
+        id: 8,
+        name: '월급',
+        value: 'salary',
+        color: '#B9D58C',
+      },
     ]);
   },
 

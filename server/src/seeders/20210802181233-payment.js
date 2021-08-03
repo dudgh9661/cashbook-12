@@ -1,8 +1,8 @@
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
     await queryInterface.bulkInsert('payment', [
-      { name: '현금' },
-      { name: '신용카드' },
+      { id: 1, name: '현금' },
+      { id: 2, name: '현대카드' },
     ]);
   },
 
