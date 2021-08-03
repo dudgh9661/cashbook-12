@@ -9,4 +9,6 @@ historyRouter.get('/', controller.handleGetMonthHistory);
 historyRouter.get('/income', controller.handleGetMonthIncome);
 historyRouter.get('/expense', controller.handleGetMonthExpense);
 
+historyRouter.put('/id/:id', controller.handleUpdateHistory);
+
 export default historyRouter;

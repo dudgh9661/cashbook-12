@@ -1,10 +1,9 @@
 import { Op } from 'sequelize';
-import { sequelize } from '../loaders/sequelize';
 import { History } from '../models';
 
 export const createHistory = async data => {
   const { date, content, amount, categoryId, paymentId, userId } = data;
-  await History.create({
+  const result = await History.create({
     content,
     amount,
     date,
@@ -12,6 +11,7 @@ export const createHistory = async data => {
     payment_id: paymentId,
     user_id: userId,
   });
+  return result.dataValues;
 };
 
 export const getMonthHistory = async (year, month) => {
@@ -54,4 +54,27 @@ export const getMonthExpense = async (year, month) => {
     },
   });
   return history;
+};
+
+export const updateHistory = async (id, data) => {
+  const { date, content, amount, categoryId, paymentId, userId } = data;
+  const isExist = await History.findByPk(id);
+  if (!isExist) return null;
+
+  const result = await History.update(
+    {
+      content,
+      amount,
+      date,
+      category_id: categoryId,
+      payment_id: paymentId,
+    },
+    {
+      where: {
+        id,
+        user_id: userId,
+      },
+    },
+  );
+  return result;
 };
