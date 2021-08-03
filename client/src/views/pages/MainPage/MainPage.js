@@ -1,8 +1,9 @@
 import Component from '@lib/Component';
 import { Layout, Form, History } from '@components';
+import $ from '@utils/dom';
+import './MainPage.scss';
 import categoryData from '../../../_dummies/category.json';
 import paymentMethod from '../../../_dummies/paymentMethod.json';
-import './MainPage.scss';
 
 class MainPage extends Component {
   constructor() {
@@ -12,24 +13,19 @@ class MainPage extends Component {
   }
 
   render() {
-    const $mainPage = document.createElement('div');
-    $mainPage.className = 'main-page';
-
-    const $mainPageFrag = document.createDocumentFragment();
-    $mainPageFrag.append(
-      new Form({
-        categories: categoryData.categories,
-        paymentMethods: paymentMethod.methods,
-      }).getElement(),
-      new History({}).getElement(),
-    );
-    $mainPage.appendChild(
+    return $(
+      'div',
+      { class: 'main-page' },
       new Layout({
-        content: $mainPageFrag,
-      }).getElement(),
+        children: [
+          new Form({
+            categories: categoryData.categories,
+            paymentMethods: paymentMethod.methods,
+          }),
+          new History(),
+        ],
+      }),
     );
-
-    return $mainPage;
   }
 }
 

@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import $ from '@utils/dom';
 
 class NotFoundPage extends Component {
   constructor() {
@@ -8,11 +9,7 @@ class NotFoundPage extends Component {
   }
 
   render() {
-    const $div = document.createElement('div');
-    $div.className = 'not-found-page';
-    $div.innerText = 'This is Not Found Page';
-
-    return $div;
+    return $('div', { class: 'not-found-page' }, 'This is Not Found Page');
   }
 }
 

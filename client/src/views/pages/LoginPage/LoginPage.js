@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import $ from '@utils/dom';
 import './LoginPage.scss';
 
 class LoginPage extends Component {
@@ -9,11 +10,7 @@ class LoginPage extends Component {
   }
 
   render() {
-    const $div = document.createElement('div');
-    $div.className = 'login-page';
-    $div.innerText = 'This is Login Page';
-
-    return $div;
+    return $('div', { class: 'login-page' }, 'This is Login Page');
   }
 }
 
