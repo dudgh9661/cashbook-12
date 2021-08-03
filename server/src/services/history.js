@@ -78,3 +78,10 @@ export const updateHistory = async (id, data) => {
   );
   return result;
 };
+
+export const deleteHistory = async id => {
+  const result = await History.destroy({
+    where: { id },
+  });
+  return result === 1;
+};

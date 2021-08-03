@@ -5,6 +5,7 @@ import {
   getMonthIncome,
   getMonthExpense,
   updateHistory,
+  deleteHistory,
 } from '../../../services/history';
 
 export const handleCreateHistory = async (req, res, next) => {
@@ -74,6 +75,21 @@ export const handleUpdateHistory = async (req, res, next) => {
       res.status(200).json('history update success');
     } else {
       res.status(400).json('history update failed');
+    }
+  } catch (err) {
+    Logger.error(err);
+    next(err);
+  }
+};
+
+export const handleDeleteHistory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await deleteHistory(id);
+    if (result) {
+      res.status(200).json('history delete success');
+    } else {
+      res.status(400).json('history delete failed');
     }
   } catch (err) {
     Logger.error(err);
