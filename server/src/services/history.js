@@ -22,6 +22,10 @@ export const getMonthHistory = async (year, month) => {
         [Op.lt]: new Date(year, month),
       },
     },
+    order: [
+      ['date', 'DESC'],
+      ['created_at', 'DESC'],
+    ],
   });
   return history;
 };
@@ -37,6 +41,10 @@ export const getMonthIncome = async (year, month) => {
         [Op.gt]: 0,
       },
     },
+    order: [
+      ['date', 'DESC'],
+      ['created_at', 'DESC'],
+    ],
   });
   return history;
 };
@@ -52,6 +60,10 @@ export const getMonthExpense = async (year, month) => {
         [Op.lt]: 0,
       },
     },
+    order: [
+      ['date', 'DESC'],
+      ['created_at', 'DESC'],
+    ],
   });
   return history;
 };

@@ -40,7 +40,7 @@ const History = sequelize.define(
   {
     tableName: 'history',
     underscored: true,
-    timestamps: false,
+    timestamps: true,
   },
 );
 

@@ -8,6 +8,8 @@ module.exports = {
         category_id: 2,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210704',
@@ -16,6 +18,8 @@ module.exports = {
         category_id: 5,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210704',
@@ -24,6 +28,8 @@ module.exports = {
         category_id: 2,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210704',
@@ -32,6 +38,8 @@ module.exports = {
         category_id: 7,
         payment_id: 1,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210707',
@@ -40,6 +48,8 @@ module.exports = {
         category_id: 6,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210707',
@@ -48,6 +58,8 @@ module.exports = {
         category_id: 4,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210709',
@@ -56,6 +68,8 @@ module.exports = {
         category_id: 8,
         payment_id: 1,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210709',
@@ -64,6 +78,8 @@ module.exports = {
         category_id: 2,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210710',
@@ -72,6 +88,8 @@ module.exports = {
         category_id: 1,
         payment_id: 1,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210710',
@@ -80,6 +98,8 @@ module.exports = {
         category_id: 2,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210713',
@@ -88,6 +108,8 @@ module.exports = {
         category_id: 7,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210715',
@@ -96,6 +118,8 @@ module.exports = {
         category_id: 3,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         date: '20210715',
@@ -104,6 +128,8 @@ module.exports = {
         category_id: 6,
         payment_id: 2,
         user_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
     ]);
   },
