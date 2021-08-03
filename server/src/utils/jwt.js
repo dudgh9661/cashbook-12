@@ -11,7 +11,6 @@ const sign = payload => {
 
 const verify = token => {
   const decoded = jwt.verify(token, config.jwt.scretKey);
-  decoded.isRemainedOneDay = decoded.exp - Date.now() / 1000 < 1;
 
   return decoded;
 };
