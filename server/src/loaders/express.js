@@ -2,8 +2,10 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
+import cookieParser from 'cookie-parser';
 import config from '../config';
 import routes from '../api';
+import authMiddleWare from '../middlewares/auth';
 
 export default app => {
   app.use(express.json());
@@ -12,13 +14,12 @@ export default app => {
       extended: false,
     }),
   );
-
+  app.use(cookieParser());
   app.use(cors());
-
+  app.use(authMiddleWare);
   app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
   app.use(config.api.prefix, routes);
-
   app.use(express.static(path.resolve('./dist')));
 
   app.get('*', (_req, res) => {
