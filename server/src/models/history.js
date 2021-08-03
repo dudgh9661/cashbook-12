@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../loaders/sequelize';
+import sequelize from '../config/sequelize';
 import User from './user';
 import Category from './category';
 import Payment from './payment';
