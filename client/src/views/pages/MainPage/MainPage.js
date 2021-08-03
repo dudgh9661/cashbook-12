@@ -15,14 +15,19 @@ class MainPage extends Component {
     const $mainPage = document.createElement('div');
     $mainPage.className = 'main-page';
 
-    const $loginTest = document.createElement('a');
-    $loginTest.textContent = '로그인 테스트';
-    $loginTest.href =
-      'https://github.com/login/oauth/authorize?client_id=04986225983a20a0d8c4';
+    const $logoutTest = document.createElement('button');
+    $logoutTest.textContent = '로그아웃 테스트';
+    $logoutTest.href = 'https://localhost:5000/api/auth/logout';
+    $logoutTest.onclick = () => {
+      console.log('dd');
+      fetch('http://localhost:5000/api/auth/logout', {
+        method: 'POST',
+      });
+    };
 
     const $mainPageFrag = document.createDocumentFragment();
     $mainPageFrag.append(
-      $loginTest,
+      $logoutTest,
       new Form({
         categories: categoryData.categories,
         paymentMethods: paymentMethod.methods,
