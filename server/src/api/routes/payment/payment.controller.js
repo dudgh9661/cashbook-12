@@ -23,10 +23,8 @@ export const handleCreatePayment = async (req, res, next) => {
     const { name } = req.body;
     const userId = 1 || req.user.id;
     if (name) {
-      await createPayment(name, userId);
-      const payments = await getPayments(1);
-
-      res.status(200).json(payments);
+      const payment = await createPayment(name, userId);
+      res.status(200).json(payment);
     } else {
       res.status(400).json('결제 수단 이름이 필요합니다.');
     }
@@ -42,10 +40,9 @@ export const handleDeletePayment = async (req, res, next) => {
 
   try {
     if (id) {
-      await deletePayment(id);
-      const payments = await getPayments(userId);
+      const deletedId = await deletePayment(id, userId);
 
-      res.status(200).json(payments);
+      res.status(200).json({ deletedId });
     } else {
       res.status(400).json('결제 수단 아이디가 필요합니다.');
     }

@@ -7,7 +7,10 @@ export const createPayment = async (name, userId) => {
 
   if (!userHasPayment) {
     await user.addPayment(payment[0]);
+    return payment[0].toJSON();
   }
+
+  throw Error('aleadty exists');
 };
 
 export const getPayments = async userId => {
@@ -20,6 +23,14 @@ export const getPayments = async userId => {
   return payments;
 };
 
-export const deletePayment = async id => {
-  await Payment.destroy({ where: { id } });
+export const deletePayment = async (paymentId, userId) => {
+  const user = await User.findOne({ where: { id: userId } });
+  const userHasPayment = await user.hasPayment(+paymentId);
+
+  if (userHasPayment) {
+    user.removePayment(paymentId);
+    return paymentId;
+  }
+
+  throw Error('Not belong to the user');
 };
