@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database';
+import sequelize from '../config/sequelize';
 
 const User = sequelize.define(
   'User',
@@ -18,6 +18,7 @@ const User = sequelize.define(
   {
     tableName: 'user',
     underscored: true,
+    timestamps: false,
   },
 );
 
