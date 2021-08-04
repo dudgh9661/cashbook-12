@@ -1,10 +1,18 @@
 import Observable from '@lib/Observable';
-import Api from '../utils/api';
+import api from '../utils/api';
 
 class Payment extends Observable {
-  async setPayments() {}
+  async setPayments() {
+    const payments = await api.fetchPayments();
 
-  async addPayment() {}
+    this.state.payments = payments;
+  }
+
+  async addPayment(name) {
+    const payment = await api.postPayment(name);
+
+    this.state.payments = [payment, ...this.state.payments];
+  }
 }
 
 const initialState = {
