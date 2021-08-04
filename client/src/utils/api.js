@@ -57,4 +57,5 @@ export default {
   deleteHistory: id => requestDelete(`${API_END_POINT}/histories/${id}`),
   postPayment: body => requestPost(`${API_END_POINT}/payments`, body),
   fetchPayments: () => requestGet(`${API_END_POINT}/payments`),
+  deletePayment: id => requestDelete(`${API_END_POINT}/payments/${id}`),
 };

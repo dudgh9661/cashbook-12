@@ -13,6 +13,12 @@ class Payment extends Observable {
 
     this.state.payments = [payment, ...this.state.payments];
   }
+
+  async deletePayment(id) {
+    await api.deletePayment(id);
+
+    this.state.payments = this.state.payments.filter(p => +p.id !== +id);
+  }
 }
 
 const initialState = {
