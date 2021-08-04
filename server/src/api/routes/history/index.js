@@ -12,6 +12,7 @@ historyRouter.get('/expense', controller.handleGetMonthExpense);
 historyRouter.put('/:id', controller.handleUpdateHistory);
 historyRouter.delete('/:id', controller.handleDeleteHistory);
 
-historyRouter.get('/category/all', controller.handleGetCategoryHistory);
+historyRouter.get('/category/all', controller.handleGetAllCategoryHistory);
+historyRouter.get('/category/:id', controller.handleGetCategoryHistory);
 
 export default historyRouter;

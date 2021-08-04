@@ -123,3 +123,25 @@ export const getAllCategoryHistory = async (year, month) => {
   });
   return history;
 };
+
+export const getCategoryHistory = async (categoryId, year) => {
+  const history = await History.findAll({
+    attributes: [
+      [sequelize.fn('MONTH', sequelize.col('date')), 'month'],
+      [sequelize.fn('sum', sequelize.col('amount')), 'total_expenses'],
+    ],
+    where: {
+      date: {
+        [Op.gte]: new Date(year),
+        [Op.lt]: new Date(parseInt(year, 10) + 1, 0),
+      },
+      amount: {
+        [Op.lt]: 0,
+      },
+      category_id: categoryId,
+    },
+    group: [sequelize.fn('MONTH', sequelize.col('date')), 'month'],
+    order: [[sequelize.fn('MONTH', sequelize.col('date'))]],
+  });
+  return history;
+};
