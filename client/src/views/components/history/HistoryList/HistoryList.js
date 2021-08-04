@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { HistoryItem } from '@components';
+import { HistoryItem, Empty } from '@components';
 import History from '@store/History';
 import { dateFormat } from '@utils/helper';
 import $ from '@utils/dom';
@@ -29,8 +29,13 @@ class HistoryList extends Component {
 
   render() {
     const historyByDate = {};
+    const filteredHistoryList = History.state.history.filter(filter);
 
-    History.state.history.filter(filter).forEach(h => {
+    if (!filteredHistoryList.length) {
+      return new Empty().getElement();
+    }
+
+    filteredHistoryList.filter(filter).forEach(h => {
       const date = dateFormat(h.date);
       if (!historyByDate[date]) {
         historyByDate[date] = [];
