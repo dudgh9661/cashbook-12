@@ -29,6 +29,7 @@
   &__header {
     font: var(--font-body-medium);
     margin-bottom: 20px;
+    word-break: keep-all;
   }
 
   &__body {

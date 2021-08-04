@@ -37,11 +37,11 @@ class Modal extends Component {
   }
 
   setEvent() {
-    const { toggleModal } = this.props;
+    const { toggleModal, onCancelHandler, onConfirmHandler } = this.props;
     if (!toggleModal) return;
 
-    this.addEvent('click', '.cancel-btn', toggleModal);
-    this.addEvent('click', '.confirm-btn', toggleModal);
+    this.addEvent('click', '.cancel-btn', onCancelHandler || toggleModal);
+    this.addEvent('click', '.confirm-btn', onConfirmHandler || toggleModal);
 
     this.addEvent('click', '.modal', e => {
       if (e.target === this.$element) toggleModal();

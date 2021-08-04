@@ -6,11 +6,15 @@ import CalendarBody from './Body/Body';
 import CalendarFooter from './Footer/Footer';
 import Modal from '../form/Modal/Modal';
 
+const onConfirmHandler = () => {
+  window.location.reload();
+};
+
 class Calendar extends Component {
   constructor() {
     super();
     this.state = {
-      modalVisible: true,
+      modalVisible: false,
     };
 
     this.init();
@@ -25,7 +29,7 @@ class Calendar extends Component {
   render() {
     const { today, current } = DateInfo.state;
     const { history, total } = History.state;
-    const { modalVisible } = this.state;
+    this.state.modalVisible = !history;
 
     return $(
       'section',
@@ -33,13 +37,14 @@ class Calendar extends Component {
       new CalendarHeader(),
       new CalendarBody({ today, current, history }),
       new CalendarFooter({ total }),
-      !history
-        ? new Modal({
-            visible: modalVisible,
-            headerText: '모달 나와라',
-            toggleModal: this.toggleModal.bind(this),
-          })
-        : '',
+      new Modal({
+        visible: this.state.modalVisible,
+        headerText:
+          '소비 내역을 불러오는데 문제가 있습니다. 잠시 후 다시 시도해주세요!',
+        confirmText: '새로고침',
+        toggleModal: this.toggleModal.bind(this),
+        onConfirmHandler,
+      }),
     );
   }
 
