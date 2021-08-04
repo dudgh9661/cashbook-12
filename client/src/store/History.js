@@ -1,31 +1,51 @@
 import Observable from '@lib/Observable';
-import { makeObjectKeysLowerCase } from '@utils/helper';
+import api from '@utils/api';
 import DateInfo from './DateInfo';
-import Api from '../utils/api';
 
 const getCurrentMonthHistory = async () => {
   const { year, month } = DateInfo.state.current;
 
-  const histories = await Api.fetchHistory(year, month);
-  return histories;
+  try {
+    const data = await api.fetchMonthHistories(year, month);
+    return data.reduce((acc, cur) => {
+      const date = new Date(cur.date).getDate();
+      const amount = parseInt(cur.amount, 10);
+
+      if (!acc[date]) acc[date] = { income: 0, expenses: 0, earning: 0 };
+
+      if (amount > 0) acc[date].income += amount;
+      else acc[date].expenses += amount;
+      acc[date].earning += amount;
+
+      return acc;
+    }, {});
+  } catch (err) {
+    return null;
+  }
 };
 
 class History extends Observable {
-  async setCurrentMonthHistory() {
-    try {
-      const histories = await getCurrentMonthHistory();
-
-      this.state.history = histories.map(makeObjectKeysLowerCase);
-    } catch (e) {
-      console.log(e);
-    }
+  init() {
+    this.state.history = {};
+    this.state.total = { income: 0, expenses: 0, earning: 0 };
   }
 
-  setCurrentMonthTotal(data) {
+  async setCurrentMonthHistory() {
+    this.init();
+
+    const data = await getCurrentMonthHistory();
+    this.state.history = data;
+    this.setHistoryTotal(data);
+  }
+
+  setHistoryTotal(data) {
+    if (!data) return;
+
+    const dataArr = Object.values(data);
     this.state.total = {
-      income: data ? data.reduce((acc, cur) => acc + cur.income, 0) : 0,
-      expenses: data ? data.reduce((acc, cur) => acc + cur.expenses, 0) : 0,
-      earning: data ? data.reduce((acc, cur) => acc + cur.earning, 0) : 0,
+      income: dataArr.reduce((acc, cur) => acc + cur.income, 0),
+      expenses: dataArr.reduce((acc, cur) => acc + -cur.expenses, 0),
+      earning: dataArr.reduce((acc, cur) => acc + cur.earning, 0),
     };
   }
 
@@ -62,9 +82,12 @@ class History extends Observable {
 }
 
 const initialState = {
-  filter: ['income', 'expenditure'],
-  history: [],
-  total: {},
+  history: {},
+  total: {
+    income: 0,
+    expenses: 0,
+    earning: 0,
+  },
 };
 
 export default new History(initialState);

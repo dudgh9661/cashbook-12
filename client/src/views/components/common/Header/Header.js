@@ -13,12 +13,10 @@ import {
 const onClickNextMonth = () => {
   DateInfo.setNextMonth();
   History.setCurrentMonthHistory();
-  History.setCurrentMonthTotal();
 };
 const onClickPrevtMonth = () => {
   DateInfo.setPrevMonth();
   History.setCurrentMonthHistory();
-  History.setCurrentMonthTotal();
 };
 const onClickMainTab = () => router.push('/');
 const onClickCalendarTab = () => router.push('/calendar');

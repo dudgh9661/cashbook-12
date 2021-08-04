@@ -88,6 +88,10 @@ class Form extends Component {
     $btn.classList.add('form__btn');
     $btn.innerHTML = check();
 
+    const $modalInput = document.createElement('input');
+    $modalInput.className = 'modal-input';
+    $modalInput.placeholder = '입력하세요.';
+
     $form.append(
       new Input({
         id: 'input-date',
@@ -134,7 +138,11 @@ class Form extends Component {
         value: FormStore.state.amount,
       }).getElement(),
       $btn,
-      new Modal({}).getElement(),
+      new Modal({
+        headerText: '추가하실 결제수단을 적어주세요.',
+        confirmText: '등록',
+        children: [$modalInput],
+      }).getElement(),
     );
     return $form;
   }

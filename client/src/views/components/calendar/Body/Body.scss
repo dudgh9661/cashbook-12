@@ -1,8 +1,8 @@
 @import '@styles/_responsive.scss';
+@import '@styles/_animation.scss';
 
 .calendar-body {
   width: 100%;
-  background-color: var(--color-off-white);
   border: 1px solid #ccd3d3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1),
     0 0 0 1px var(--color-line);
@@ -12,12 +12,35 @@
   margin-bottom: 20px;
   table-layout: fixed;
 
+  &__week {
+    &:first-child td {
+      &:first-child {
+        border-top-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 10px;
+      }
+    }
+
+    &:last-child td {
+      &:first-child {
+        border-bottom-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+
   &__day {
     box-sizing: content-box;
     height: 80px;
     padding: 10px;
     border: 1px solid var(--color-line);
     overflow: hidden;
+    background-color: var(--color-off-white);
 
     &.today {
       background-color: var(--color-background);
@@ -55,6 +78,15 @@ span {
 
   &.minus {
     color: var(--color-error);
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet + 1px}) {
+  .day-content__info {
+    animation: fadein 1.5s;
+    -moz-animation: fadein 1.5s;
+    -webkit-animation: fadein 1.5s;
+    -o-animation: fadein 1.5s;
   }
 }
 

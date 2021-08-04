@@ -3,9 +3,11 @@ import Component from '@lib/Component';
 export default (tagName, attributes, ...childNodes) => {
   const $element = document.createElement(tagName);
 
-  Object.keys(attributes).forEach(key => {
-    $element.setAttribute(key, attributes[key]);
-  });
+  if (attributes) {
+    Object.keys(attributes).forEach(key => {
+      $element.setAttribute(key, attributes[key]);
+    });
+  }
 
   const $fragment = document.createDocumentFragment();
 
@@ -14,7 +16,7 @@ export default (tagName, attributes, ...childNodes) => {
       $fragment.appendChild(child.getElement());
     } else if (child instanceof HTMLElement) {
       $fragment.appendChild(child);
-    } else if (typeof child === 'string') {
+    } else {
       $fragment.appendChild(document.createTextNode(child));
     }
   });
