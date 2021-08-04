@@ -33,9 +33,19 @@ const onClickPaymentItem = e => {
     }
   }
 };
-const onClickAddpayment = () => {
-  const $modal = document.querySelector('.modal');
-  $modal.classList.add('modal--open');
+function onClickAddpayment() {
+  this.state.openModal = true;
+  this.reRender();
+}
+
+function onClickModalCancel() {
+  this.state.openModal = false;
+  this.reRender();
+}
+
+const onClickModalConfirm = () => {
+  const $modalInput = document.querySelector('.modal-input');
+  console.log($modalInput.value);
 };
 
 const onClickButton = async () => {
@@ -70,6 +80,9 @@ class Form extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      openModal: false,
+    };
     this.init();
   }
 
@@ -139,8 +152,11 @@ class Form extends Component {
       }).getElement(),
       $btn,
       new Modal({
+        visible: this.state.openModal,
         headerText: '추가하실 결제수단을 적어주세요.',
         confirmText: '등록',
+        onCancelHadnler: onClickModalCancel.bind(this),
+        onConfirmHandler: onClickModalConfirm,
         children: [$modalInput],
       }).getElement(),
     );
@@ -153,7 +169,11 @@ class Form extends Component {
     this.addEvent('input', '#input-amount', onInputAmount);
     this.addEvent('click', '.dropdown--category', onClickCategoryItem);
     this.addEvent('click', '.dropdown--payment', onClickPaymentItem);
-    this.addEvent('click', '#dropdown-add-payment-0', onClickAddpayment);
+    this.addEvent(
+      'click',
+      '#dropdown-add-payment-add',
+      onClickAddpayment.bind(this),
+    );
     this.addEvent('click', '.form__btn', onClickButton);
   }
 }
