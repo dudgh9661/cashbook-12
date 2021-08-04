@@ -5,7 +5,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import config from '../config';
 import routes from '../api';
-import authMiddleWare from '../middlewares/auth';
+import authMiddleWare from '../api/middlewares/auth';
 
 export default app => {
   app.use(express.json());

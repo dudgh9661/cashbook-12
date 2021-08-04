@@ -1,4 +1,4 @@
-import jwt from '../utils/jwt';
+import jwt from '../../utils/jwt';
 
 const EXECPTTION = ['/api/auth/github'];
 
