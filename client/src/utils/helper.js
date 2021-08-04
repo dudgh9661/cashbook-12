@@ -14,3 +14,21 @@ export const debounce = (func, wait) => {
     timeout = setTimeout(() => func.apply(context, args), wait);
   };
 };
+
+export const dateFormat = str => {
+  const dateObj = new Date(str);
+
+  return [
+    dateObj.getFullYear(),
+    dateObj.getMonth() + 1,
+    dateObj.getDate(),
+  ].join('-');
+};
+
+export const makeObjectKeysLowerCase = obj => {
+  const newObj = Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]),
+  );
+
+  return newObj;
+};
