@@ -23,9 +23,10 @@ export const getHistory = async id => {
   return result.dataValues;
 };
 
-export const getMonthHistory = async (year, month) => {
+export const getMonthHistory = async (year, month, userId) => {
   const history = await History.findAll({
     where: {
+      user_id: userId,
       date: {
         [Op.gte]: new Date(year, month - 1),
         [Op.lt]: new Date(year, month),
