@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import router from '@lib/Router';
 import { DateInfo, History } from '@store';
 import $ from '@utils/dom';
 import CalendarHeader from './Header/Header';
@@ -7,14 +8,14 @@ import CalendarFooter from './Footer/Footer';
 import Modal from '../form/Modal/Modal';
 
 const onConfirmHandler = () => {
-  window.location.reload();
+  router.push('/calendar');
 };
 
 class Calendar extends Component {
   constructor() {
     super();
     this.state = {
-      modalVisible: false,
+      modalVisible: true,
     };
 
     this.init();
@@ -29,7 +30,9 @@ class Calendar extends Component {
   render() {
     const { today, current } = DateInfo.state;
     const { history, total } = History.state;
-    this.state.modalVisible = !history;
+    const { modalVisible } = this.state;
+    if (!history) this.state.modalVisible = true;
+    else this.state.modalVisible = false;
 
     return $(
       'section',
@@ -38,7 +41,7 @@ class Calendar extends Component {
       new CalendarBody({ today, current, history }),
       new CalendarFooter({ total }),
       new Modal({
-        visible: this.state.modalVisible,
+        visible: modalVisible,
         headerText:
           '소비 내역을 불러오는데 문제가 있습니다. 잠시 후 다시 시도해주세요!',
         confirmText: '새로고침',

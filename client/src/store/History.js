@@ -33,7 +33,10 @@ class History extends Observable {
 
   async setCurrentMonthTotal() {
     const data = await getCurrentMonthHistory();
-    if (!data) return;
+    if (!data) {
+      this.state.total = { income: 0, expenses: 0, earning: 0 };
+      return;
+    }
 
     const dataArr = Object.values(data);
     this.state.total = {
