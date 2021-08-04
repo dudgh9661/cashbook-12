@@ -21,9 +21,7 @@ class History extends Observable {
     }
   }
 
-  setCurrentMonthTotal() {
-    const data = getCurrentMonthHistory();
-
+  setCurrentMonthTotal(data) {
     this.state.total = {
       income: data ? data.reduce((acc, cur) => acc + cur.income, 0) : 0,
       expenses: data ? data.reduce((acc, cur) => acc + cur.expenses, 0) : 0,
@@ -51,6 +49,15 @@ class History extends Observable {
 
   setFilter(filter) {
     this.state.filter = filter;
+  }
+
+  async deleteHistory(id) {
+    try {
+      await Api.deleteHistory(id);
+      this.state.history = this.state.history.filter(h => h.id !== +id);
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 

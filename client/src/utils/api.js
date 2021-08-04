@@ -32,6 +32,20 @@ const requestPost = async (url, body) => {
   }
 };
 
+const requestDelete = async url => {
+  try {
+    const res = await fetch(url, {
+      method: 'DELETE',
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+    throw new Error(res);
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 const qureyString = params => {
   return new URLSearchParams(params).toString();
 };
@@ -47,5 +61,8 @@ export default {
   },
   postHistory: body => {
     return requestPost(`${API_END_POINT}/histories`, body);
+  },
+  deleteHistory: id => {
+    return requestDelete(`${API_END_POINT}/histories/${id}`);
   },
 };
