@@ -11,7 +11,18 @@
   border-style: hidden;
   margin-bottom: 20px;
   table-layout: fixed;
-  overflow: hidden;
+
+  &__week {
+    &:first-child {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
 
   &__day {
     box-sizing: content-box;
