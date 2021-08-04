@@ -4,6 +4,7 @@ import { minus, check, cancel } from '@assets/icons';
 import { moneyWithComma } from '@utils';
 import History from '@store/History';
 import Payment from '@store/Payment';
+import User from '@store/User';
 import FormStore from './FormStore';
 
 import './Form.scss';
@@ -51,8 +52,7 @@ const onClickButton = async () => {
     amount: +FormStore.state.amount.replaceAll(',', '') * -1,
     categoryId: FormStore.state.categoryId,
     paymentId: FormStore.state.paymentId,
-    // todo 로그인 머지후 수정
-    userId: 1,
+    userId: User.state.user && User.state.user.id,
   });
   FormStore.resetState();
 };
