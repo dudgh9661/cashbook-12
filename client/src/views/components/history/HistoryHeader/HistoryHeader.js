@@ -10,8 +10,6 @@ const onChangeCheckbox = e => {
   } else {
     History.setFilter(History.state.filter.filter(f => f !== e.target.value));
   }
-
-  console.log(History.state.filter);
 };
 
 class HistoryHeader extends Component {
@@ -22,22 +20,22 @@ class HistoryHeader extends Component {
   }
 
   setObserver() {
-    History.observe('history', this.reRender.bind(this));
+    History.observe('historyArr', this.reRender.bind(this));
   }
 
   render() {
     const $header = document.createElement('header');
     $header.classList.add('history-header');
 
-    const historyCount = History.state.history.length;
+    const historyCount = History.state.historyArr.length;
     const incomeTotal = moneyWithComma(
-      History.state.history.reduce(
+      History.state.historyArr.reduce(
         (sum, h) => (+h.amount >= 0 ? sum + +h.amount : sum),
         0,
       ),
     );
     const expenditureTotal = moneyWithComma(
-      History.state.history.reduce(
+      History.state.historyArr.reduce(
         (sum, h) => (+h.amount < 0 ? sum + +h.amount : sum),
         0,
       ),

@@ -51,18 +51,8 @@ const qureyString = params => {
 };
 
 export default {
-  fetchMonthHistories: (year, month) => {
-    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
-  },
-  fetchHistory: (year, month) => {
-    return requestGet(
-      `${API_END_POINT}/histories?${qureyString({ year, month })}`,
-    );
-  },
-  postHistory: body => {
-    return requestPost(`${API_END_POINT}/histories`, body);
-  },
-  deleteHistory: id => {
-    return requestDelete(`${API_END_POINT}/histories/${id}`);
-  },
+  fetchMonthHistories: (year, month) =>
+    requestGet(`${API_END_POINT}/histories?${qureyString({ year, month })}`),
+  postHistory: body => requestPost(`${API_END_POINT}/histories`, body),
+  deleteHistory: id => requestDelete(`${API_END_POINT}/histories/${id}`),
 };

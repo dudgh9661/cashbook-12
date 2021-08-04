@@ -24,12 +24,12 @@ class HistoryList extends Component {
 
   setObserver() {
     History.observe('filter', this.reRender.bind(this));
-    History.observe('history', this.reRender.bind(this));
+    History.observe('historyArr', this.reRender.bind(this));
   }
 
   render() {
     const historyByDate = {};
-    const filteredHistoryList = History.state.history.filter(filter);
+    const filteredHistoryList = History.state.historyArr.filter(filter);
 
     if (!filteredHistoryList.length) {
       return new Empty().getElement();

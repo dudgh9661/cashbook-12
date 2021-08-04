@@ -1,5 +1,6 @@
 import Observable from '@lib/Observable';
 import api from '@utils/api';
+import { makeObjectKeysLowerCase } from '@utils/helper';
 import DateInfo from './DateInfo';
 
 const getCurrentMonthHistory = async () => {
@@ -7,7 +8,16 @@ const getCurrentMonthHistory = async () => {
 
   try {
     const data = await api.fetchMonthHistories(year, month);
-    return data.reduce((acc, cur) => {
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
+class History extends Observable {
+  async setCurrentMonthHistory() {
+    const data = await getCurrentMonthHistory();
+    const history = data.reduce((acc, cur) => {
       const date = new Date(cur.date).getDate();
       const amount = parseInt(cur.amount, 10);
 
@@ -19,23 +29,10 @@ const getCurrentMonthHistory = async () => {
 
       return acc;
     }, {});
-  } catch (err) {
-    return null;
-  }
-};
 
-class History extends Observable {
-  init() {
-    this.state.history = {};
-    this.state.total = { income: 0, expenses: 0, earning: 0 };
-  }
-
-  async setCurrentMonthHistory() {
-    this.init();
-
-    const data = await getCurrentMonthHistory();
-    this.state.history = data;
-    this.setHistoryTotal(data);
+    this.state.historyArr = data.map(makeObjectKeysLowerCase);
+    this.state.history = history;
+    this.setHistoryTotal(history);
   }
 
   setHistoryTotal(data) {
@@ -51,7 +48,7 @@ class History extends Observable {
 
   async addHistory({ date, content, amount, categoryId, paymentId, userId }) {
     try {
-      const newHistory = await Api.postHistory({
+      const newHistory = await api.postHistory({
         date,
         content,
         amount,
@@ -59,7 +56,7 @@ class History extends Observable {
         paymentId,
         userId,
       });
-      this.state.history = [...this.state.history, newHistory].map(
+      this.state.historyArr = [...this.state.historyArr, newHistory].map(
         makeObjectKeysLowerCase,
       );
     } catch (e) {
@@ -73,8 +70,8 @@ class History extends Observable {
 
   async deleteHistory(id) {
     try {
-      await Api.deleteHistory(id);
-      this.state.history = this.state.history.filter(h => h.id !== +id);
+      await api.deleteHistory(id);
+      this.state.historyArr = this.state.historyArr.filter(h => h.id !== +id);
     } catch (e) {
       console.log(e);
     }
@@ -82,12 +79,14 @@ class History extends Observable {
 }
 
 const initialState = {
+  historyArr: [],
   history: {},
   total: {
     income: 0,
     expenses: 0,
     earning: 0,
   },
+  filter: ['income', 'expenditure'],
 };
 
 export default new History(initialState);
