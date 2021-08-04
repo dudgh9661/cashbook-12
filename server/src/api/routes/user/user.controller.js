@@ -1,5 +1,5 @@
 import Logger from '../../../loaders/logger';
-import { createUser, getAllUser } from '../../../services/user';
+import { createUser } from '../../../services/user';
 
 export const handleCreateUser = async (req, res, next) => {
   const { name } = req.body;
@@ -12,12 +12,4 @@ export const handleCreateUser = async (req, res, next) => {
   }
 };
 
-export const handleGetAllUser = async (req, res, next) => {
-  try {
-    const result = await getAllUser();
-    res.status(200).json(result);
-  } catch (err) {
-    Logger.error(err);
-    next(err);
-  }
-};
+export const lint = () => {};
