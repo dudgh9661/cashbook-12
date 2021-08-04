@@ -25,7 +25,15 @@ const onClickCategoryItem = e => {
     FormStore.setCategory(id, name);
   }
 };
+
 const onClickPaymentItem = e => {
+  const $button = e.target.closest('button');
+  if ($button.dataset.delete && $button.dataset.id !== undefined) {
+    const paymentId = $button.dataset.id;
+    Payment.deletePayment(paymentId);
+    return;
+  }
+
   const $item = e.target.closest('li');
   if ($item) {
     const { id, name } = $item.dataset;
@@ -33,27 +41,6 @@ const onClickPaymentItem = e => {
       FormStore.setPayment(id, name);
     }
   }
-};
-function onClickAddpayment() {
-  this.state.openModal = true;
-  this.reRender();
-}
-
-function onClickModalCancel() {
-  this.state.openModal = false;
-  this.reRender();
-}
-
-const onClickModalConfirm = () => {
-  const $modalInput = document.querySelector('.modal-input');
-  const name = $modalInput.value;
-
-  if (!name) {
-    alert('결제수단을 적어주세요!');
-    return;
-  }
-
-  Payment.addPayment(name);
 };
 
 const onClickButton = async () => {
@@ -81,8 +68,13 @@ const toggleButttonActive = () => {
   }
 };
 
-const paymentsDropdownListItem = name =>
-  `<span class="dropdown__payment-item">${name}${cancel}</span>`;
+const paymentsDropdownListItem = (id, name) =>
+  `<span class="dropdown__payment-item">
+    ${name}
+    <button class="dropdown__payment-delete" type="button" data-delete="true" data-id="${id}">
+      ${cancel}
+    </button>
+  </span>`;
 
 class Form extends Component {
   constructor(props) {
@@ -92,6 +84,29 @@ class Form extends Component {
       openModal: false,
     };
     this.init();
+  }
+
+  onClickAddpayment() {
+    this.state.openModal = true;
+    this.reRender();
+  }
+
+  onClickModalCancel() {
+    this.state.openModal = false;
+    this.reRender();
+  }
+
+  onClickModalConfirm() {
+    const $modalInput = document.querySelector('.modal-input');
+    const name = $modalInput.value;
+
+    if (!name) {
+      alert('결제수단을 적어주세요!');
+      return;
+    }
+
+    Payment.addPayment(name);
+    this.onClickModalCancel();
   }
 
   setObserver() {
@@ -144,7 +159,7 @@ class Form extends Component {
         label: '결제수단',
         listItems: [
           ...Payment.state.payments.map(payment => ({
-            content: paymentsDropdownListItem(payment.name),
+            content: paymentsDropdownListItem(payment.id, payment.name),
             name: payment.name,
             id: payment.id,
           })),
@@ -165,9 +180,9 @@ class Form extends Component {
         visible: this.state.openModal,
         headerText: '추가하실 결제수단을 적어주세요.',
         confirmText: '등록',
-        onCancelHadnler: onClickModalCancel.bind(this),
-        onConfirmHandler: onClickModalConfirm,
-        toggleModal: onClickModalCancel.bind(this),
+        onCancelHadnler: this.onClickModalCancel.bind(this),
+        onConfirmHandler: this.onClickModalConfirm.bind(this),
+        toggleModal: this.onClickModalCancel.bind(this),
         children: [$modalInput],
       }).getElement(),
     );
@@ -183,7 +198,7 @@ class Form extends Component {
     this.addEvent(
       'click',
       '#dropdown-add-payment-add',
-      onClickAddpayment.bind(this),
+      this.onClickAddpayment.bind(this),
     );
     this.addEvent('click', '.form__btn', onClickButton);
   }
