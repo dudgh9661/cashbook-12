@@ -3,6 +3,7 @@ import { Dropdown, Input, Modal } from '@components';
 import { minus, check, cancel } from '@assets/icons';
 import { moneyWithComma } from '@utils';
 import History from '@store/History';
+import Payment from '@store/Payment';
 import FormStore from './FormStore';
 
 import './Form.scss';
@@ -45,7 +46,14 @@ function onClickModalCancel() {
 
 const onClickModalConfirm = () => {
   const $modalInput = document.querySelector('.modal-input');
-  console.log($modalInput.value);
+  const name = $modalInput.value;
+
+  if (!name) {
+    alert('결제수단을 적어주세요!');
+    return;
+  }
+
+  Payment.addPayment(name);
 };
 
 const onClickButton = async () => {
@@ -90,6 +98,8 @@ class Form extends Component {
     FormStore.observe('isValid', toggleButttonActive);
     FormStore.observe('categoryName', this.reRender.bind(this));
     FormStore.observe('paymentName', this.reRender.bind(this));
+
+    Payment.observe('payments', this.reRender.bind(this));
   }
 
   render() {
@@ -157,6 +167,7 @@ class Form extends Component {
         confirmText: '등록',
         onCancelHadnler: onClickModalCancel.bind(this),
         onConfirmHandler: onClickModalConfirm,
+        toggleModal: onClickModalCancel.bind(this),
         children: [$modalInput],
       }).getElement(),
     );
@@ -175,6 +186,10 @@ class Form extends Component {
       onClickAddpayment.bind(this),
     );
     this.addEvent('click', '.form__btn', onClickButton);
+  }
+
+  didMount() {
+    Payment.setPayments();
   }
 }
 

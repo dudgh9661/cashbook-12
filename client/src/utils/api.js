@@ -55,4 +55,6 @@ export default {
     requestGet(`${API_END_POINT}/histories?${qureyString({ year, month })}`),
   postHistory: body => requestPost(`${API_END_POINT}/histories`, body),
   deleteHistory: id => requestDelete(`${API_END_POINT}/histories/${id}`),
+  postPayment: body => requestPost(`${API_END_POINT}/payments`, body),
+  fetchPayments: () => requestGet(`${API_END_POINT}/payments`),
 };
