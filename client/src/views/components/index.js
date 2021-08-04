@@ -9,6 +9,7 @@ export { default as Dropdown } from './form/Dropdown/Dropdown';
 export { default as Input } from './form/Input/Input';
 export { default as Checkbox } from './form/Checkbox/Checkbox';
 export { default as Modal } from './form/Modal/Modal';
+export { default as ModalForm } from './form/ModalForm/ModalForm';
 
 export { default as MonthChart } from './chart/MonthChart/MonthChart';
 export { default as YearChart } from './chart/YearChart/YearChart';

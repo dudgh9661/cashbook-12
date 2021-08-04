@@ -59,6 +59,9 @@ const onClickButton = async () => {
 
 const toggleButttonActive = () => {
   const $btn = document.querySelector('.form__btn');
+  if (!$btn) {
+    return;
+  }
   if (FormStore.state.isValid) {
     $btn.classList.add('form__btn--active');
     $btn.disabled = false;
@@ -82,6 +85,7 @@ class Form extends Component {
 
     this.state = {
       openModal: false,
+      isValid: false,
     };
     this.init();
   }
@@ -118,8 +122,13 @@ class Form extends Component {
   }
 
   render() {
+    const { custom } = this.props;
+    this.state.isValid = FormStore.isValid;
     const $form = document.createElement('form');
     $form.classList.add('form');
+    if (custom) {
+      $form.classList.add(custom);
+    }
 
     const $btn = document.createElement('button');
     $btn.type = 'button';

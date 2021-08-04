@@ -13,6 +13,12 @@
   &--open {
     display: block;
   }
+
+  &-form {
+    .modal-content__header {
+      margin: 0;
+    }
+  }
 }
 
 .modal-content {
