@@ -24,7 +24,7 @@ const requestPost = async (url, data) => {
       },
     });
     if (res.ok) {
-      return res;
+      return await res.json();
     }
     throw new Error(res);
   } catch (err) {
@@ -39,6 +39,10 @@ const requestDelete = async url => {
   } catch (err) {
     throw new Error(err);
   }
+};
+
+const queryString = params => {
+  return new URLSearchParams(params).toString();
 };
 
 export default {
@@ -63,5 +67,13 @@ export default {
     return requestGet(
       `${API_END_POINT}/histories/category/${categoryId}?year=${year}`,
     );
+  },
+  fetchHistory: (year, month) => {
+    return requestGet(
+      `${API_END_POINT}/histories?${queryString({ year, month })}`,
+    );
+  },
+  postHistory: body => {
+    return requestPost(`${API_END_POINT}/histories`, body);
   },
 };
