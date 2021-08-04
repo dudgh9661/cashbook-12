@@ -1,5 +1,6 @@
 import Component from '@lib/Component';
-import { Layout, MonthChart, YearChart } from '@components';
+
+import { Layout, MonthChart } from '@components';
 import $ from '@utils/dom';
 import './ChartPage.scss';
 
@@ -15,7 +16,7 @@ class ChartPage extends Component {
       'div',
       { class: 'chart-page' },
       new Layout({
-        children: [new MonthChart(), new YearChart()],
+        children: [new MonthChart()],
       }),
     );
   }

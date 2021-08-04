@@ -1,9 +1,11 @@
 import Component from '@lib/Component';
+import { DateInfo, HistoryReport } from '@store';
+import { moneyWithComma } from '@utils';
+import $ from '@utils/dom';
 import ChartWrapper from '../Wrapper/Wrapper';
 import Donut from '../Donut/Donut';
 import DataList from '../DataList/DataList';
 import './MonthChart.scss';
-import statisticalData from '../../../../_dummies/statistics.json';
 
 class MonthChart extends Component {
   constructor() {
@@ -12,30 +14,52 @@ class MonthChart extends Component {
     this.init();
   }
 
+  setObserver() {
+    DateInfo.observe('current', this.reRender.bind(this));
+    HistoryReport.observe('curMonthReport', this.reRender.bind(this));
+  }
+
   render() {
-    const { data } = statisticalData;
+    const { today, current } = DateInfo.state;
+    const { total, category } = HistoryReport.state.curMonthReport;
+    const curMonth =
+      today.year === current.year && today.month === current.month
+        ? '이번 달'
+        : `${current.month}월`;
 
-    const $monthChart = document.createElement('div');
-    $monthChart.className = 'month-chart';
-
-    const $chart = document.createElement('div');
-    $chart.className = 'month-chart__chart';
-    $chart.appendChild(new Donut({ data }).getElement());
-
-    const $info = document.createElement('div');
-    $info.className = 'month-chart__info';
-
-    const $chartTitle = document.createElement('h1');
-    $chartTitle.className = 'month-chart__info--title';
-    $chartTitle.innerText = '이번 달 지출 금액 834,640';
-
-    $info.append($chartTitle, new DataList({ data }).getElement());
-
-    $monthChart.append($chart, $info);
+    let $chartContent;
+    if (total === 0) {
+      $chartContent = `${curMonth}의 지출 내역이 없습니다.`;
+    } else {
+      const totalValue = moneyWithComma(total);
+      $chartContent = $(
+        'div',
+        { class: 'month-chart' },
+        $(
+          'div',
+          { class: 'month-chart__chart' },
+          new Donut({ data: category }),
+        ),
+        $(
+          'div',
+          { class: 'month-chart__info' },
+          $(
+            'h1',
+            { class: 'month-chart__info--title' },
+            `${curMonth} 지출 금액 ${totalValue}`,
+          ),
+          new DataList({ data: category }),
+        ),
+      );
+    }
 
     return new ChartWrapper({
-      content: $monthChart,
+      children: [$chartContent],
     }).getElement();
+  }
+
+  didMount() {
+    HistoryReport.setExpenseReport();
   }
 }
 

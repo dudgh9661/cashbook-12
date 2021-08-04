@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { DateInfo, History, User } from '@store';
+import { User, DateInfo, History, HistoryReport } from '@store';
 import router from '@lib/Router';
 import './Header.scss';
 import {
@@ -13,10 +13,12 @@ import {
 const onClickNextMonth = () => {
   DateInfo.setNextMonth();
   History.setCurrentMonthHistory();
+  HistoryReport.setExpenseReport();
 };
 const onClickPrevtMonth = () => {
   DateInfo.setPrevMonth();
   History.setCurrentMonthHistory();
+  HistoryReport.setExpenseReport();
 };
 const onClickMainTab = () => router.push('/');
 const onClickCalendarTab = () => router.push('/calendar');

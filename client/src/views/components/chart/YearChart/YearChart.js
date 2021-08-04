@@ -25,7 +25,7 @@ class YearChart extends Component {
     $yearChart.append($chartTitle, $chartContent);
 
     return new ChartWrapper({
-      content: $yearChart,
+      children: [$yearChart],
     }).getElement();
   }
 }

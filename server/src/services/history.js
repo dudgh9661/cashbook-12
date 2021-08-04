@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import sequelize from '../config/sequelize';
-import { History } from '../models';
+import { Category, History } from '../models';
 
 export const createHistory = async data => {
   const { date, content, amount, categoryId, paymentId, userId } = data;
@@ -102,8 +102,12 @@ export const deleteHistory = async id => {
 export const getAllCategoryHistory = async (year, month) => {
   const history = await History.findAll({
     attributes: [
-      'category_id',
       [sequelize.fn('sum', sequelize.col('amount')), 'total_expenses'],
+    ],
+    include: [
+      {
+        model: Category,
+      },
     ],
     where: {
       date: {
