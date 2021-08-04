@@ -1,10 +1,6 @@
 import Component from '@lib/Component';
+import $ from '@utils/dom';
 import './Modal.scss';
-
-const closeModal = () => {
-  const $modal = document.querySelector('.modal');
-  $modal.classList.remove('modal--open');
-};
 
 class Modal extends Component {
   constructor(props) {
@@ -14,29 +10,42 @@ class Modal extends Component {
   }
 
   render() {
-    const $modal = document.createElement('div');
-    $modal.classList.add('modal');
+    const {
+      visible,
+      headerText = '',
+      cancelText = '취소',
+      confirmText = '확인',
+      children = [],
+    } = this.props;
 
-    $modal.innerHTML = `
-      <div class="modal-input">
-        <header>
-          추가하실 결제수단을 적어주세요.
-        </header>
-        <div>
-          <input placeholder="입력하세요">
-        </div>
-        <footer class="modal-input__footer">
-          <button type="button" class="modal-input__footer-cancel">취소</button>
-          <button type="button" class="modal-input__footer-confirm">등록</button>
-        </footer>
-      </div>
-    `;
-    return $modal;
+    return $(
+      'div',
+      { class: `modal ${visible ? 'modal--open' : ''}` },
+      $(
+        'div',
+        { class: 'modal-content' },
+        $('div', { class: 'modal-content__header' }, headerText),
+        $('div', { class: 'modal-content__body' }, ...children),
+        $(
+          'div',
+          { class: 'modal-content__footer' },
+          $('button', { type: 'button', class: 'cancel-btn' }, cancelText),
+          $('button', { type: 'button', class: 'confirm-btn' }, confirmText),
+        ),
+      ),
+    );
   }
 
   setEvent() {
-    this.addEvent('click', '.modal-input__footer-cancel', closeModal);
-    this.addEvent('click', '.modal-input__footer-confirm', this.props.callback);
+    const { toggleModal } = this.props;
+
+    this.addEvent('click', '.cancel-btn', toggleModal);
+    this.addEvent('click', '.confirm-btn', toggleModal);
+
+    this.addEvent('click', '.modal', e => {
+      if (e.target === this.$element) toggleModal();
+    });
   }
 }
+
 export default Modal;
