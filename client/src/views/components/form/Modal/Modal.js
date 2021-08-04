@@ -23,7 +23,7 @@ class Modal extends Component {
           추가하실 결제수단을 적어주세요.
         </header>
         <div>
-          <input placeholder="입력하세요">
+          <input id="input-add-payment" placeholder="입력하세요">
         </div>
         <footer class="modal-input__footer">
           <button type="button" class="modal-input__footer-cancel">취소</button>

@@ -18,7 +18,9 @@ class Input extends Component {
       suffixClass = '',
       suffix,
       customClass,
+      value,
     } = this.props;
+
     const $input = document.createElement('div');
     $input.classList.add('input-container');
     $input.innerHTML = `
@@ -29,7 +31,7 @@ class Input extends Component {
             ? `<span class="input--prefix ${prefixClass}">${prefix}</span>`
             : ''
         }
-        <input class="input" type="text" placeholder="${placeholder}" id="${id}"/>
+        <input class="input" type="text" placeholder="${placeholder}" id="${id}" value="${value}"/>
         ${
           suffix
             ? `<span class="input--suffix ${suffixClass}">${suffix}</span>`
