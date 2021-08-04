@@ -16,7 +16,6 @@
   }
 
   &__container {
-    max-width: 904px;
     width: 70%;
     height: 100%;
     z-index: 1;
@@ -25,5 +24,23 @@
 
   main {
     margin-top: 27px;
+  }
+}
+
+@media (max-width: #{$breakpoint-laptop}) {
+  .layout__container {
+    width: 80%;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet-landscape}) {
+  .layout__container {
+    width: 85%;
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .layout__container {
+    width: 90%;
   }
 }
