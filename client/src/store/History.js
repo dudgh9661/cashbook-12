@@ -62,7 +62,7 @@ class History extends Observable {
         paymentId,
         userId,
       });
-      this.state.history = [...this.state.history, newHistory].map(
+      this.state.historyArr = [...this.state.historyArr, newHistory].map(
         makeObjectKeysLowerCase,
       );
     } catch (e) {
@@ -105,8 +105,8 @@ class History extends Observable {
 
   async deleteHistory(id) {
     try {
-      await Api.deleteHistory(id);
-      this.state.history = this.state.history.filter(h => h.id !== +id);
+      await api.deleteHistory(id);
+      this.state.historyArr = this.state.historyArr.filter(h => h.id !== +id);
     } catch (e) {
       console.log(e);
     }
@@ -114,7 +114,10 @@ class History extends Observable {
 }
 
 const initialState = {
+<<<<<<< dev
   categories: [],
+=======
+>>>>>>> refactor: :sparkles: 머지 충돌 해결
   historyArr: [],
   history: {},
   total: {
