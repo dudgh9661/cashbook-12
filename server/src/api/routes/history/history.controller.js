@@ -1,6 +1,7 @@
 import Logger from '../../../loaders/logger';
 import {
   createHistory,
+  getHistory,
   getMonthHistory,
   getMonthIncome,
   getMonthExpense,
@@ -13,8 +14,9 @@ import {
 export const handleCreateHistory = async (req, res, next) => {
   try {
     const result = await createHistory(req.body);
+    const cateogry = await getHistory(+result.id);
     if (result) {
-      res.status(200).json('history create success');
+      res.status(200).json(cateogry);
     } else {
       res.status(400).json('history create failed');
     }
