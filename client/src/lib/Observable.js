@@ -6,7 +6,7 @@ export default class Observable {
 
   stateSetHandler(state, property, value, receiver) {
     const result = Reflect.set(state, property, value, receiver);
-    if (result) {
+    if (result && this.handlers[property]) {
       this.handlers[property].forEach(handler =>
         handler({ state, property, value, receiver }),
       );
