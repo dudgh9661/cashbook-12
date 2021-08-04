@@ -1,5 +1,6 @@
 import Component from '@lib/Component';
 import { DateInfo, History } from '@store';
+import $ from '@utils/dom';
 import CalendarHeader from './Header/Header';
 import CalendarBody from './Body/Body';
 import CalendarFooter from './Footer/Footer';
@@ -21,16 +22,13 @@ class Calendar extends Component {
     const { today, current } = DateInfo.state;
     const { history, total } = History.state;
 
-    const $calendar = document.createElement('section');
-    $calendar.className = 'calendar';
-
-    $calendar.append(
-      new CalendarHeader().getElement(),
-      new CalendarBody({ today, current, history }).getElement(),
-      new CalendarFooter({ total }).getElement(),
+    return $(
+      'section',
+      { class: 'calendar' },
+      new CalendarHeader(),
+      new CalendarBody({ today, current, history }),
+      new CalendarFooter({ total }),
     );
-
-    return $calendar;
   }
 
   didMount() {

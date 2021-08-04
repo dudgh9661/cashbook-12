@@ -20,13 +20,13 @@ const getCurrentMonthHistory = async () => {
       return acc;
     }, {});
   } catch (err) {
-    console.error(err);
     return null;
   }
 };
 
 class History extends Observable {
   async setCurrentMonthHistory() {
+    this.state.history = {};
     const data = await getCurrentMonthHistory();
     this.state.history = data;
   }

@@ -11,7 +11,7 @@
   &__left {
     display: flex;
 
-    &--pr {
+    div:first-child {
       padding-right: 10px;
     }
   }
