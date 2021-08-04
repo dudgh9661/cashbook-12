@@ -58,6 +58,8 @@
 
 @media (max-width: #{$breakpoint-tablet}) {
   .header {
+    width: 90%;
+    margin: 0 auto;
     flex-wrap: wrap;
 
     &__logo {
