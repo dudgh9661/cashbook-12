@@ -1,7 +1,19 @@
 import Component from '@lib/Component';
 import { Tag } from '@components';
 import { moneyWithComma, getDateFromString } from '@utils';
+import { trashBin, pencil } from '@assets/icons';
+import History from '@store/History';
 import './HistoryItem.scss';
+
+const onClickEdit = () => {};
+const onClickDelete = e => {
+  const $btn = e.target.closest('button');
+  const { id } = $btn.dataset;
+
+  if (id && window.confirm('정말 삭제하실건가요!?')) {
+    History.deleteHistory(id);
+  }
+};
 
 class HistoryItem extends Component {
   constructor(props) {
@@ -56,7 +68,18 @@ class HistoryItem extends Component {
                   <span class="history-item__col-payment-amount">${moneyWithComma(
                     +history.amount,
                   )}원</span>
-                </td> 
+                </td>                 
+                <td class="history-item__menu">
+                  <button type="button"data-id="${
+                    history.id
+                  }" id="history-item__menu-edit">${pencil(
+                25,
+                25,
+              )}/<button>                  
+                  <button type="button" data-id="${
+                    history.id
+                  }" id="history-item__menu-delete">${trashBin(25, 25)}/<button>
+                </td>
               </tr>
             `,
           )
@@ -65,6 +88,11 @@ class HistoryItem extends Component {
     `;
 
     return $history;
+  }
+
+  setEvent() {
+    this.addEvent('click', '#history-item__menu-edit', onClickEdit);
+    this.addEvent('click', '#history-item__menu-delete', onClickDelete);
   }
 }
 
