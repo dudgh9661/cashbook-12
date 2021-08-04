@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .modal {
   position: fixed;
   top: 0;
@@ -22,6 +24,7 @@
   border-radius: 10px;
   padding: 30px;
   width: 50%;
+  margin-top: -5vh;
 
   &__header {
     font: var(--font-body-medium);
@@ -47,5 +50,29 @@
         color: var(--color-primary-dark);
       }
     }
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet-landscape + 1px}) {
+  .modal-content {
+    width: 450px;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet-landscape}) {
+  .modal-content {
+    width: 50%;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .modal-content {
+    width: 60%;
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .modal-content {
+    width: 85%;
   }
 }

@@ -38,6 +38,7 @@ class Modal extends Component {
 
   setEvent() {
     const { toggleModal } = this.props;
+    if (!toggleModal) return;
 
     this.addEvent('click', '.cancel-btn', toggleModal);
     this.addEvent('click', '.confirm-btn', toggleModal);
