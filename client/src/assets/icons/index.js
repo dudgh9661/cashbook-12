@@ -7,3 +7,4 @@ export { default as chevronLeft } from './chevron-left';
 export { default as chevronDown } from './chevron-down';
 export { default as minus } from './minus';
 export { default as cancel } from './cancel';
+export { default as github } from './github';
