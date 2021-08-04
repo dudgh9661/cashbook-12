@@ -5,6 +5,6 @@ const authRouter = Router();
 
 authRouter.get('/user', controller.handleGetAuth);
 authRouter.get('/github', controller.handleGithubCallback);
-authRouter.post('/logout', controller.handleLogout);
+authRouter.delete('/', controller.handleLogout);
 
 export default authRouter;
