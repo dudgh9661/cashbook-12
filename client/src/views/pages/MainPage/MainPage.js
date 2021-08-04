@@ -1,5 +1,5 @@
 import Component from '@lib/Component';
-import { Layout, Form, History, LoginModal } from '@components';
+import { Layout, Form, History } from '@components';
 import $ from '@utils/dom';
 import './MainPage.scss';
 import categoryData from '../../../_dummies/category.json';
@@ -23,7 +23,6 @@ class MainPage extends Component {
             paymentMethods: paymentMethod.methods,
           }),
           new History(),
-          new LoginModal(),
         ],
       }),
     );
