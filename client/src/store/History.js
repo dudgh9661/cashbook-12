@@ -102,6 +102,15 @@ class History extends Observable {
       console.log(e);
     }
   }
+
+  async deleteHistory(id) {
+    try {
+      await Api.deleteHistory(id);
+      this.state.history = this.state.history.filter(h => h.id !== +id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 const initialState = {

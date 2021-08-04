@@ -76,4 +76,7 @@ export default {
   postHistory: body => {
     return requestPost(`${API_END_POINT}/histories`, body);
   },
+  deleteHistory: id => {
+    return requestDelete(`${API_END_POINT}/histories/${id}`);
+  },
 };
