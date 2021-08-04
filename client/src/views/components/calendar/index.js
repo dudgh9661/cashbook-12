@@ -54,7 +54,6 @@ class Calendar extends Component {
 
   didMount() {
     History.setCurrentMonthHistory();
-    History.setCurrentMonthTotal();
   }
 
   toggleModal() {

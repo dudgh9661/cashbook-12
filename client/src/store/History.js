@@ -25,16 +25,20 @@ const getCurrentMonthHistory = async () => {
 };
 
 class History extends Observable {
-  async setCurrentMonthHistory() {
+  init() {
     this.state.history = {};
-    const data = await getCurrentMonthHistory();
-    this.state.history = data;
+    this.state.total = { income: 0, expenses: 0, earning: 0 };
   }
 
-  async setCurrentMonthTotal() {
-    this.state.total = { income: 0, expenses: 0, earning: 0 };
+  async setCurrentMonthHistory() {
+    this.init();
 
     const data = await getCurrentMonthHistory();
+    this.state.history = data;
+    this.setHistoryTotal(data);
+  }
+
+  setHistoryTotal(data) {
     if (!data) return;
 
     const dataArr = Object.values(data);
@@ -47,7 +51,7 @@ class History extends Observable {
 }
 
 const initialState = {
-  history: [],
+  history: {},
   total: {
     income: 0,
     expenses: 0,
