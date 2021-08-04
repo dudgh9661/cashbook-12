@@ -1,4 +1,5 @@
 import Observable from '@lib/Observable';
+import router from '@lib/Router';
 import api from '@utils/api';
 
 class User extends Observable {
@@ -7,7 +8,7 @@ class User extends Observable {
       const user = await api.fetchUser();
       this.state.user = user;
     } catch (err) {
-      console.log(err);
+      router.push('/login');
     }
   }
 }
