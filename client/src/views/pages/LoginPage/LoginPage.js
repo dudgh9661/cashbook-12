@@ -1,5 +1,4 @@
 import Component from '@lib/Component';
-import $ from '@utils/dom';
 import './LoginPage.scss';
 
 class LoginPage extends Component {
