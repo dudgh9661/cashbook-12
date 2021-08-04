@@ -1,6 +1,7 @@
 import Component from '@lib/Component';
 import { User } from '@store';
 import { github } from '@assets/icons';
+import { GITHUB_REDIRECT_URL } from '@constants';
 import $ from '@utils/dom';
 import './LoginModal.scss';
 
@@ -26,7 +27,7 @@ class LoginModal extends Component {
   render() {
     const $button = $('a', {
       class: 'login-modal__button',
-      href: 'https://github.com/login/oauth/authorize?client_id=04986225983a20a0d8c4',
+      href: GITHUB_REDIRECT_URL,
     });
     $button.innerHTML = `
       ${github} <span>깃헙으로 로그인</span>
