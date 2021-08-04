@@ -14,6 +14,19 @@ class HistoryItem extends Component {
     const { historyItemList, timestamp } = this.props;
     const [month, date, day] = getDateFromString(timestamp);
 
+    const incomeTotal = moneyWithComma(
+      historyItemList.reduce(
+        (sum, h) => (+h.amount >= 0 ? sum + +h.amount : sum),
+        0,
+      ),
+    );
+    const expenditureTotal = moneyWithComma(
+      historyItemList.reduce(
+        (sum, h) => (+h.amount < 0 ? sum + +h.amount : sum),
+        0,
+      ),
+    );
+
     const $history = document.createElement('li');
     $history.classList.add('history-item');
     $history.innerHTML = `
@@ -22,7 +35,10 @@ class HistoryItem extends Component {
           <b>${month}월 ${date}일</b>
           ${day}
         </span>
-        <span>지출 56,240</span>
+        <div> 
+          <span class="history-item__header-income">수입  ${incomeTotal}</span>
+          <span>지출  ${expenditureTotal}</span>
+        </div>        
       </div>
       <table>
         ${historyItemList
@@ -35,10 +51,10 @@ class HistoryItem extends Component {
                 </td>          
                 <td class="history-item__col-payment">
                   <span class="history-item__col-payment-method">${
-                    history.payment
+                    history.payment.name
                   }</span>
                   <span class="history-item__col-payment-amount">${moneyWithComma(
-                    history.amount,
+                    +history.amount,
                   )}원</span>
                 </td> 
               </tr>

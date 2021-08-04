@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { History } from '../models';
+import { History, Category, Payment } from '../models';
 
 export const createHistory = async data => {
   const { date, content, amount, categoryId, paymentId, userId } = data;
@@ -11,6 +11,15 @@ export const createHistory = async data => {
     payment_id: paymentId,
     user_id: userId,
   });
+  return result.dataValues;
+};
+
+export const getHistory = async id => {
+  const result = await History.findOne({
+    where: { id },
+    include: [Category, Payment],
+  });
+
   return result.dataValues;
 };
 
@@ -26,6 +35,7 @@ export const getMonthHistory = async (year, month) => {
       ['date', 'DESC'],
       ['created_at', 'DESC'],
     ],
+    include: [Category, Payment],
   });
   return history;
 };
