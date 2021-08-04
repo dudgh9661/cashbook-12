@@ -9,7 +9,7 @@ class Payment extends Observable {
   }
 
   async addPayment(name) {
-    const payment = await api.postPayment(name);
+    const payment = await api.postPayment({ name });
 
     this.state.payments = [payment, ...this.state.payments];
   }

@@ -143,7 +143,7 @@ class Form extends Component {
         selectedItem: FormStore.state.paymentName,
         label: '결제수단',
         listItems: [
-          ...this.props.paymentMethods.map(payment => ({
+          ...Payment.state.payments.map(payment => ({
             content: paymentsDropdownListItem(payment.name),
             name: payment.name,
             id: payment.id,
