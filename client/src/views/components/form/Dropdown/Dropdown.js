@@ -20,7 +20,9 @@ class Dropdown extends Component {
     $dropdown.innerHTML = `
       <label class="label">
         ${this.props.label}
-        <button type="button" id="dropdown-${this.props.id}">
+        <button type="button" id="dropdown-${
+          this.props.id
+        }" class="dropdown__select-button">
           ${`<span class="
           ${this.props.selectedItem ? '' : 'dropdown__placeholder'}">
             ${this.props.selectedItem ? this.props.selectedItem : '선택하세요'}
