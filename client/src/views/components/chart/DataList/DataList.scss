@@ -1,12 +1,24 @@
 @import '@styles/_responsive.scss';
+@import '@styles/_animation-slidein.scss';
 
 .data-list {
+  overflow: hidden;
+
   &__item {
     padding: 16px;
     border-bottom: 1px solid var(--color-line);
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}n) {
+        animation: slidein #{$i * 0.3}s;
+        -moz-animation: slidein #{$i * 0.3}s;
+        -webkit-animation: slidein #{$i * 0.3}s;
+        -o-animation: slidein #{$i * 0.3}s;
+      }
+    }
 
     &--left {
       .tag {

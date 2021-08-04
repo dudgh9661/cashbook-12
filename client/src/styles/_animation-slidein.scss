@@ -1,0 +1,48 @@
+@keyframes slidein {
+  from {
+    margin-left: -50%;
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+    opacity: 1;
+  }
+}
+@-moz-keyframes slidein {
+  from {
+    margin-left: -50%;
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slidein {
+  from {
+    margin-left: -50%;
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+    opacity: 1;
+  }
+}
+@-o-keyframes slidein {
+  from {
+    margin-left: -50%;
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+    opacity: 1;
+  }
+}

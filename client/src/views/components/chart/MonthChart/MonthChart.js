@@ -48,7 +48,7 @@ class MonthChart extends Component {
             { class: 'month-chart__info--title' },
             `${curMonth} 지출 금액 ${totalValue}`,
           ),
-          new DataList({ data: category }),
+          new DataList({ data: category, total }),
         ),
       );
     }
