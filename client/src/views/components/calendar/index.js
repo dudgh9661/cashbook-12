@@ -31,8 +31,6 @@ class Calendar extends Component {
     const { today, current } = DateInfo.state;
     const { history, total } = History.state;
     const { modalVisible } = this.state;
-    if (!history) this.state.modalVisible = true;
-    else this.state.modalVisible = false;
 
     return $(
       'section',
@@ -40,14 +38,17 @@ class Calendar extends Component {
       new CalendarHeader(),
       new CalendarBody({ today, current, history }),
       new CalendarFooter({ total }),
-      new Modal({
-        visible: modalVisible,
-        headerText:
-          '소비 내역을 불러오는데 문제가 있습니다. 잠시 후 다시 시도해주세요!',
-        confirmText: '새로고침',
-        toggleModal: this.toggleModal.bind(this),
-        onConfirmHandler,
-      }),
+      !history
+        ? new Modal({
+            visible: modalVisible,
+            headerText:
+              '소비 내역을 불러오는데 문제가 있습니다. 잠시 후 다시 시도해주세요!',
+            cancelText: '닫기',
+            confirmText: '새로고침',
+            toggleModal: this.toggleModal.bind(this),
+            onConfirmHandler,
+          })
+        : '',
     );
   }
 
