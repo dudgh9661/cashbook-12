@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { DateInfo, HistoryReport } from '@store';
-import { moneyWithComma } from '@utils';
+import { animateNumber } from '@utils';
 import $ from '@utils/dom';
 import ChartWrapper from '../Wrapper/Wrapper';
 import Donut from '../Donut/Donut';
@@ -31,7 +31,6 @@ class MonthChart extends Component {
     if (total === 0) {
       $chartContent = `${curMonth}의 지출 내역이 없습니다.`;
     } else {
-      const totalValue = moneyWithComma(total);
       $chartContent = $(
         'div',
         { class: 'month-chart' },
@@ -46,7 +45,8 @@ class MonthChart extends Component {
           $(
             'h1',
             { class: 'month-chart__info--title' },
-            `${curMonth} 지출 금액 ${totalValue}`,
+            `${curMonth} 지출 금액 `,
+            $('span', { class: 'total-value' }, ''),
           ),
           new DataList({ data: category, total }),
         ),
@@ -60,6 +60,14 @@ class MonthChart extends Component {
 
   didMount() {
     HistoryReport.setExpenseReport();
+  }
+
+  setEvent() {
+    const { total } = HistoryReport.state.curMonthReport;
+    const $target = this.$element.querySelector('.total-value');
+    if (!$target) return;
+
+    animateNumber(0, total, $target);
   }
 }
 
