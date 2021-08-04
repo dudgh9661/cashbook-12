@@ -6,6 +6,7 @@ import {
   getMonthExpense,
   updateHistory,
   deleteHistory,
+  getAllCategoryHistory,
 } from '../../../services/history';
 
 export const handleCreateHistory = async (req, res, next) => {
@@ -90,6 +91,21 @@ export const handleDeleteHistory = async (req, res, next) => {
       res.status(200).json('history delete success');
     } else {
       res.status(400).json('history delete failed');
+    }
+  } catch (err) {
+    Logger.error(err);
+    next(err);
+  }
+};
+
+export const handleGetCategoryHistory = async (req, res, next) => {
+  try {
+    const { year, month } = req.query;
+    if (year && month) {
+      const result = await getAllCategoryHistory(year, month);
+      res.status(200).json(result);
+    } else {
+      res.status(400).json('need year and month query');
     }
   } catch (err) {
     Logger.error(err);
