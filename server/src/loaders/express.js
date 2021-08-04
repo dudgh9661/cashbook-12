@@ -14,11 +14,13 @@ export default app => {
       extended: false,
     }),
   );
+
   app.use(cookieParser());
   app.use(cors());
-  app.use(authMiddleWare);
+
   app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
+  app.use(authMiddleWare);
   app.use(config.api.prefix, routes);
   app.use(express.static(path.resolve('./dist')));
 

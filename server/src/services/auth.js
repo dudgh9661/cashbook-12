@@ -1,6 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 import User from '../models/user';
+
 const GITHUB_REQUEST_ACCESS_TOKEN_URL =
   'https://github.com/login/oauth/access_token';
 const GITHUB_REQUEST_USER_INFO_URL = 'https://api.github.com/user';
@@ -23,7 +24,7 @@ export const getGithubAccessToken = async code => {
   return res.data.access_token;
 };
 
-export const getGihubUserInfo = async accessToken => {
+export const getGithubUserInfo = async accessToken => {
   const res = await axios.get(GITHUB_REQUEST_USER_INFO_URL, {
     headers: {
       Authorization: `token ${accessToken}`,

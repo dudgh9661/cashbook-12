@@ -1,5 +1,8 @@
 import Logger from '../../../loaders/logger';
-import { getGihubUserInfo, getGithubAccessToken } from '../../../services/auth';
+import {
+  getGithubUserInfo,
+  getGithubAccessToken,
+} from '../../../services/auth';
 import config from '../../../config';
 import jwt from '../../../utils/jwt';
 
@@ -7,7 +10,7 @@ export const handleGithubCallback = async (req, res, next) => {
   try {
     const { code } = req.query;
     const accessToken = await getGithubAccessToken(code);
-    const user = await getGihubUserInfo(accessToken);
+    const user = await getGithubUserInfo(accessToken);
 
     const token = jwt.sign({ ...user, isLogin: true });
 

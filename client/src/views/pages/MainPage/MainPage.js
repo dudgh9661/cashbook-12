@@ -1,5 +1,6 @@
 import Component from '@lib/Component';
 import { Layout, Form, History, LoginModal } from '@components';
+import $ from '@utils/dom';
 import './MainPage.scss';
 import categoryData from '../../../_dummies/category.json';
 import paymentMethod from '../../../_dummies/paymentMethod.json';
@@ -12,40 +13,20 @@ class MainPage extends Component {
   }
 
   render() {
-    const $mainPage = document.createElement('div');
-    $mainPage.className = 'main-page';
-
-    const $logoutTest = document.createElement('button');
-    $logoutTest.textContent = '로그아웃 테스트';
-    $logoutTest.href = 'https://localhost:5000/api/auth/logout';
-    $logoutTest.onclick = () => {
-      console.log('dd');
-      fetch('http://localhost:5000/api/auth/logout', {
-        method: 'POST',
-      }).then(res => {
-        console.log(res.ok, '@@');
-        if (res.ok) {
-          window.location.reload();
-        }
-      });
-    };
-
-    const $mainPageFrag = document.createDocumentFragment();
-    $mainPageFrag.append(
-      $logoutTest,
-      new Form({
-        categories: categoryData.categories,
-        paymentMethods: paymentMethod.methods,
-      }).getElement(),
-      new History({}).getElement(),
-    );
-    $mainPage.appendChild(
+    return $(
+      'div',
+      { class: 'main-page' },
       new Layout({
-        children: [$mainPageFrag],
-      }).getElement(),
+        children: [
+          new Form({
+            categories: categoryData.categories,
+            paymentMethods: paymentMethod.methods,
+          }),
+          new History(),
+          new LoginModal(),
+        ],
+      }),
     );
-
-    return $mainPage;
   }
 }
 

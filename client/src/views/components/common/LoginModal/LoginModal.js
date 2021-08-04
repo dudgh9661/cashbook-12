@@ -25,17 +25,17 @@ class LoginModal extends Component {
   }
 
   render() {
-    const $button = $('a', {
-      class: 'login-modal__button',
-      href: GITHUB_REDIRECT_URL,
-    });
-    $button.innerHTML = `
-      ${github} <span>깃헙으로 로그인</span>
-    `;
+    const $button = $(
+      'a',
+      {
+        class: 'login-modal__button',
+        href: GITHUB_REDIRECT_URL,
+      },
+      `${github} <span>깃헙으로 로그인</span>`,
+    );
 
     return $('div', { class: 'login-modal login-modal--active' }, $button);
   }
-
-  setEvent() {}
 }
+
 export default LoginModal;

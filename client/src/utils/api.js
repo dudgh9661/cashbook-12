@@ -15,11 +15,10 @@ const requestGet = async url => {
 };
 
 export default {
-  fetchMonthHistories: (year, month) => {
-    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
-  },
-
   fetchUser: () => {
     return requestGet(`${API_END_POINT}/auth/user`);
+  },
+  fetchMonthHistories: (year, month) => {
+    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
   },
 };
