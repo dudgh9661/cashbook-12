@@ -37,22 +37,6 @@
   &__tab {
     text-align: right;
     flex: 1;
-
-    svg {
-      margin: 0 7px;
-
-      path {
-        stroke: var(--color-primary-light);
-      }
-    }
-
-    &--active {
-      svg {
-        path {
-          stroke: var(--color-off-white);
-        }
-      }
-    }
   }
 }
 
@@ -86,20 +70,6 @@
     &__tab {
       text-align: right;
       flex: 0 0 122px;
-      svg {
-        margin: 0 7px;
-
-        path {
-          stroke: var(--color-primary-light);
-        }
-      }
-      &--active {
-        svg {
-          path {
-            stroke: var(--color-off-white);
-          }
-        }
-      }
     }
   }
 }
