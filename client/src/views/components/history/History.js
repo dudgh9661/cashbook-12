@@ -13,6 +13,9 @@ const onClickAdd = () => {
 
 const onScrollHandler = () => {
   const $btn = document.querySelector('.history__add-button--mobile');
+  if (!$btn) {
+    return;
+  }
   if (
     !$btn.classList.contains('hide') &&
     document.documentElement.scrollTop > 150
