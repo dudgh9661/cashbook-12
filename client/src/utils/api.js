@@ -21,7 +21,7 @@ const requestPost = async (url, body) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body);
     });
     if (res.ok) {
       return await res.json();
@@ -39,7 +39,7 @@ const requestPut = async (url, body) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body);
     });
     if (res.ok) {
       return await res.json();
@@ -68,30 +68,41 @@ const qureyString = params => {
 };
 
 export default {
-  fetchMonthHistories: (year, month) =>
-    requestGet(`${API_END_POINT}/histories?${qureyString({ year, month })}`),
-  postHistory: body => requestPost(`${API_END_POINT}/histories`, body),
-  updateHistory: (id, body) =>
-    requestPut(`${API_END_POINT}/histories/${id}`, body),
-  deleteHistory: id => requestDelete(`${API_END_POINT}/histories/${id}`),
-  postPayment: body => requestPost(`${API_END_POINT}/payments`, body),
-  fetchPayments: () => requestGet(`${API_END_POINT}/payments`),
-  deletePayment: id => requestDelete(`${API_END_POINT}/payments/${id}`),
-  fetchUser: () => {
-    return requestGet(`${API_END_POINT}/auth/user`);
-  },
-  getCategories: () => requestGet(`${API_END_POINT}/categories`),
-  fetchMonthHistories: (year, month) => {
-    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
-  },
+  fetchMonthHistories: (year, month) =>{
+    return requestGet(`${API_END_POINT}/histories?${qureyString({ year, month })}`);
+  },    
   fetchMonthExpensesReport: (year, month) => {
     return requestGet(
-      `${API_END_POINT}/histories/category/all?year=${year}&month=${month}`,
+      `${API_END_POINT}/histories/category/all?year=${year}&month=${month}`
     );
   },
   fetchCategoryExpensesReport: (categoryId, year) => {
     return requestGet(
-      `${API_END_POINT}/histories/category/${categoryId}?year=${year}`,
+      `${API_END_POINT}/histories/category/${categoryId}?year=${year}`
     );
   },
+  postHistory: body => {
+    return requestPost(`${API_END_POINT}/histories`, body);
+  },
+  updateHistory: (id, body) => {
+    return requestPut(`${API_END_POINT}/histories/${id}`, body);
+  },
+  deleteHistory: id => {
+    return requestDelete(`${API_END_POINT}/histories/${id}`);
+  },
+  postPayment: body =>  {
+    return requestPost(`${API_END_POINT}/payments`, body);
+  },
+  fetchPayments: () => {
+    return requestGet(`${API_END_POINT}/payments`);
+  },
+  deletePayment: id => {
+    return requestDelete(`${API_END_POINT}/payments/${id}`);
+  },
+  fetchUser: () => {
+    return requestGet(`${API_END_POINT}/auth/user`);
+  },
+  getCategories: () => {
+    return requestGet(`${API_END_POINT}/categories`);
+  }
 };
