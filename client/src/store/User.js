@@ -4,12 +4,12 @@ import api from '@utils/api';
 
 class User extends Observable {
   async setUser() {
-    try {
-      const user = await api.fetchUser();
-      this.state.user = user;
-    } catch (err) {
-      router.push('/login');
-    }
+    // try {
+    //   const user = await api.fetchUser();
+    //   this.state.user = user;
+    // } catch (err) {
+    //   router.push('/login');
+    // }
   }
 }
 

@@ -27,9 +27,9 @@ export const handleCreateHistory = async (req, res, next) => {
 export const handleGetMonthHistory = async (req, res, next) => {
   try {
     const { year, month } = req.query;
-    const user = req.user;
+    // const user = req.user;
     if (year && month) {
-      const result = await getMonthHistory(year, month, user.id);
+      const result = await getMonthHistory(year, month, 3);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year and month query');
