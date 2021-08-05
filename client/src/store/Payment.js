@@ -1,6 +1,6 @@
 import Observable from '@lib/Observable';
 import api from '../utils/api';
-import FormStore from '../views/components/form/FormStore';
+import FormStore from './Form';
 
 class Payment extends Observable {
   async setPayments() {

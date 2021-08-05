@@ -1,7 +1,6 @@
 import Component from '@lib/Component';
 import { HistoryItem, Empty } from '@components';
-import History from '@store/History';
-import HistoryReport from '@store/HistoryReport';
+import { History, HistoryReport } from '@store';
 import { dateFormat } from '@utils/helper';
 import $ from '@utils/dom';
 import './HistoryList.scss';

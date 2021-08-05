@@ -1,7 +1,7 @@
 import Component from '@lib/Component';
 import { HistoryHeader, HistoryList } from '@components';
+import { FormStore } from '@store';
 import { add } from '@assets/icons';
-import FormStore from '../form/FormStore';
 import './History.scss';
 
 const onClickAdd = () => {

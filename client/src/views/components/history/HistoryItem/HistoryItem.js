@@ -1,10 +1,9 @@
 import Component from '@lib/Component';
 import { Tag } from '@components';
+import { History, FormStore } from '@store';
 import { moneyWithComma, getDateFromString } from '@utils';
 import { formDateFormat } from '@utils/helper';
 import { trashBin, pencil, menu } from '@assets/icons';
-import History from '@store/History';
-import FormStore from '../../form/FormStore';
 import './HistoryItem.scss';
 
 const onClickDelete = e => {

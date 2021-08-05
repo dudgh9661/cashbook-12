@@ -1,13 +1,9 @@
 import Component from '@lib/Component';
 import { Dropdown, Input, Modal } from '@components';
-import { plus, minus, check, cancel } from '@assets/icons';
 import { moneyWithComma } from '@utils';
 import $ from '@utils/dom';
-import History from '@store/History';
-import Payment from '@store/Payment';
-import User from '@store/User';
-import FormStore from './FormStore';
-
+import { User, History, Payment, FormStore } from '@store';
+import { plus, minus, check, cancel } from '@assets/icons';
 import './Form.scss';
 
 const onInputDate = e => FormStore.setDate(e.target.value);
@@ -319,7 +315,7 @@ class Form extends Component {
         label: '금액',
         prefix: FormStore.state.isIncome ? plus : minus,
         suffix: '원',
-        placeholder: '입력하세요',
+        placeholder: '00,000',
         customClass: 'input-amount',
         value: FormStore.state.amount,
       }).getElement(),

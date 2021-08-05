@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { Checkbox } from '@components';
-import History from '@store/History';
+import { History } from '@store';
 import { moneyWithComma } from '@utils';
 import './HistoryHeader.scss';
 

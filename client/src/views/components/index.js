@@ -3,7 +3,7 @@ export { default as Header } from './common/Header/Header';
 export { default as Tag } from './common/Tag/Tag';
 export { default as Empty } from './common/Empty/Empty';
 
-export { default as Form } from './form/Form';
+export { default as Form } from './form/Form/Form';
 export { default as Dropdown } from './form/Dropdown/Dropdown';
 export { default as Input } from './form/Input/Input';
 export { default as Checkbox } from './form/Checkbox/Checkbox';

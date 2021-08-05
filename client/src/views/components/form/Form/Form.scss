@@ -66,14 +66,19 @@
   &__toggle-btn {
     height: 100%;
     display: flex;
+
     button {
-      padding: 8px;
+      padding: 5px 8px;
       border-radius: 5px;
       margin: 2px;
       border: 2px solid var(--color-primary);
       color: var(--color-primary);
       background: var(--color-off-white);
       width: 50px;
+
+      &:first-child {
+        margin-right: 5px;
+      }
 
       &.active {
         background-color: var(--color-primary);
@@ -260,4 +265,8 @@
       }
     }
   }
+}
+
+input[type='date']::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
 }
