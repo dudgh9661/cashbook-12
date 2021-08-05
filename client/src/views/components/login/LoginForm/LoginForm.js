@@ -4,6 +4,7 @@ import { User } from '@store';
 import { GITHUB_REDIRECT_URL } from '@constants';
 import github from '@assets/svgs/github.svg';
 import LoginGuide from '../LoginGuide/LoginGuide';
+import Loader from '../../common/Loader/Loader';
 import './LoginForm.scss';
 
 const createUser = name => {
@@ -15,6 +16,10 @@ class LoginForm extends Component {
     super(props);
 
     this.init();
+  }
+
+  setObserver() {
+    User.observe('isLoading', this.setLoading.bind(this));
   }
 
   render() {
@@ -33,7 +38,8 @@ class LoginForm extends Component {
         $(
           'button',
           { type: 'button', class: 'id-login-btn' },
-          '아이디 생성 및 로그인',
+          $('span', { class: 'btn-text' }, '아이디 생성 및 로그인'),
+          new Loader({ size: 25 }),
         ),
       ),
       $('div', { class: 'login-form__div' }, $('span', {}, 'or')),
@@ -43,8 +49,13 @@ class LoginForm extends Component {
         $(
           'button',
           { type: 'button', class: 'github-login-btn' },
-          $('img', { src: github, alt: 'github' }),
-          'Github로 로그인',
+          $(
+            'div',
+            { class: 'btn-text' },
+            $('img', { src: github, alt: 'github' }),
+            'Github로 로그인',
+          ),
+          new Loader({ size: 25, color: 'grey' }),
         ),
       ),
     );
@@ -60,14 +71,31 @@ class LoginForm extends Component {
 
     this.addEvent('click', '.id-login-btn', this.handleCreateUser.bind(this));
 
-    this.addEvent('click', '.github-login-btn', () => {
-      window.location.href = GITHUB_REDIRECT_URL;
-    });
+    this.addEvent(
+      'click',
+      '.github-login-btn',
+      this.handleGithubLogin.bind(this),
+    );
   }
 
   handleCreateUser() {
     const idInputValue = this.$element.querySelector('#id-input').value;
     createUser(idInputValue);
+  }
+
+  handleGithubLogin() {
+    const $targetBtn = this.$element.querySelector('.github-login-btn');
+    $targetBtn.classList.add('loading');
+    window.location.href = GITHUB_REDIRECT_URL;
+  }
+
+  setLoading() {
+    const $targetBtn = this.$element.querySelector('.id-login-btn');
+    if (User.state.isLoading) {
+      $targetBtn.classList.add('loading');
+    } else {
+      $targetBtn.classList.remove('loading');
+    }
   }
 }
 

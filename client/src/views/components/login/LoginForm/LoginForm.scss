@@ -23,6 +23,7 @@
     button {
       width: 100%;
       padding: 12px 10px;
+      height: 50px;
       background-color: var(--color-primary);
       border-radius: 12px;
       color: var(--color-off-white);
@@ -34,6 +35,10 @@
 
       &:focus {
         box-shadow: 0 0 0 3px var(--color-primary-light);
+      }
+
+      .loader {
+        display: none;
       }
     }
   }
@@ -54,16 +59,20 @@
     button {
       width: 100%;
       padding: 12px 10px;
+      height: 50px;
       background-color: var(--color-github);
       border-radius: 12px;
       color: var(--color-off-white);
       font: var(--font-bold-large);
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
-      img {
-        margin-right: 7px;
+      .btn-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          margin-right: 7px;
+        }
       }
 
       &:hover {
@@ -73,6 +82,21 @@
       &:focus {
         box-shadow: 0 0 0 3px var(--color-grey2);
       }
+
+      .loader {
+        display: none;
+      }
     }
+  }
+}
+
+.github-login-btn.loading,
+.id-login-btn.loading {
+  .btn-text {
+    display: none;
+  }
+
+  .loader {
+    display: block;
   }
 }
