@@ -102,48 +102,10 @@ class History extends Observable {
       console.log(e);
     }
   }
-
-  async deleteHistory(id) {
-    try {
-      await api.deleteHistory(id);
-      this.state.historyArr = this.state.historyArr.filter(h => h.id !== +id);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  async updateHistory(id, body) {
-    try {
-      const updatedHistory = await api.updateHistory(id, body);
-
-      const idx = this.state.historyArr.findIndex(
-        h => h.id === updatedHistory.id,
-      );
-      this.state.historyArr.splice(idx, 1, updatedHistory);
-      this.state.historyArr = this.state.historyArr.map(
-        makeObjectKeysLowerCase,
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  async setCategories() {
-    try {
-      const categories = await api.getCategories();
-
-      this.state.categories = categories;
-    } catch (e) {
-      console.log(e);
-    }
-  }
 }
 
 const initialState = {
-<<<<<<< dev
   categories: [],
-=======
->>>>>>> refactor: :sparkles: 머지 충돌 해결
   historyArr: [],
   history: {},
   total: {

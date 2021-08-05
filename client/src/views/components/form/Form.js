@@ -228,7 +228,6 @@ class Form extends Component {
     const $btn = document.createElement('button');
     $btn.type = 'button';
     $btn.classList.add('form__btn');
-    console.log(FormStore.state.isValid);
     if (!FormStore.state.isValid) {
       $btn.setAttribute('disabled', 'true');
     }

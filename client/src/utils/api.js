@@ -24,7 +24,7 @@ const requestPost = async (url, data) => {
       },
     });
     if (res.ok) {
-      return await res.json();
+      return res;
     }
     throw new Error(res);
   } catch (err) {

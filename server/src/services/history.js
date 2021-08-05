@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import sequelize from '../config/sequelize';
 import { History, Category, Payment } from '../models';
 
 export const createHistory = async data => {
@@ -24,10 +25,8 @@ export const getHistory = async id => {
 };
 
 export const getMonthHistory = async (year, month, userId) => {
-  // 새ㅐ
   const history = await History.findAll({
     where: {
-      // user_id: userId,
       date: {
         [Op.gte]: new Date(year, month - 1),
         [Op.lt]: new Date(year, month),
