@@ -17,11 +17,12 @@ class Modal extends Component {
       confirmText = '확인',
       hasFooter = true,
       children = [],
+      custom = '',
     } = this.props;
 
     return $(
       'div',
-      { class: `modal ${visible ? 'modal--open' : ''}` },
+      { class: `modal ${custom} ${visible ? 'modal--open' : ''}` },
       $(
         'div',
         { class: 'modal-content' },

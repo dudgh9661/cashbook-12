@@ -1,24 +1,13 @@
 import Observable from '@lib/Observable';
 import api from '@utils/api';
+import { makeObjectKeysLowerCase, getYearMonthDate } from '@utils/helper';
 import DateInfo from './DateInfo';
 
 const getCurrentMonthHistory = async () => {
   const { year, month } = DateInfo.state.current;
-
   try {
     const data = await api.fetchMonthHistories(year, month);
-    return data.reduce((acc, cur) => {
-      const date = new Date(cur.date).getDate();
-      const amount = parseInt(cur.amount, 10);
-
-      if (!acc[date]) acc[date] = { income: 0, expenses: 0, earning: 0 };
-
-      if (amount > 0) acc[date].income += amount;
-      else acc[date].expenses += amount;
-      acc[date].earning += amount;
-
-      return acc;
-    }, {});
+    return data;
   } catch (err) {
     return null;
   }
@@ -34,8 +23,18 @@ class History extends Observable {
     this.init();
 
     const data = await getCurrentMonthHistory();
-    this.state.history = data;
-    this.setHistoryTotal(data);
+    const history = data.reduce((acc, cur) => {
+      const date = new Date(cur.date).getDate();
+      const amount = parseInt(cur.amount, 10);
+      if (!acc[date]) acc[date] = { income: 0, expenses: 0, earning: 0 };
+      if (amount > 0) acc[date].income += amount;
+      else acc[date].expenses += amount;
+      acc[date].earning += amount;
+      return acc;
+    }, {});
+    this.state.historyArr = data.map(makeObjectKeysLowerCase);
+    this.state.history = history;
+    this.setHistoryTotal(history);
   }
 
   setHistoryTotal(data) {
@@ -48,15 +47,82 @@ class History extends Observable {
       earning: dataArr.reduce((acc, cur) => acc + cur.earning, 0),
     };
   }
+
+  setFilter(filter) {
+    this.state.filter = filter;
+  }
+
+  async addHistory({ date, content, amount, categoryId, paymentId, userId }) {
+    try {
+      const res = await api.postHistory({
+        date,
+        content,
+        amount,
+        categoryId,
+        paymentId,
+        userId,
+      });
+      const [historyYear, hositryMonth] = getYearMonthDate(date);
+      const { year, month } = DateInfo.state.current;
+
+      if (historyYear !== year || hositryMonth !== month) {
+        DateInfo.setMonth(date);
+        await this.setCurrentMonthHistory();
+      } else {
+        const newHistory = await res.json();
+        this.state.historyArr = [...this.state.historyArr, newHistory].map(
+          makeObjectKeysLowerCase,
+        );
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async deleteHistory(id) {
+    try {
+      await api.deleteHistory(id);
+      this.state.historyArr = this.state.historyArr.filter(h => h.id !== +id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async updateHistory(id, body) {
+    try {
+      const updatedHistory = await api.updateHistory(id, body);
+      const idx = this.state.historyArr.findIndex(
+        h => h.id === updatedHistory.id,
+      );
+      this.state.historyArr.splice(idx, 1, updatedHistory);
+      this.state.historyArr = this.state.historyArr.map(
+        makeObjectKeysLowerCase,
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async setCategories() {
+    try {
+      const categories = await api.getCategories();
+      this.state.categories = categories;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 const initialState = {
+  categories: [],
+  historyArr: [],
   history: {},
   total: {
     income: 0,
     expenses: 0,
     earning: 0,
   },
+  filter: ['income', 'expenditure'],
 };
 
 export default new History(initialState);

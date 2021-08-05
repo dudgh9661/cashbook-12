@@ -40,6 +40,19 @@ class DateInfo extends Observable {
       };
     }
   }
+
+  setMonth(date) {
+    const dateObj = new Date(date);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+
+    this.state.current = {
+      year,
+      month,
+      lastDate: new Date(year, month + 1, 0).getDate(),
+      firstDay: new Date(year, month, 1).getDay(),
+    };
+  }
 }
 
 const date = new Date();

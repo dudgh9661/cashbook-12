@@ -1,7 +1,19 @@
 import Component from '@lib/Component';
 import { Tag } from '@components';
+import { History, FormStore } from '@store';
 import { moneyWithComma, getDateFromString } from '@utils';
+import { dateFormat } from '@utils/helper';
+import { trashBin, pencil, menu } from '@assets/icons';
 import './HistoryItem.scss';
+
+const onClickDelete = e => {
+  const $btn = e.target.closest('button');
+  const { id } = $btn.dataset;
+
+  if (id && window.confirm('정말 삭제하실건가요!?')) {
+    History.deleteHistory(id);
+  }
+};
 
 class HistoryItem extends Component {
   constructor(props) {
@@ -10,19 +22,65 @@ class HistoryItem extends Component {
     this.init();
   }
 
+  onClickEdit(e) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+    const $button = e.target.closest('button');
+    if ($button.classList.contains('history-item__menu-edit--mobile')) {
+      FormStore.toggleShowMobileForm();
+    }
+    const { id } = $button.dataset;
+    const { timestamp, historyItemList } = this.props;
+    const { content, category, amount, payment } = historyItemList.find(
+      h => +h.id === +id,
+    );
+
+    const isIncome = category.type === 'income';
+
+    FormStore.setId(id);
+    FormStore.setIsIncome(isIncome);
+    FormStore.setContent(content);
+    FormStore.setAmount((isIncome ? Math.abs(amount) : amount).toString());
+    FormStore.setDate(dateFormat(timestamp));
+    FormStore.setCategory(category.id, category.name);
+    FormStore.setPayment(payment.id, payment.name);
+  }
+
   render() {
-    const { historyItemList, timestamp } = this.props;
+    const { historyItemList, timestamp, type } = this.props;
     const [month, date, day] = getDateFromString(timestamp);
+
+    const incomeTotal = moneyWithComma(
+      historyItemList.reduce(
+        (sum, h) => (+h.amount >= 0 ? sum + +h.amount : sum),
+        0,
+      ),
+    );
+    const expenditureTotal = moneyWithComma(
+      historyItemList.reduce(
+        (sum, h) => (+h.amount < 0 ? sum + +h.amount : sum),
+        0,
+      ),
+    );
 
     const $history = document.createElement('li');
     $history.classList.add('history-item');
+
     $history.innerHTML = `
       <div class="history-item__header">
         <span>
           <b>${month}월 ${date}일</b>
           ${day}
         </span>
-        <span>지출 56,240</span>
+        ${
+          type === 'simple'
+            ? ''
+            : `<div> 
+                <span class="history-item__header-income">수입  ${incomeTotal}</span>
+                <span>지출  ${expenditureTotal}</span>
+              </div>        `
+        }        
       </div>
       <table>
         ${historyItemList
@@ -35,20 +93,71 @@ class HistoryItem extends Component {
                 </td>          
                 <td class="history-item__col-payment">
                   <span class="history-item__col-payment-method">${
-                    history.payment
+                    history.payment.name
                   }</span>
                   <span class="history-item__col-payment-amount">${moneyWithComma(
-                    history.amount,
+                    +history.amount,
                   )}원</span>
-                </td> 
-              </tr>
+                </td>         
+                ${
+                  type === 'simple'
+                    ? ''
+                    : `<td class="history-item__menu">
+                        <button type="button"data-id="${
+                          history.id
+                        }" id="history-item__menu-edit">${pencil(
+                        22,
+                        22,
+                      )}</button>                  
+                        <button type="button" data-id="${
+                          history.id
+                        }" id="history-item__menu-delete">${trashBin(
+                        25,
+                        25,
+                      )}</button>
+                      </td>
+
+                    <td class="history-item__menu--mobile">
+                      <div>
+                          <button data-id="${
+                            history.id
+                          }" class="history-item__menu-delete--mobile">
+                            삭제
+                          </button>
+                          <button data-id="${
+                            history.id
+                          }" class="history-item__menu-edit--mobile">
+                            수정
+                          </button>
+                      </div>
+                      <button class="history-item__menu-button--mobile">
+                        ${menu}
+                      </button>            
+                    </td>`
+                }                        
+                </tr>
             `,
           )
           .join('')}  
-      </table>        
+      </table>
     `;
 
     return $history;
+  }
+
+  setEvent() {
+    this.addEvent(
+      'click',
+      '#history-item__menu-edit',
+      this.onClickEdit.bind(this),
+    );
+    this.addEvent('click', '#history-item__menu-delete', onClickDelete);
+    this.addEvent(
+      'click',
+      '.history-item__menu-edit--mobile',
+      this.onClickEdit.bind(this),
+    );
+    this.addEvent('click', '.history-item__menu-delete--mobile', onClickDelete);
   }
 }
 
