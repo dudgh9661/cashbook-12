@@ -17,13 +17,7 @@ class MainPage extends Component {
       'div',
       { class: 'main-page' },
       new Layout({
-        children: [
-          new Form({
-            categories: categoryData.categories,
-            paymentMethods: paymentMethod.methods,
-          }),
-          new History(),
-        ],
+        children: [new Form({}), new History()],
       }),
     );
   }
