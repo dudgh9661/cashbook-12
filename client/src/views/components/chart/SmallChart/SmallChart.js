@@ -76,7 +76,8 @@ class SmallChart extends Component {
   }
 
   didMount() {
-    HistoryReport.setMonthReport();
+    const { isSample } = this.props;
+    if (!isSample) HistoryReport.setMonthReport();
   }
 
   setEvent() {

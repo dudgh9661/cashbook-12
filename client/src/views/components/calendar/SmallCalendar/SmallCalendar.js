@@ -93,7 +93,8 @@ class SmallCalendar extends Component {
   }
 
   didMount() {
-    History.setCurrentMonthHistory();
+    const { isSample } = this.props;
+    if (!isSample) History.setCurrentMonthHistory();
   }
 
   toggleModal() {
