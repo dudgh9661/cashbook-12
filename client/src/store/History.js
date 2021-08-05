@@ -13,9 +13,10 @@ const getCurrentMonthHistory = async () => {
   }
 };
 
-    this.state.historyArr = data.map(makeObjectKeysLowerCase);
-    this.state.history = history;
-    this.setHistoryTotal(history);
+class History extends Observable {
+  init() {
+    this.state.history = {};
+    this.state.total = { income: 0, expenses: 0, earning: 0 };
   }
 
   async setCurrentMonthHistory() {
@@ -53,7 +54,7 @@ const getCurrentMonthHistory = async () => {
 
   async addHistory({ date, content, amount, categoryId, paymentId, userId }) {
     try {
-      const newHistory = await api.postHistory({
+      const res = await api.postHistory({
         date,
         content,
         amount,
@@ -61,6 +62,8 @@ const getCurrentMonthHistory = async () => {
         paymentId,
         userId,
       });
+
+      const newHistory = await res.json();
       this.state.historyArr = [...this.state.historyArr, newHistory].map(
         makeObjectKeysLowerCase,
       );
