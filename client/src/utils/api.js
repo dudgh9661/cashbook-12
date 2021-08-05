@@ -14,17 +14,17 @@ const requestGet = async url => {
   }
 };
 
-const requestPost = async (url, body) => {
+const requestPost = async (url, data) => {
   try {
     const res = await fetch(url, {
       method: 'POST',
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
     });
     if (res.ok) {
-      return await res.json();
+      return res;
     }
     throw new Error(res);
   } catch (err) {
