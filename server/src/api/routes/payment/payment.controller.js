@@ -7,7 +7,7 @@ import {
 
 export const handleGetPayments = async (req, res, next) => {
   try {
-    const userId = 1 || req.user.id;
+    const userId = req.user.id;
 
     const payments = await getPayments(userId);
 
@@ -21,7 +21,8 @@ export const handleGetPayments = async (req, res, next) => {
 export const handleCreatePayment = async (req, res, next) => {
   try {
     const { name } = req.body;
-    const userId = 1 || req.user.id;
+    const userId = req.user.id;
+
     if (name) {
       const payment = await createPayment(name, userId);
       res.status(200).json(payment);
@@ -36,7 +37,7 @@ export const handleCreatePayment = async (req, res, next) => {
 
 export const handleDeletePayment = async (req, res, next) => {
   const { id } = req.params;
-  const userId = 1 || req.user.id;
+  const userId = req.user.id;
 
   try {
     if (id) {

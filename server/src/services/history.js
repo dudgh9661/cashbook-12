@@ -15,13 +15,14 @@ export const createHistory = async data => {
   return result.dataValues;
 };
 
-export const getMonthHistory = async (year, month) => {
+export const getMonthHistory = async (year, month, userId) => {
   const history = await History.findAll({
     where: {
       date: {
         [Op.gte]: new Date(year, month - 1),
         [Op.lt]: new Date(year, month),
       },
+      user_id: userId,
     },
     order: [
       ['date', 'DESC'],
@@ -31,7 +32,7 @@ export const getMonthHistory = async (year, month) => {
   return history;
 };
 
-export const getMonthIncome = async (year, month) => {
+export const getMonthIncome = async (year, month, userId) => {
   const history = await History.findAll({
     where: {
       date: {
@@ -41,6 +42,7 @@ export const getMonthIncome = async (year, month) => {
       amount: {
         [Op.gt]: 0,
       },
+      user_id: userId,
     },
     order: [
       ['date', 'DESC'],
@@ -50,7 +52,7 @@ export const getMonthIncome = async (year, month) => {
   return history;
 };
 
-export const getMonthExpense = async (year, month) => {
+export const getMonthExpense = async (year, month, userId) => {
   const history = await History.findAll({
     where: {
       date: {
@@ -60,6 +62,7 @@ export const getMonthExpense = async (year, month) => {
       amount: {
         [Op.lt]: 0,
       },
+      user_id: userId,
     },
     order: [
       ['date', 'DESC'],
@@ -99,7 +102,7 @@ export const deleteHistory = async id => {
   return result === 1;
 };
 
-export const getAllCategoryHistory = async (year, month) => {
+export const getAllCategoryHistory = async (year, month, userId) => {
   const history = await History.findAll({
     attributes: [
       [sequelize.fn('sum', sequelize.col('amount')), 'total_expenses'],
@@ -117,6 +120,7 @@ export const getAllCategoryHistory = async (year, month) => {
       amount: {
         [Op.lt]: 0,
       },
+      user_id: userId,
     },
     group: 'category_id',
     order: [sequelize.fn('sum', sequelize.col('amount'))],
@@ -124,7 +128,7 @@ export const getAllCategoryHistory = async (year, month) => {
   return history;
 };
 
-export const getCategoryHistory = async (categoryId, year) => {
+export const getCategoryHistory = async (categoryId, year, userId) => {
   const history = await History.findAll({
     attributes: [
       [sequelize.fn('MONTH', sequelize.col('date')), 'month'],
@@ -139,6 +143,7 @@ export const getCategoryHistory = async (categoryId, year) => {
         [Op.lt]: 0,
       },
       category_id: categoryId,
+      user_id: userId,
     },
     group: [sequelize.fn('MONTH', sequelize.col('date')), 'month'],
     order: [[sequelize.fn('MONTH', sequelize.col('date'))]],
