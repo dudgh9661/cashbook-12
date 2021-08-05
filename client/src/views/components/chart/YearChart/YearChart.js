@@ -33,6 +33,7 @@ class YearChart extends Component {
     );
 
     return new ChartWrapper({
+      className: 'fade',
       children: [$chartContent],
     }).getElement();
   }

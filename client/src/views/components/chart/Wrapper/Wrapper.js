@@ -10,9 +10,9 @@ class Wrapper extends Component {
   }
 
   render() {
-    const { children = [] } = this.props;
+    const { className = '', children = [] } = this.props;
 
-    return $('div', { class: 'chart-wrapper' }, ...children);
+    return $('div', { class: `chart-wrapper ${className}` }, ...children);
   }
 }
 
