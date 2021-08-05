@@ -10,8 +10,8 @@ const initState = () => ({
   showMobileForm: false,
   categoryId: '',
   categoryName: '',
-  paymentId: '',
-  paymentName: '',
+  paymentId: '1',
+  paymentName: '현금',
 });
 
 class FormStore extends Observable {
