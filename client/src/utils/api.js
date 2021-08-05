@@ -51,14 +51,19 @@ const requestPut = async (url, body) => {
 };
 const requestDelete = async url => {
   try {
-    const res = await fetch(url, { method: 'DELETE' });
-    if (!res.ok) throw new Error(res);
+    const res = await fetch(url, {
+      method: 'DELETE',
+    });
+    if (res.ok) {
+      return await res;
+    }
+    throw new Error(res);
   } catch (err) {
     throw new Error(err);
   }
 };
 
-const queryString = params => {
+const qureyString = params => {
   return new URLSearchParams(params).toString();
 };
 
@@ -73,7 +78,9 @@ export default {
     return requestDelete(`${API_END_POINT}/auth`);
   },
   fetchMonthHistories: (year, month) => {
-    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
+    return requestGet(
+      `${API_END_POINT}/histories?${qureyString({ year, month })}`,
+    );
   },
   fetchMonthExpensesReport: (year, month) => {
     return requestGet(
@@ -85,22 +92,26 @@ export default {
       `${API_END_POINT}/histories/category/${categoryId}?year=${year}`,
     );
   },
-  updateHistory: (id, body) => {
-    return requestPut(`${API_END_POINT}/histories/${id}`, body);
-  },
-  fetchHistory: (year, month) => {
-    return requestGet(
-      `${API_END_POINT}/histories?${queryString({ year, month })}`,
-    );
-  },
   postHistory: body => {
     return requestPost(`${API_END_POINT}/histories`, body);
+  },
+  updateHistory: (id, body) => {
+    return requestPut(`${API_END_POINT}/histories/${id}`, body);
   },
   deleteHistory: id => {
     return requestDelete(`${API_END_POINT}/histories/${id}`);
   },
-  postPayment: body => requestPost(`${API_END_POINT}/payments`, body),
-  fetchPayments: () => requestGet(`${API_END_POINT}/payments`),
-  deletePayment: id => requestDelete(`${API_END_POINT}/payments/${id}`),
-  getCategories: () => requestGet(`${API_END_POINT}/categories`),
+  postPayment: body => {
+    return requestPost(`${API_END_POINT}/payments`, body);
+  },
+  fetchPayments: () => {
+    return requestGet(`${API_END_POINT}/payments`);
+  },
+  deletePayment: id => {
+    return requestDelete(`${API_END_POINT}/payments/${id}`);
+  },
+
+  getCategories: () => {
+    return requestGet(`${API_END_POINT}/categories`);
+  },
 };

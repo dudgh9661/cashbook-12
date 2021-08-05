@@ -10,7 +10,8 @@ class Payment extends Observable {
   }
 
   async addPayment(name) {
-    const payment = await api.postPayment({ name });
+    const res = await api.postPayment({ name });
+    const payment = await res.json();
 
     FormStore.setPayment(payment.id, payment.name);
     this.state.payments = [payment, ...this.state.payments];

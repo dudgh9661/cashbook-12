@@ -2,7 +2,7 @@ import Component from '@lib/Component';
 import { Tag } from '@components';
 import { History, FormStore } from '@store';
 import { moneyWithComma, getDateFromString } from '@utils';
-import { formDateFormat } from '@utils/helper';
+import { dateFormat } from '@utils/helper';
 import { trashBin, pencil, menu } from '@assets/icons';
 import './HistoryItem.scss';
 
@@ -42,7 +42,7 @@ class HistoryItem extends Component {
     FormStore.setIsIncome(isIncome);
     FormStore.setContent(content);
     FormStore.setAmount((isIncome ? Math.abs(amount) : amount).toString());
-    FormStore.setDate(formDateFormat(timestamp));
+    FormStore.setDate(dateFormat(timestamp));
     FormStore.setCategory(category.id, category.name);
     FormStore.setPayment(payment.id, payment.name);
   }
