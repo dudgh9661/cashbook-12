@@ -34,6 +34,7 @@
         width: 70px;
         margin-left: 30px;
         display: flex;
+        align-items: center;
       }
     }
     .history-item__menu {
@@ -46,7 +47,7 @@
       text-align: right;
       button {
         &:nth-child(1) {
-          margin-right: 10px;
+          margin-right: 12px;
         }
       }
     }
@@ -115,12 +116,15 @@
     &__menu--mobile {
       display: block;
       position: relative;
+      margin-left: 10px;
+
       &:hover {
         div {
           opacity: 1;
           transform: scale(1);
         }
       }
+
       div {
         position: absolute;
         bottom: 25px;

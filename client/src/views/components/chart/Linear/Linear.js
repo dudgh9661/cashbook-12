@@ -2,7 +2,6 @@ import Component from '@lib/Component';
 import LinearChart from 'linear-chart-js';
 import { MONTHS } from '@constants';
 import $ from '@utils/dom';
-import './Linear.scss';
 
 class Linear extends Component {
   constructor(props) {

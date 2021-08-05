@@ -106,15 +106,15 @@ class HistoryItem extends Component {
                         <button type="button"data-id="${
                           history.id
                         }" id="history-item__menu-edit">${pencil(
-                        25,
-                        25,
-                      )}/<button>                  
+                        22,
+                        22,
+                      )}</button>                  
                         <button type="button" data-id="${
                           history.id
                         }" id="history-item__menu-delete">${trashBin(
                         25,
                         25,
-                      )}/<button>
+                      )}</button>
                       </td>
 
                     <td class="history-item__menu--mobile">
