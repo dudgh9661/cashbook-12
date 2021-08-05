@@ -20,6 +20,7 @@ class LoginPage extends Component {
       'div',
       { class: 'login-page' },
       new Layout({
+        className: 'blur',
         children: [
           $(
             'div',

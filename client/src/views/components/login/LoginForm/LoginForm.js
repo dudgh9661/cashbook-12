@@ -3,6 +3,7 @@ import $ from '@utils/dom';
 import { GITHUB_REDIRECT_URL } from '@constants';
 import github from '@assets/svgs/github.svg';
 import './LoginForm.scss';
+import LoginGuide from '../LoginGuide/LoginGuide';
 
 class LoginModal extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class LoginModal extends Component {
     return $(
       'form',
       { class: 'login-form' },
+      new LoginGuide(),
       $(
         'div',
         { class: 'login-form__name' },

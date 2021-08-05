@@ -11,11 +11,11 @@ class Layout extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { className, children } = this.props;
 
     return $(
       'div',
-      { class: 'layout' },
+      { class: `layout ${className}` },
       $('div', { class: 'layout__point-bg' }),
       $(
         'div',
