@@ -48,7 +48,7 @@ class History extends Observable {
 
   async addHistory({ date, content, amount, categoryId, paymentId, userId }) {
     try {
-      const newHistory = await api.postHistory({
+      const res = await api.postHistory({
         date,
         content,
         amount,
@@ -56,7 +56,8 @@ class History extends Observable {
         paymentId,
         userId,
       });
-      this.state.historyArr = [...this.state.historyArr, newHistory].map(
+      const newHistory = await res.json();
+      this.state.historyArr = [newHistory, ...this.state.historyArr].map(
         makeObjectKeysLowerCase,
       );
     } catch (e) {
