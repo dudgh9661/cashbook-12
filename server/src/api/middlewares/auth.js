@@ -1,6 +1,6 @@
 import jwt from '../../utils/jwt';
 
-const EXECPTTION = ['/api/auth/github'];
+const EXECPTTION = ['/api/auth/github', '/api/auth/name'];
 
 const authMiddleWare = (req, res, next) => {
   if (EXECPTTION.includes(req.path) || !req.path.startsWith('/api')) {

@@ -1,0 +1,17 @@
+.tab {
+  svg {
+    margin: 0 7px;
+
+    path {
+      stroke: var(--color-primary-light);
+    }
+  }
+
+  &--active {
+    svg {
+      path {
+        stroke: var(--color-off-white);
+      }
+    }
+  }
+}

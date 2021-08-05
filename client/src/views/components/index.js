@@ -20,3 +20,7 @@ export { default as HistoryItem } from './history/HistoryItem/HistoryItem';
 export { default as HistoryList } from './history/HistoryList/HistoryList';
 
 export { default as Calendar } from './calendar';
+
+export { default as LoginForm } from './login/LoginForm/LoginForm';
+
+export { default as UserInfo } from './user/UserInfo/UserInfo';

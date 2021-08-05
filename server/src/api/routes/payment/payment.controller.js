@@ -22,6 +22,7 @@ export const handleCreatePayment = async (req, res, next) => {
   try {
     const { name } = req.body;
     const userId = req.user.id;
+
     if (name) {
       const payment = await createPayment(name, userId);
       res.status(200).json(payment);

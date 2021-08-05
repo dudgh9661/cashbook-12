@@ -29,10 +29,10 @@ export const handleCreateHistory = async (req, res, next) => {
 export const handleGetMonthHistory = async (req, res, next) => {
   try {
     const { year, month } = req.query;
-    // const user = req.user;
+    const userId = req.user.id;
+
     if (year && month) {
-      // TODO: 아이디로 구분
-      const result = await getMonthHistory(year, month, 1);
+      const result = await getMonthHistory(year, month, userId);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year and month query');
@@ -46,8 +46,10 @@ export const handleGetMonthHistory = async (req, res, next) => {
 export const handleGetMonthIncome = async (req, res, next) => {
   try {
     const { year, month } = req.query;
+    const userId = req.user.id;
+
     if (year && month) {
-      const result = await getMonthIncome(year, month);
+      const result = await getMonthIncome(year, month, userId);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year and month query');
@@ -61,8 +63,10 @@ export const handleGetMonthIncome = async (req, res, next) => {
 export const handleGetMonthExpense = async (req, res, next) => {
   try {
     const { year, month } = req.query;
+    const userId = req.user.id;
+
     if (year && month) {
-      const result = await getMonthExpense(year, month);
+      const result = await getMonthExpense(year, month, userId);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year and month query');
@@ -107,8 +111,10 @@ export const handleDeleteHistory = async (req, res, next) => {
 export const handleGetAllCategoryHistory = async (req, res, next) => {
   try {
     const { year, month } = req.query;
+    const userId = req.user.id;
+
     if (year && month) {
-      const result = await getAllCategoryHistory(year, month);
+      const result = await getAllCategoryHistory(year, month, userId);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year and month query');
@@ -123,8 +129,10 @@ export const handleGetCategoryHistory = async (req, res, next) => {
   try {
     const categoryId = parseInt(req.params.id, 10);
     const { year } = req.query;
+    const userId = req.user.id;
+
     if (year) {
-      const result = await getCategoryHistory(categoryId, year);
+      const result = await getCategoryHistory(categoryId, year, userId);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year query');

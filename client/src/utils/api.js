@@ -68,6 +68,15 @@ const qureyString = params => {
 };
 
 export default {
+  fetchUser: () => {
+    return requestGet(`${API_END_POINT}/auth/user`);
+  },
+  fetchCreateUser: name => {
+    return requestPost(`${API_END_POINT}/auth/name`, { name });
+  },
+  fetchLogout: () => {
+    return requestDelete(`${API_END_POINT}/auth`);
+  },
   fetchMonthHistories: (year, month) => {
     return requestGet(
       `${API_END_POINT}/histories?${qureyString({ year, month })}`,

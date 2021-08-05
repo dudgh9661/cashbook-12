@@ -33,4 +33,5 @@ const User = sequelize.define(
 User.associate = models => {
   User.belongsToMany(models.Payment, { through: 'user_to_payment' });
 };
+
 export default User;
