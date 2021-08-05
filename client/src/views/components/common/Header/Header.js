@@ -3,6 +3,7 @@ import { User, DateInfo, History, HistoryReport } from '@store';
 import $ from '@utils/dom';
 import { chevronLeft, chevronRight } from '@assets/icons';
 import Icon from '../Icon/Icon';
+import Logo from '../Logo/Logo';
 import Tab from '../Tab/Tab';
 import './Header.scss';
 
@@ -39,11 +40,7 @@ class Header extends Component {
     return $(
       'header',
       { class: 'header' },
-      $(
-        'div',
-        { class: 'header__logo' },
-        `${name ? `${name}님의\n` : ''}우아한 가계부`,
-      ),
+      new Logo({ className: 'header__logo', name }),
       $(
         'nav',
         { class: 'header__nav' },
