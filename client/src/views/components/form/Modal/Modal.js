@@ -15,6 +15,7 @@ class Modal extends Component {
       headerText = '',
       cancelText = '취소',
       confirmText = '확인',
+      hasFooter = true,
       children = [],
     } = this.props;
 
@@ -26,12 +27,18 @@ class Modal extends Component {
         { class: 'modal-content' },
         $('div', { class: 'modal-content__header' }, headerText),
         $('div', { class: 'modal-content__body' }, ...children),
-        $(
-          'div',
-          { class: 'modal-content__footer' },
-          $('button', { type: 'button', class: 'cancel-btn' }, cancelText),
-          $('button', { type: 'button', class: 'confirm-btn' }, confirmText),
-        ),
+        hasFooter
+          ? $(
+              'div',
+              { class: 'modal-content__footer' },
+              $('button', { type: 'button', class: 'cancel-btn' }, cancelText),
+              $(
+                'button',
+                { type: 'button', class: 'confirm-btn' },
+                confirmText,
+              ),
+            )
+          : '',
       ),
     );
   }

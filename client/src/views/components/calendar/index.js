@@ -1,15 +1,11 @@
 import Component from '@lib/Component';
-import router from '@lib/Router';
 import { DateInfo, History } from '@store';
 import $ from '@utils/dom';
+import route from '@utils/route';
 import CalendarHeader from './Header/Header';
 import CalendarBody from './Body/Body';
 import CalendarFooter from './Footer/Footer';
 import Modal from '../form/Modal/Modal';
-
-const onConfirmHandler = () => {
-  router.push('/calendar');
-};
 
 class Calendar extends Component {
   constructor() {
@@ -46,7 +42,7 @@ class Calendar extends Component {
             cancelText: '닫기',
             confirmText: '새로고침',
             toggleModal: this.toggleModal.bind(this),
-            onConfirmHandler,
+            onConfirmHandler: route.goCalendarPage,
           })
         : '',
     );

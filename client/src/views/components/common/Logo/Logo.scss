@@ -1,0 +1,12 @@
+.logo {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: var(--font-display-small);
+  color: var(--color-off-white);
+
+  span:first-child {
+    font: var(--font-display-x-small);
+    margin-bottom: 5px;
+  }
+}

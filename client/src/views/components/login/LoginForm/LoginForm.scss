@@ -1,0 +1,78 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 100%;
+      padding: 10px 10px 10px 15px;
+      border: 2px solid var(--color-line);
+      border-radius: 15px;
+      font: var(--font-body-regular);
+      margin-bottom: 15px;
+
+      &:focus {
+        outline: none;
+        border: 2px solid var(--color-grey2);
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 10px;
+      background-color: var(--color-primary);
+      border-radius: 12px;
+      color: var(--color-off-white);
+      font: var(--font-bold-large);
+
+      &:hover {
+        background-color: var(--color-primary-dark);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+      }
+    }
+  }
+
+  &__div {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font: var(--font-display-x-small);
+      padding: 0 10px;
+    }
+  }
+
+  &__github {
+    button {
+      width: 100%;
+      padding: 12px 10px;
+      background-color: var(--color-github);
+      border-radius: 12px;
+      color: var(--color-off-white);
+      font: var(--font-bold-large);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        margin-right: 7px;
+      }
+
+      &:hover {
+        background-color: var(--color-github-hover);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 3px var(--color-grey2);
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from '../config';
-import User from '../models/user';
+import { User } from '../models';
 
 const GITHUB_REQUEST_ACCESS_TOKEN_URL =
   'https://github.com/login/oauth/access_token';
@@ -40,5 +40,13 @@ export const getGithubUserInfo = async accessToken => {
     });
   }
 
+  return user.toJSON();
+};
+
+export const createUser = async name => {
+  let user = await User.findOne({ where: { name } });
+  if (!user) {
+    user = await User.create({ name });
+  }
   return user.toJSON();
 };
