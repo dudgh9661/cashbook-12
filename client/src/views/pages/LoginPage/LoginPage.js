@@ -29,9 +29,8 @@ class LoginPage extends Component {
           ),
         ],
       }),
-
       new Modal({
-        visible: false,
+        visible: true,
         hasFooter: false,
         children: [new LoginForm()],
       }),

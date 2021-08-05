@@ -1,7 +1,6 @@
 export { default as Layout } from './common/Layout/Layout';
 export { default as Header } from './common/Header/Header';
 export { default as Tag } from './common/Tag/Tag';
-export { default as LoginModal } from './common/LoginModal/LoginModal';
 
 export { default as Form } from './form/Form';
 export { default as Dropdown } from './form/Dropdown/Dropdown';
@@ -19,4 +18,5 @@ export { default as HistoryList } from './history/HistoryList/HistoryList';
 
 export { default as Calendar } from './calendar';
 
+export { default as LoginForm } from './login/LoginForm/LoginForm';
 export { default as Welcome } from './login/Welcome/Welcome';
