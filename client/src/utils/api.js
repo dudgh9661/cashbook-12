@@ -86,7 +86,6 @@ export default {
     );
   },
   updateHistory: (id, body) => {
-    console.log(id, body);
     return requestPut(`${API_END_POINT}/histories/${id}`, body);
   },
   fetchHistory: (year, month) => {
