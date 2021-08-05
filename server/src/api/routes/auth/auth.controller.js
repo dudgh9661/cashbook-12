@@ -31,6 +31,7 @@ export const handleGithubCallback = async (req, res, next) => {
 
     res.redirect('/user');
   } catch (err) {
+    res.redirect('/login');
     Logger.error(err);
     next(err);
   }

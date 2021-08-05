@@ -1,3 +1,4 @@
+@import '@styles/_responsive.scss';
 @import '@styles/_animation.scss';
 
 @include keyframe(fadeinfromtop) {
@@ -21,5 +22,17 @@
 
   &.fade {
     @include animation(fadeinfromtop, 1.5s);
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .wrapper {
+    padding: 40px;
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .wrapper {
+    padding: 25px;
   }
 }

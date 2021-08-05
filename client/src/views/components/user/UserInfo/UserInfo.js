@@ -25,17 +25,25 @@ class UserInfo extends Component {
           'div',
           { class: 'user-info' },
           $(
-            'h1',
-            { class: 'user-info__msg' },
-            $('span', {}, `${name || 'Woowahan'}님,`),
-            $('span', {}, '안녕하세요!'),
+            'div',
+            { class: 'user-info__account' },
+            $(
+              'h1',
+              { class: 'user-info__msg' },
+              $('span', {}, `${name || 'Woowahan'}님,`),
+              $('span', {}, '안녕하세요!'),
+            ),
+            $(
+              'button',
+              { type: 'button', class: 'user-info__logout logout-btn' },
+              '로그아웃하기',
+            ),
           ),
           $(
-            'button',
-            { type: 'button', class: 'user-info__logout logout-btn' },
-            '로그아웃하기',
+            'div',
+            { class: 'user-info__img' },
+            $('img', { src: welcomeImg, alt: 'welcome' }),
           ),
-          $('img', { src: welcomeImg, alt: 'welcome' }),
         ),
       ],
     }).getElement();
