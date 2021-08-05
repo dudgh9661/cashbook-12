@@ -46,6 +46,9 @@ const onClickPaymentItem = e => {
 };
 
 const onClickButton = async () => {
+  if (!FormStore.state.isValid) {
+    return;
+  }
   const amount = +FormStore.state.amount.replaceAll(',', '');
   const body = {
     date: FormStore.state.date,
@@ -67,10 +70,11 @@ const editButtonActive = () => {
   }
   if (FormStore.state.isValid) {
     $btn.classList.add('form__edit-btn--active');
-    $btn.disabled = false;
+    $btn.classList.add('form__btn--active');
+    $btn.removeAttribute('disabled');
   } else {
     $btn.classList.remove('form__edit-btn--active');
-    $btn.disabled = true;
+    $btn.setAttribute('disabled', 'true');
   }
 };
 
@@ -81,10 +85,10 @@ const postButttonActive = () => {
   }
   if (FormStore.state.isValid) {
     $btn.classList.add('form__btn--active');
-    $btn.disabled = false;
+    $btn.removeAttribute('disabled');
   } else {
     $btn.classList.remove('form__btn--active');
-    $btn.disabled = true;
+    $btn.setAttribute('disabled', 'true');
   }
 };
 
@@ -224,6 +228,10 @@ class Form extends Component {
     const $btn = document.createElement('button');
     $btn.type = 'button';
     $btn.classList.add('form__btn');
+    console.log(FormStore.state.isValid);
+    if (!FormStore.state.isValid) {
+      $btn.setAttribute('disabled', 'true');
+    }
     $btn.innerHTML = check();
     $btnWrapper.append($btn);
 
@@ -325,6 +333,7 @@ class Form extends Component {
               {
                 class: 'form__edit-btn--edit',
                 type: 'button',
+                disabled: true,
               },
               '수정',
             ),
