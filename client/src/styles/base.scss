@@ -36,6 +36,9 @@ button {
   margin: 0;
   padding: 0;
   display: inline-block;
+  &:disabled {
+    cursor: default;
+  }
 }
 
 a {
