@@ -92,9 +92,20 @@ class History extends Observable {
       console.log(e);
     }
   }
+
+  async setCategories() {
+    try {
+      const categories = await api.getCategories();
+
+      this.state.categories = categories;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 const initialState = {
+  categories: [],
   historyArr: [],
   history: {},
   total: {

@@ -110,6 +110,23 @@ const onClickIncome = () => {
   FormStore.setIsIncome(true);
 };
 
+const onClickEditCancel = () => {
+  FormStore.resetState();
+};
+
+const onClickEdit = () => {
+  const flag = FormStore.state.type === 'income' ? 1 : -1;
+  History.updateHistory(FormStore.state.id, {
+    date: FormStore.state.date,
+    content: FormStore.state.content,
+    amount: +FormStore.state.amount.replaceAll(',', '') * flag,
+    categoryId: FormStore.state.categoryId,
+    paymentId: FormStore.state.paymentId,
+    userId: 1 || (User.state.user && User.state.user.id),
+  });
+  FormStore.resetState();
+};
+
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -148,8 +165,10 @@ class Form extends Component {
     FormStore.observe('isValid', sendButttonActive);
     FormStore.observe('categoryName', this.reRender.bind(this));
     FormStore.observe('paymentName', this.reRender.bind(this));
-    FormStore.observe('type', this.reRender.bind(this));
+    FormStore.observe('isIncome', this.reRender.bind(this));
+    FormStore.observe('showMobileForm', this.reRender.bind(this));
 
+    History.observe('categories', this.reRender.bind(this));
     Payment.observe('payments', this.reRender.bind(this));
   }
 
@@ -158,6 +177,10 @@ class Form extends Component {
     this.state.isValid = FormStore.isValid;
     const $form = document.createElement('form');
     $form.classList.add('form');
+    if (FormStore.state.showMobileForm) {
+      $form.classList.add('form--mobile-show');
+    }
+    console.log(FormStore.state.showMobileForm, $form.classList);
     if (custom) {
       $form.classList.add(custom);
     }
@@ -172,6 +195,16 @@ class Form extends Component {
     const $modalInput = document.createElement('input');
     $modalInput.className = 'modal-input';
     $modalInput.placeholder = '입력하세요.';
+
+    const categories = History.state.categories
+      .filter(c =>
+        FormStore.state.isIncome ? c.type === 'income' : c.type !== 'income',
+      )
+      .map(category => ({
+        content: category.name,
+        name: category.name,
+        id: category.id,
+      }));
 
     $form.append(
       $(
@@ -208,11 +241,7 @@ class Form extends Component {
         id: 'category',
         selectedItem: FormStore.state.categoryName,
         label: '분류',
-        listItems: this.props.categories.map(category => ({
-          content: category.name,
-          name: category.name,
-          id: category.id,
-        })),
+        listItems: categories,
       }).getElement(),
       new Input({
         id: 'input-content',
@@ -222,7 +251,13 @@ class Form extends Component {
       }).getElement(),
 
       FormStore.state.isIncome
-        ? new Dropdown({
+        ? new Input({
+            id: 'input-source',
+            label: '수입처',
+            value: '현금',
+            readonly: true,
+          }).getElement()
+        : new Dropdown({
             id: 'payment',
             selectedItem: FormStore.state.paymentName,
             label: '결제수단',
@@ -234,12 +269,8 @@ class Form extends Component {
               })),
               { name: 'add-payment', id: 'add', content: '추가하기' },
             ],
-          }).getElement()
-        : new Input({
-            id: 'input-amount',
-            label: '수입처',
-            value: '현금',
           }).getElement(),
+
       new Input({
         id: 'input-amount',
         label: '금액',
@@ -250,7 +281,29 @@ class Form extends Component {
         value: FormStore.state.amount,
       }).getElement(),
 
-      $btnWrapper,
+      FormStore.state.id !== null
+        ? $(
+            'div',
+            { class: 'form__edit-btn' },
+            $(
+              'button',
+              {
+                class: 'form__edit-btn--edit',
+                type: 'button',
+              },
+              '수정',
+            ),
+            $(
+              'button',
+              {
+                class: 'form__edit-btn--cancel',
+                type: 'button',
+              },
+              '취소',
+            ),
+          )
+        : $btnWrapper,
+
       new Modal({
         visible: this.state.openModal,
         headerText: '추가하실 결제수단을 적어주세요.',
@@ -282,10 +335,18 @@ class Form extends Component {
       onClickExpenditure,
     );
     this.addEvent('click', '.form__toggle-btn--income', onClickIncome);
+    this.addEvent(
+      'click',
+      '.form__toggle-btn--expenditure',
+      onClickExpenditure,
+    );
+    this.addEvent('click', '.form__edit-btn--edit', onClickEdit);
+    this.addEvent('click', '.form__edit-btn--cancel', onClickEditCancel);
   }
 
   didMount() {
     Payment.setPayments();
+    History.setCategories();
   }
 }
 

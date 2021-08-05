@@ -25,17 +25,39 @@
       flex: 1 1 90px;
     }
     &:nth-child(4) {
-      flex: 1 1 180px;
+      flex: 1 1 130px;
     }
     &:nth-child(5) {
       flex: 1 1 90px;
     }
     &:nth-child(6) {
       border-right: 0;
-      flex: 1 1 150px;
+      flex: 1 1 80px;
     }
     &:nth-child(7) {
       border-right: 0;
+    }
+  }
+  &__edit-btn {
+    height: 100%;
+    display: flex;
+    button {
+      &:nth-child(1) {
+        border: 2px solid var(--color-grey2);
+        background-color: var(--color-grey2);
+        color: var(--color-off-white);
+        opacity: 0.7;
+
+        .active {
+        }
+      }
+      padding: 8px;
+      border-radius: 5px;
+      margin: 2px;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      background: var(--color-off-white);
+      width: 50px;
     }
   }
   &__toggle-btn {
@@ -178,7 +200,7 @@
 
 @media (max-width: 950px) {
   .form {
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     padding: 16px 32px;
@@ -190,30 +212,42 @@
     color: var(--color-title-active);
     margin: 0 auto;
     flex-wrap: wrap;
+    &--mobile-show {
+      display: flex;
+    }
     > * {
-      padding: 0 24px;
-      border-right: 1px solid var(--color-placeholder);
+      padding: 10px 24px;
+      margin-top: 10px;
+      border-right: 0;
+      border-bottom: 1px solid var(--color-placeholder);
       &:nth-child(1) {
-        flex: 1 1 33%;
+        order: 1;
+        flex: 1 1 100%;
+        border-bottom: 0;
+        padding: 0;
       }
       &:nth-child(2) {
-        flex: 1 1 33%;
+        order: 2;
+        flex: 1 1 100%;
       }
       &:nth-child(3) {
-        flex: 1 1 33%;
-        border-right: 0;
+        order: 3;
+        flex: 1 1 100%;
       }
       &:nth-child(4) {
-        padding-left: 0;
-        flex: 1 1 33%;
+        order: 4;
+        flex: 1 1 100%;
       }
       &:nth-child(5) {
-        flex: 1 1 33%;
+        order: 5;
+        flex: 1 1 100%;
       }
       &:nth-child(6) {
-        flex: 1 1 33%;
-        border-right: 0;
-        padding: 0;
+        order: 6;
+      }
+      &:nth-child(7) {
+        order: 7;
+        border-bottom: 0;
         button {
           width: 30px;
           height: 30px;

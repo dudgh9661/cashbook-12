@@ -21,7 +21,7 @@ const requestPost = async (url, body) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body);
+      body: JSON.stringify(body),
     });
     if (res.ok) {
       return await res.json();
@@ -39,7 +39,7 @@ const requestPut = async (url, body) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body);
+      body: JSON.stringify(body),
     });
     if (res.ok) {
       return await res.json();
@@ -68,29 +68,32 @@ const qureyString = params => {
 };
 
 export default {
-  fetchMonthHistories: (year, month) =>{
-    return requestGet(`${API_END_POINT}/histories?${qureyString({ year, month })}`);
-  },    
+  fetchMonthHistories: (year, month) => {
+    return requestGet(
+      `${API_END_POINT}/histories?${qureyString({ year, month })}`,
+    );
+  },
   fetchMonthExpensesReport: (year, month) => {
     return requestGet(
-      `${API_END_POINT}/histories/category/all?year=${year}&month=${month}`
+      `${API_END_POINT}/histories/category/all?year=${year}&month=${month}`,
     );
   },
   fetchCategoryExpensesReport: (categoryId, year) => {
     return requestGet(
-      `${API_END_POINT}/histories/category/${categoryId}?year=${year}`
+      `${API_END_POINT}/histories/category/${categoryId}?year=${year}`,
     );
   },
   postHistory: body => {
     return requestPost(`${API_END_POINT}/histories`, body);
   },
   updateHistory: (id, body) => {
+    console.log(id, body);
     return requestPut(`${API_END_POINT}/histories/${id}`, body);
   },
   deleteHistory: id => {
     return requestDelete(`${API_END_POINT}/histories/${id}`);
   },
-  postPayment: body =>  {
+  postPayment: body => {
     return requestPost(`${API_END_POINT}/payments`, body);
   },
   fetchPayments: () => {
@@ -104,5 +107,5 @@ export default {
   },
   getCategories: () => {
     return requestGet(`${API_END_POINT}/categories`);
-  }
+  },
 };

@@ -11,3 +11,5 @@ export { default as pencil } from './pencil';
 export { default as trashBin } from './trash-bin';
 export { default as github } from './github';
 export { default as plus } from './plus';
+export { default as menu } from './menu';
+export { default as add } from './add';
