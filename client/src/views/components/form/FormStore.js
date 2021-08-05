@@ -3,13 +3,13 @@ import Observable from '@lib/Observable';
 const initState = () => ({
   content: '',
   amount: '',
+  date: '',
   categoryId: '',
   categoryName: '',
   paymentId: '',
   paymentName: '',
-  date: '',
   isValid: false,
-  id: '',
+  id: null,
 });
 
 class FormStore extends Observable {
