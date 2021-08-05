@@ -24,6 +24,10 @@ const Category = sequelize.define(
       allowNull: false,
       unique: true,
     },
+    type: {
+      type: DataTypes.ENUM('income', 'expenditure'),
+      allowNull: false,
+    },
   },
   {
     tableName: 'category',

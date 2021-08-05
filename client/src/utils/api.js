@@ -80,4 +80,5 @@ export default {
   fetchUser: () => {
     return requestGet(`${API_END_POINT}/auth/user`);
   },
+  getCategories: () => requestGet(`${API_END_POINT}/categories`),
 };
