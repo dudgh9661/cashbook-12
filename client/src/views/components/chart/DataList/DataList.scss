@@ -1,12 +1,34 @@
 @import '@styles/_responsive.scss';
+@import '@styles/_animation.scss';
+
+@include keyframe(slidein) {
+  from {
+    margin-left: -50%;
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+    opacity: 1;
+  }
+}
 
 .data-list {
+  overflow: hidden;
+
   &__item {
     padding: 16px;
     border-bottom: 1px solid var(--color-line);
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}n) {
+        @include animation(slidein, #{$i * 0.3}s);
+      }
+    }
 
     &--left {
       .tag {
@@ -59,22 +81,23 @@
 @media (max-width: #{$breakpoint-mobile}) {
   .data-list {
     &__item {
-      padding: 10px 5px;
+      padding: 8px 5px;
 
       &--left {
         .tag {
-          width: 80px;
-          height: 25px;
+          width: 70px;
+          height: 23px;
+          font: var(--font-body-x-small);
         }
 
         .pct {
-          display: none;
+          font: var(--font-body-small);
         }
       }
 
       &--right {
         .value {
-          font: var(--font-body-medium);
+          font: var(--font-body-regular);
         }
       }
     }
