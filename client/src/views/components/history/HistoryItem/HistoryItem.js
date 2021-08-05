@@ -34,6 +34,7 @@ class HistoryItem extends Component {
       h => +h.id === +id,
     );
 
+    FormStore.setId(id);
     FormStore.setContent(content);
     FormStore.setAmount(amount);
     FormStore.setDate(formDateFormat(timestamp));

@@ -82,7 +82,8 @@ export const handleUpdateHistory = async (req, res, next) => {
     const { id } = req.params;
     const result = await updateHistory(id, req.body);
     if (result) {
-      res.status(200).json('history update success');
+      const updatedHistory = await getHistory(id);
+      res.status(200).json(updatedHistory);
     } else {
       res.status(400).json('history update failed');
     }

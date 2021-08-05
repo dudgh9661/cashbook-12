@@ -32,6 +32,23 @@ const requestPost = async (url, data) => {
   }
 };
 
+const requestPut = async (url, body) => {
+  try {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+    throw new Error(res);
+  } catch (err) {
+    throw new Error(err);
+  }
+};
 const requestDelete = async url => {
   try {
     const res = await fetch(url, { method: 'DELETE' });

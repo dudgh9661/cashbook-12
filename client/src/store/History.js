@@ -111,6 +111,22 @@ class History extends Observable {
       console.log(e);
     }
   }
+
+  async updateHistory(id, body) {
+    try {
+      const updatedHistory = await api.updateHistory(id, body);
+
+      const idx = this.state.historyArr.findIndex(
+        h => h.id === updatedHistory.id,
+      );
+      this.state.historyArr.splice(idx, 1, updatedHistory);
+      this.state.historyArr = this.state.historyArr.map(
+        makeObjectKeysLowerCase,
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 const initialState = {
