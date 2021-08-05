@@ -4,12 +4,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 16px 32px;
+  padding: 16px 16px;
   background: var(--color-off-white);
   border: 1px solid var(--color-placeholder);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  width: 904px;
   height: 76px;
   color: var(--color-title-active);
   margin: 0 auto;
@@ -17,30 +16,52 @@
     padding: 0 24px;
     border-right: 1px solid var(--color-placeholder);
     &:nth-child(1) {
-      padding-left: 0;
-      flex: 1 1 104px;
+      flex: 1 1 60px;
     }
     &:nth-child(2) {
-      flex: 1 1 148px;
+      flex: 1 1 94px;
     }
     &:nth-child(3) {
-      flex: 1 1 220px;
+      flex: 1 1 90px;
     }
     &:nth-child(4) {
-      flex: 1 1 148px;
+      flex: 1 1 180px;
     }
     &:nth-child(5) {
+      flex: 1 1 90px;
+    }
+    &:nth-child(6) {
       border-right: 0;
-      flex: 1 1 170px;
+      flex: 1 1 150px;
+    }
+    &:nth-child(7) {
+      border-right: 0;
     }
   }
+  &__toggle-btn {
+    height: 100%;
+    display: flex;
+    button {
+      padding: 8px;
+      border-radius: 5px;
+      margin: 2px;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      background: var(--color-off-white);
+      width: 50px;
 
+      &.active {
+        background-color: var(--color-primary);
+        color: var(--color-off-white);
+      }
+    }
+  }
   &__btn {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
-    flex: 0 0 40px;
+    width: 40px;
     height: 40px;
     border-radius: 10px;
     background: var(--color-off-white);
@@ -153,4 +174,52 @@
   border: 1px solid var(--color-line);
   border-radius: 10px;
   outline: none;
+}
+
+@media (max-width: 950px) {
+  .form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 32px;
+    background: var(--color-off-white);
+    border: 1px solid var(--color-placeholder);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: auto;
+    color: var(--color-title-active);
+    margin: 0 auto;
+    flex-wrap: wrap;
+    > * {
+      padding: 0 24px;
+      border-right: 1px solid var(--color-placeholder);
+      &:nth-child(1) {
+        flex: 1 1 33%;
+      }
+      &:nth-child(2) {
+        flex: 1 1 33%;
+      }
+      &:nth-child(3) {
+        flex: 1 1 33%;
+        border-right: 0;
+      }
+      &:nth-child(4) {
+        padding-left: 0;
+        flex: 1 1 33%;
+      }
+      &:nth-child(5) {
+        flex: 1 1 33%;
+      }
+      &:nth-child(6) {
+        flex: 1 1 33%;
+        border-right: 0;
+        padding: 0;
+        button {
+          width: 30px;
+          height: 30px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
 }

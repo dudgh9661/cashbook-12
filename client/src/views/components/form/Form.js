@@ -1,7 +1,8 @@
 import Component from '@lib/Component';
 import { Dropdown, Input, Modal } from '@components';
-import { minus, check, cancel } from '@assets/icons';
+import { plus, minus, check, cancel } from '@assets/icons';
 import { moneyWithComma } from '@utils';
+import $ from '@utils/dom';
 import History from '@store/History';
 import Payment from '@store/Payment';
 import User from '@store/User';
@@ -45,11 +46,11 @@ const onClickPaymentItem = e => {
 };
 
 const onClickButton = async () => {
+  const flag = FormStore.state.type === 'income' ? 1 : -1;
   const body = {
     date: FormStore.state.date,
     content: FormStore.state.content,
-    // todo 수입, 지출 구분
-    amount: +FormStore.state.amount.replaceAll(',', '') * -1,
+    amount: +FormStore.state.amount.replaceAll(',', '') * flag,
     categoryId: FormStore.state.categoryId,
     paymentId: FormStore.state.paymentId,
     userId: User.state.user && User.state.user.id,
@@ -63,7 +64,7 @@ const onClickButton = async () => {
   FormStore.resetState();
 };
 
-const toggleButttonActive = () => {
+const sendButttonActive = () => {
   const $btn = document.querySelector('.form__btn');
   if (!$btn) {
     return;
@@ -84,6 +85,30 @@ const paymentsDropdownListItem = (id, name) =>
       ${cancel}
     </button>
   </span>`;
+
+const onClickExpenditure = () => {
+  const $expenditureBtn = document.querySelector(
+    '.form__toggle-btn--expenditure',
+  );
+  const $incomeBtn = document.querySelector('.form__toggle-btn--income');
+
+  $expenditureBtn.classList.add('active');
+  $incomeBtn.classList.remove('active');
+
+  FormStore.setIsIncome(false);
+};
+
+const onClickIncome = () => {
+  const $expenditureBtn = document.querySelector(
+    '.form__toggle-btn--expenditure',
+  );
+  const $incomeBtn = document.querySelector('.form__toggle-btn--income');
+
+  $expenditureBtn.classList.remove('active');
+  $incomeBtn.classList.add('active');
+
+  FormStore.setIsIncome(true);
+};
 
 class Form extends Component {
   constructor(props) {
@@ -120,9 +145,10 @@ class Form extends Component {
   }
 
   setObserver() {
-    FormStore.observe('isValid', toggleButttonActive);
+    FormStore.observe('isValid', sendButttonActive);
     FormStore.observe('categoryName', this.reRender.bind(this));
     FormStore.observe('paymentName', this.reRender.bind(this));
+    FormStore.observe('type', this.reRender.bind(this));
 
     Payment.observe('payments', this.reRender.bind(this));
   }
@@ -136,16 +162,42 @@ class Form extends Component {
       $form.classList.add(custom);
     }
 
+    const $btnWrapper = document.createElement('div');
     const $btn = document.createElement('button');
     $btn.type = 'button';
     $btn.classList.add('form__btn');
     $btn.innerHTML = check();
+    $btnWrapper.append($btn);
 
     const $modalInput = document.createElement('input');
     $modalInput.className = 'modal-input';
     $modalInput.placeholder = '입력하세요.';
 
     $form.append(
+      $(
+        'div',
+        { class: 'form__toggle-btn' },
+        $(
+          'button',
+          {
+            class: `form__toggle-btn--income ${
+              FormStore.state.isIncome ? 'active' : ''
+            }`,
+            type: 'button',
+          },
+          '수입',
+        ),
+        $(
+          'button',
+          {
+            class: `form__toggle-btn--expenditure ${
+              FormStore.state.isIncome ? '' : 'active'
+            } `,
+            type: 'button',
+          },
+          '지출',
+        ),
+      ),
       new Input({
         id: 'input-date',
         label: '일자',
@@ -168,29 +220,37 @@ class Form extends Component {
         placeholder: '입력하세요',
         value: FormStore.state.content,
       }).getElement(),
-      new Dropdown({
-        id: 'payment',
-        selectedItem: FormStore.state.paymentName,
-        label: '결제수단',
-        listItems: [
-          ...Payment.state.payments.map(payment => ({
-            content: paymentsDropdownListItem(payment.id, payment.name),
-            name: payment.name,
-            id: payment.id,
-          })),
-          { name: 'add-payment', id: 'add', content: '추가하기' },
-        ],
-      }).getElement(),
+
+      FormStore.state.isIncome
+        ? new Dropdown({
+            id: 'payment',
+            selectedItem: FormStore.state.paymentName,
+            label: '결제수단',
+            listItems: [
+              ...Payment.state.payments.map(payment => ({
+                content: paymentsDropdownListItem(payment.id, payment.name),
+                name: payment.name,
+                id: payment.id,
+              })),
+              { name: 'add-payment', id: 'add', content: '추가하기' },
+            ],
+          }).getElement()
+        : new Input({
+            id: 'input-amount',
+            label: '수입처',
+            value: '현금',
+          }).getElement(),
       new Input({
         id: 'input-amount',
         label: '금액',
-        prefix: minus,
+        prefix: FormStore.state.isIncome ? plus : minus,
         suffix: '원',
         placeholder: '입력하세요',
         customClass: 'input-amount',
         value: FormStore.state.amount,
       }).getElement(),
-      $btn,
+
+      $btnWrapper,
       new Modal({
         visible: this.state.openModal,
         headerText: '추가하실 결제수단을 적어주세요.',
@@ -216,6 +276,12 @@ class Form extends Component {
       this.onClickAddpayment.bind(this),
     );
     this.addEvent('click', '.form__btn', onClickButton);
+    this.addEvent(
+      'click',
+      '.form__toggle-btn--expenditure',
+      onClickExpenditure,
+    );
+    this.addEvent('click', '.form__toggle-btn--income', onClickIncome);
   }
 
   didMount() {
