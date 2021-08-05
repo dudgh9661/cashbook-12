@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database';
+import sequelize from '../config/sequelize';
 
 const Payment = sequelize.define(
   'Payment',
@@ -18,7 +18,12 @@ const Payment = sequelize.define(
   {
     tableName: 'payment',
     underscored: true,
+    timestamps: false,
   },
 );
+
+Payment.associate = models => {
+  Payment.belongsToMany(models.User, { through: 'user_to_payment' });
+};
 
 export default Payment;

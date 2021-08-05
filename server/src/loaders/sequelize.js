@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import sequelize from '../config/database';
+import sequelize from '../config/sequelize';
 import { User, Category, Payment, History } from '../models';
 
 export default async () => {
@@ -11,6 +11,9 @@ export default async () => {
     Payment,
     History,
   };
+
+  User.associate(db);
+  Payment.associate(db);
 
   await db.sequelize.sync();
 };

@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { moneyWithComma } from '@utils';
-import Tag from '../../common/Tag/Tag';
+import $ from '@utils/dom';
 import './DataList.scss';
 
 class DataList extends Component {
@@ -11,29 +11,45 @@ class DataList extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { className = '' } = this.props;
+    return $('ul', { class: `data-list ${className}` }, ...this.renderItem());
+  }
 
-    const $dataList = document.createElement('ul');
-    $dataList.className = 'data-list';
+  renderItem() {
+    const { data, total } = this.props;
 
-    data.forEach(({ label, value, color }) => {
-      const $item = document.createElement('li');
-      $item.className = 'data-list__item';
-
-      $item.innerHTML = `
-        <div class="data-list__item--left">
-          <span class="tag">${Tag(label, color)}</span>
-          <span class="pct">${Math.round((value / 834640) * 100)}%</span>
-        </div>
-        <div class="data-list__item--right">
-          <span class="value">${moneyWithComma(value)}</span>
-        </div>
-      `;
-
-      $dataList.appendChild($item);
+    return data.map(({ id, label, value, color }) => {
+      return $(
+        'li',
+        {
+          class: 'data-list__item',
+          'data-item-id': id,
+          'data-item-name': label,
+        },
+        $(
+          'div',
+          { class: 'data-list__item--left' },
+          $('span', { class: 'tag', style: `background: ${color}` }, label),
+          $('span', { class: 'pct' }, `${Math.round((value / total) * 100)}%`),
+        ),
+        $(
+          'div',
+          { class: 'data-list__item--right' },
+          $('span', { class: 'value' }, moneyWithComma(value)),
+        ),
+      );
     });
+  }
 
-    return $dataList;
+  setEvent() {
+    const { handleClickItem } = this.props;
+    if (!handleClickItem) return;
+
+    this.addEvent('click', '.data-list__item', e => {
+      const id = e.target.dataset.itemId;
+      const name = e.target.dataset.itemName;
+      if (id) handleClickItem({ id, name });
+    });
   }
 }
 

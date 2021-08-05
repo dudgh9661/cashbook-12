@@ -1,6 +1,8 @@
 import Component from '@lib/Component';
+import { HistoryReport } from '@store';
+import $ from '@utils/dom';
 import Linear from '../Linear/Linear';
-import ChartWrapper from '../Wrapper/Wrapper';
+import Wrapper from '../../common/Wrapper/Wrapper';
 import './YearChart.scss';
 
 class YearChart extends Component {
@@ -10,22 +12,29 @@ class YearChart extends Component {
     this.init();
   }
 
+  setObserver() {
+    HistoryReport.observe('curCategoryReport', this.reRender.bind(this));
+  }
+
   render() {
-    const $yearChart = document.createElement('div');
-    $yearChart.className = 'year-chart';
+    if (!HistoryReport.state.curCategoryReport) return $('div');
 
-    const $chartTitle = document.createElement('h1');
-    $chartTitle.className = 'year-chart__title';
-    $chartTitle.innerText = '생활 카테고리 소비 추이';
+    const { categoryName, data } = HistoryReport.state.curCategoryReport;
 
-    const $chartContent = document.createElement('div');
-    $chartContent.className = 'year-chart__content';
-    $chartContent.appendChild(new Linear().getElement());
+    const $chartContent = $(
+      'div',
+      { class: 'year-chart' },
+      $(
+        'h1',
+        { class: 'year-chart__title' },
+        `${categoryName} 카테고리 소비 추이`,
+      ),
+      $('div', { class: 'year-chart__content' }, new Linear({ data })),
+    );
 
-    $yearChart.append($chartTitle, $chartContent);
-
-    return new ChartWrapper({
-      content: $yearChart,
+    return new Wrapper({
+      className: 'fade',
+      children: [$chartContent],
     }).getElement();
   }
 }

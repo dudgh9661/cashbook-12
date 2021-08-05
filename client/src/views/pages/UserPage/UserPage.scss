@@ -1,0 +1,36 @@
+@import '@styles/_responsive.scss';
+
+.user-page {
+  &__main {
+    display: flex;
+    justify-content: space-around;
+
+    &--left {
+      width: 42%;
+    }
+
+    &--right {
+      width: 55%;
+    }
+  }
+
+  &.blur {
+    filter: blur(3.5px);
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet-landscape}) {
+  .user-page {
+    &__main {
+      flex-direction: column;
+
+      &--left {
+        width: 100%;
+      }
+
+      &--right {
+        width: 100%;
+      }
+    }
+  }
+}

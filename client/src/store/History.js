@@ -1,33 +1,62 @@
 import Observable from '@lib/Observable';
+import api from '@utils/api';
 import DateInfo from './DateInfo';
-import historyData from '../_dummies/history.json';
 
-const getCurrentMonthHistory = () => {
+const getCurrentMonthHistory = async () => {
   const { year, month } = DateInfo.state.current;
-  const dataName = `data-${year}-${month}`;
 
-  return historyData[dataName];
+  try {
+    const data = await api.fetchMonthHistories(year, month);
+    return data.reduce((acc, cur) => {
+      const date = new Date(cur.date).getDate();
+      const amount = parseInt(cur.amount, 10);
+
+      if (!acc[date]) acc[date] = { income: 0, expenses: 0, earning: 0 };
+
+      if (amount > 0) acc[date].income += amount;
+      else acc[date].expenses += amount;
+      acc[date].earning += amount;
+
+      return acc;
+    }, {});
+  } catch (err) {
+    return null;
+  }
 };
 
 class History extends Observable {
-  setCurrentMonthHistory() {
-    this.state.history = getCurrentMonthHistory();
+  init() {
+    this.state.history = {};
+    this.state.total = { income: 0, expenses: 0, earning: 0 };
   }
 
-  setCurrentMonthTotal() {
-    const data = getCurrentMonthHistory();
+  async setCurrentMonthHistory() {
+    this.init();
 
+    const data = await getCurrentMonthHistory();
+    this.state.history = data;
+    this.setHistoryTotal(data);
+  }
+
+  setHistoryTotal(data) {
+    if (!data) return;
+
+    const dataArr = Object.values(data);
     this.state.total = {
-      income: data ? data.reduce((acc, cur) => acc + cur.income, 0) : 0,
-      expenses: data ? data.reduce((acc, cur) => acc + cur.expenses, 0) : 0,
-      earning: data ? data.reduce((acc, cur) => acc + cur.earning, 0) : 0,
+      income: dataArr.reduce((acc, cur) => acc + cur.income, 0),
+      expenses: dataArr.reduce((acc, cur) => acc + -cur.expenses, 0),
+      earning: dataArr.reduce((acc, cur) => acc + cur.earning, 0),
     };
   }
 }
 
 const initialState = {
-  history: [],
-  total: {},
+  history: {},
+  total: {
+    income: 0,
+    expenses: 0,
+    earning: 0,
+  },
 };
 
 export default new History(initialState);

@@ -8,6 +8,7 @@ body {
   height: 100%;
   font: var(--font-body-regular);
   color: var(--color-title-active);
+  background-color: var(--color-background);
 }
 
 #app {
@@ -35,4 +36,8 @@ button {
   margin: 0;
   padding: 0;
   display: inline-block;
+}
+
+a {
+  text-decoration: none;
 }

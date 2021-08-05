@@ -6,12 +6,19 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "dev": "NODE_ENV=development nodemon -r esm src/app.js",
-    "start": "NODE_ENV=production pm2 start src/app.js --node-args='-r esm'"
+    "sequelize": "NODE_ENV=development sequelize $*",
+    "dev": "NODE_ENV=development nodemon src/app.js --exec babel-node",
+    "start": "NODE_ENV=production pm2 start src/app.js --interpreter babel-node"
   },
   "author": "dongqui, Seogeurim",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/node": "^7.14.9",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.9",
+    "@babel/register": "^7.14.5",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "eslint": "^7.31.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -19,13 +26,16 @@
     "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.12",
     "pm2": "^5.1.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "esm": "^3.2.25",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.5",

@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database';
+import sequelize from '../config/sequelize';
 import User from './user';
 import Category from './category';
 import Payment from './payment';
@@ -17,7 +17,7 @@ const History = sequelize.define(
       allowNull: false,
     },
     amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     date: {
@@ -40,6 +40,7 @@ const History = sequelize.define(
   {
     tableName: 'history',
     underscored: true,
+    timestamps: true,
   },
 );
 

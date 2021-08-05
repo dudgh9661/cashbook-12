@@ -1,5 +1,6 @@
 import Component from '@lib/Component';
 import { moneyWithComma } from '@utils';
+import $ from '@utils/dom';
 import './Footer.scss';
 
 class CalendarFooter extends Component {
@@ -12,24 +13,26 @@ class CalendarFooter extends Component {
   render() {
     const { total } = this.props;
 
-    const $calendarFooter = document.createElement('div');
-    $calendarFooter.className = 'calendar-footer';
+    const incomeValue = total.income && moneyWithComma(total.income);
+    const expensesValue = total.expenses && moneyWithComma(total.expenses);
+    const earningValue = total.earning && moneyWithComma(total.earning);
 
-    $calendarFooter.innerHTML = `
-      <div class="calendar-footer__left">
-        <div class="calendar-footer__left--pr">
-          총 수입 <span>${total.income && moneyWithComma(total.income)}</span>
-        </div>
-        <div>총 지출 <span>${
-          total.expenses && moneyWithComma(total.expenses)
-        }</span></div>
-      </div>
-      <div class="calendar-footer__right">
-        총계 <span>${total.earning && moneyWithComma(total.earning)}</span>
-      </div>
-    `;
-
-    return $calendarFooter;
+    return $(
+      'div',
+      { class: 'calendar-footer' },
+      $(
+        'div',
+        { class: 'calendar-footer__left' },
+        $('div', {}, '총수입 ', $('span', {}, incomeValue)),
+        $('div', {}, '총지출 ', $('span', {}, expensesValue)),
+      ),
+      $(
+        'div',
+        { class: 'calendar-footer__right' },
+        '총계 ',
+        $('span', {}, earningValue),
+      ),
+    );
   }
 }
 

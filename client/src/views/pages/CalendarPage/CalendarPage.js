@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { Layout, Calendar } from '@components';
-import './CalendarPage.scss';
+import $ from '@utils/dom';
 
 class CalendarPage extends Component {
   constructor() {
@@ -10,16 +10,11 @@ class CalendarPage extends Component {
   }
 
   render() {
-    const $calendarPage = document.createElement('div');
-    $calendarPage.className = 'calendar-page';
-
-    $calendarPage.appendChild(
-      new Layout({
-        content: new Calendar().getElement(),
-      }).getElement(),
+    return $(
+      'div',
+      { class: 'calendar-page' },
+      new Layout({ children: [new Calendar()] }),
     );
-
-    return $calendarPage;
   }
 }
 

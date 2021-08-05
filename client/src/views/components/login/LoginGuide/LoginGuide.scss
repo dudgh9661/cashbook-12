@@ -1,0 +1,16 @@
+.login-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &__msg {
+    font: var(--font-display-medium);
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  img {
+    width: 45%;
+  }
+}

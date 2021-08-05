@@ -1,0 +1,38 @@
+@import '@styles/_responsive.scss';
+@import '@styles/_animation.scss';
+
+@include keyframe(fadeinfromtop) {
+  from {
+    margin-top: -5%;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  background: var(--color-off-white);
+  border: 1px solid #ccd3d3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 50px;
+  margin-bottom: 15px;
+
+  &.fade {
+    @include animation(fadeinfromtop, 1.5s);
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .wrapper {
+    padding: 40px;
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .wrapper {
+    padding: 25px;
+  }
+}

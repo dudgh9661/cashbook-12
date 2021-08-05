@@ -1,8 +1,17 @@
 @import '@styles/_responsive.scss';
+@import '@styles/_animation.scss';
+
+@include keyframe(fadein) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .calendar-body {
   width: 100%;
-  background-color: var(--color-off-white);
   border: 1px solid #ccd3d3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1),
     0 0 0 1px var(--color-line);
@@ -12,12 +21,35 @@
   margin-bottom: 20px;
   table-layout: fixed;
 
+  &__week {
+    &:first-child td {
+      &:first-child {
+        border-top-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 10px;
+      }
+    }
+
+    &:last-child td {
+      &:first-child {
+        border-bottom-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+
   &__day {
     box-sizing: content-box;
     height: 80px;
     padding: 10px;
     border: 1px solid var(--color-line);
     overflow: hidden;
+    background-color: var(--color-off-white);
 
     &.today {
       background-color: var(--color-background);
@@ -55,6 +87,12 @@ span {
 
   &.minus {
     color: var(--color-error);
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet + 1px}) {
+  .day-content__info {
+    @include animation(fadein, 1.5s);
   }
 }
 
@@ -124,5 +162,39 @@ span {
 @media (min-width: #{$breakpoint-tablet + 1px}) {
   .calendar-body__day .tooltip {
     display: none;
+  }
+}
+
+.calendar-body__day.small {
+  border-left-style: hidden;
+  border-right-style: hidden;
+  height: 30px;
+  position: relative;
+  overflow: visible;
+
+  .day-content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .day-content__info {
+    span {
+      display: none;
+    }
+
+    .circle {
+      display: block;
+      margin-top: 5px;
+      margin-bottom: -12px;
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-grey3);
+      border-radius: 50%;
+    }
+  }
+
+  .day-content__num {
+    text-align: center;
   }
 }

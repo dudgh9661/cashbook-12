@@ -8,8 +8,6 @@
   align-items: center;
 
   &__logo {
-    font: var(--font-display-small);
-    color: var(--color-off-white);
     flex: 1;
   }
 
@@ -37,27 +35,13 @@
   &__tab {
     text-align: right;
     flex: 1;
-
-    svg {
-      margin: 0 7px;
-
-      path {
-        stroke: var(--color-primary-light);
-      }
-    }
-
-    &--active {
-      svg {
-        path {
-          stroke: var(--color-off-white);
-        }
-      }
-    }
   }
 }
 
 @media (max-width: #{$breakpoint-tablet}) {
   .header {
+    width: 90%;
+    margin: 0 auto;
     flex-wrap: wrap;
 
     &__logo {
@@ -84,20 +68,6 @@
     &__tab {
       text-align: right;
       flex: 0 0 122px;
-      svg {
-        margin: 0 7px;
-
-        path {
-          stroke: var(--color-primary-light);
-        }
-      }
-      &--active {
-        svg {
-          path {
-            stroke: var(--color-off-white);
-          }
-        }
-      }
     }
   }
 }

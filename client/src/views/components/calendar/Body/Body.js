@@ -1,6 +1,7 @@
 import Component from '@lib/Component';
 import { debounce } from '@utils/helper';
 import { moneyWithComma } from '@utils';
+import $ from '@utils/dom';
 import Tooltip from '../../common/Tooltip/Tooltip';
 import './Body.scss';
 
@@ -42,60 +43,70 @@ class CalendarBody extends Component {
   }
 
   render() {
-    const { today, current, history } = this.props;
+    return $('table', { class: 'calendar-body' }, ...this.renderCalendar());
+  }
 
+  renderCalendar() {
+    const { today, current, history, isSmall = false } = this.props;
     const hasToday =
       today.year === current.year && today.month === current.month;
 
-    const $calendarBody = document.createElement('table');
-    $calendarBody.className = 'calendar-body';
+    const calendar = [];
 
     let date = -current.firstDay + 1;
     while (date <= current.lastDate) {
-      const $dayRow = document.createElement('tr');
-      $dayRow.className = 'calendar-body__week';
+      const week = [];
 
       for (let day = 0; day < 7; day += 1) {
-        const curHistory = history && history.find(h => h.date === date);
+        const curHistory = history && history[date];
+        week.push(
+          $(
+            'td',
+            {
+              class: `calendar-body__day ${isSmall ? 'small' : ''} ${
+                hasToday && today.date === date ? 'today' : ''
+              } ${!isSmall && curHistory ? 'exist' : ''}`,
+            },
+            this.renderDay(curHistory, date),
+          ),
+        );
 
-        $dayRow.innerHTML += `
-          <td 
-            class="calendar-body__day 
-            ${hasToday && today.date === date ? 'today' : ''} 
-            ${curHistory ? 'exist' : ''}">
-            <div class="day-content">
-              <div class="day-content__info">
-              ${
-                curHistory
-                  ? `<span class="plus">${
-                      curHistory.income === 0
-                        ? ''
-                        : moneyWithComma(curHistory.income)
-                    }</span>
-                    <span class="minus">${
-                      curHistory.expenses === 0
-                        ? ''
-                        : `-${moneyWithComma(curHistory.expenses)}`
-                    }</span>
-                    <span>${moneyWithComma(curHistory.earning)}</span>
-                    <div class="circle"></div>
-                    `
-                  : ''
-              }
-              </div>
-              <div class="day-content__num">
-                ${date > 0 && date <= current.lastDate ? date : ''}
-              </div>
-            </div>
-          </td>
-        `;
         date += 1;
       }
 
-      $calendarBody.appendChild($dayRow);
+      calendar.push($('tr', { class: 'calendar-body__week' }, ...week));
     }
 
-    return $calendarBody;
+    return calendar;
+  }
+
+  renderDay(curHistory, date) {
+    const { current } = this.props;
+
+    let history = [];
+    const dateValue = date > 0 && date <= current.lastDate ? date : '';
+
+    if (curHistory) {
+      const { income, expenses, earning } = curHistory;
+
+      const incomeValue = income === 0 ? '' : moneyWithComma(income);
+      const expensesValue = expenses === 0 ? '' : moneyWithComma(expenses);
+      const earningValue = moneyWithComma(earning);
+
+      history = [
+        $('span', { class: 'plus' }, incomeValue),
+        $('span', { class: 'minus' }, expensesValue),
+        $('span', {}, earningValue),
+        $('div', { class: 'circle' }),
+      ];
+    }
+
+    return $(
+      'div',
+      { class: 'day-content' },
+      $('div', { class: 'day-content__info' }, ...history),
+      $('div', { class: 'day-content__num' }, dateValue),
+    );
   }
 
   setEvent() {

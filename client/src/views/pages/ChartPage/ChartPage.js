@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { Layout, MonthChart, YearChart } from '@components';
-import './ChartPage.scss';
+import $ from '@utils/dom';
 
 class ChartPage extends Component {
   constructor() {
@@ -10,22 +10,13 @@ class ChartPage extends Component {
   }
 
   render() {
-    const $chartPage = document.createElement('div');
-    $chartPage.className = 'main-page';
-
-    const $chartPageFrag = document.createDocumentFragment();
-    $chartPageFrag.append(
-      new MonthChart().getElement(),
-      new YearChart().getElement(),
-    );
-
-    $chartPage.appendChild(
+    return $(
+      'div',
+      { class: 'chart-page' },
       new Layout({
-        content: $chartPageFrag,
-      }).getElement(),
+        children: [new MonthChart(), new YearChart()],
+      }),
     );
-
-    return $chartPage;
   }
 }
 
