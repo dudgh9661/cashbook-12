@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { User } from '@store';
-import { Layout, UserInfo, SmallChart } from '@components';
+import { Layout, UserInfo, SmallChart, SmallCalendar } from '@components';
 import $ from '@utils/dom';
 import './UserPage.scss';
 
@@ -36,6 +36,7 @@ class UserPage extends Component {
               'div',
               { class: 'user-page__main--right' },
               new SmallChart({ isSample: !user }),
+              new SmallCalendar({ isSample: !user }),
             ),
           ),
         ],

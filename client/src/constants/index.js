@@ -29,3 +29,20 @@ export const CHART_SAMPLE_DATA = {
     { id: 7, label: '미분류', color: '#817DCE', value: 10200 },
   ],
 };
+
+export const CALENDAR_SAMPLE_DATA = {
+  total: {
+    income: 1822480,
+    expenses: 798180,
+    earning: 1024300,
+  },
+  history: {
+    2: { income: 0, expenses: -5400, earning: -5400 },
+    4: { income: 0, expenses: -132000, earning: -132000 },
+    7: { income: 0, expenses: -65900, earning: -65900 },
+    9: { income: 1822480, expenses: -9500, earning: 1812980 },
+    10: { income: 0, expenses: -519140, earning: -519140 },
+    13: { income: 0, expenses: -10000, earning: -10000 },
+    15: { income: 0, expenses: -56240, earning: -56240 },
+  },
+};

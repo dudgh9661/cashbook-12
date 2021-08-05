@@ -164,3 +164,37 @@ span {
     display: none;
   }
 }
+
+.calendar-body__day.small {
+  border-left-style: hidden;
+  border-right-style: hidden;
+  height: 30px;
+  position: relative;
+  overflow: visible;
+
+  .day-content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .day-content__info {
+    span {
+      display: none;
+    }
+
+    .circle {
+      display: block;
+      margin-top: 5px;
+      margin-bottom: -12px;
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-grey3);
+      border-radius: 50%;
+    }
+  }
+
+  .day-content__num {
+    text-align: center;
+  }
+}
