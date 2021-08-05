@@ -19,4 +19,5 @@ export { default as HistoryList } from './history/HistoryList/HistoryList';
 export { default as Calendar } from './calendar';
 
 export { default as LoginForm } from './login/LoginForm/LoginForm';
-export { default as Welcome } from './login/Welcome/Welcome';
+
+export { default as UserInfo } from './user/UserInfo/UserInfo';

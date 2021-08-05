@@ -22,7 +22,7 @@ class Logo extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '.logo', route.goMainPage);
+    this.addEvent('click', '.logo', route.goUserPage);
   }
 }
 

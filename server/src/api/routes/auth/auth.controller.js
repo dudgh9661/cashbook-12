@@ -6,6 +6,15 @@ import {
 import config from '../../../config';
 import jwt from '../../../utils/jwt';
 
+export const handleGetAuth = async (req, res, next) => {
+  try {
+    res.status(200).json(req.user);
+  } catch (err) {
+    Logger.error(err);
+    next(err);
+  }
+};
+
 export const handleGithubCallback = async (req, res, next) => {
   try {
     const { code } = req.query;
@@ -19,16 +28,7 @@ export const handleGithubCallback = async (req, res, next) => {
       httpOnly: true,
     });
 
-    res.redirect('/');
-  } catch (err) {
-    Logger.error(err);
-    next(err);
-  }
-};
-
-export const handleGetAuth = async (req, res, next) => {
-  try {
-    res.status(200).json(req.user);
+    res.redirect('/user');
   } catch (err) {
     Logger.error(err);
     next(err);

@@ -4,6 +4,7 @@ import { NAV_LINK } from '@constants';
 import {
   MainPage,
   LoginPage,
+  UserPage,
   CalendarPage,
   ChartPage,
   NotFoundPage,
@@ -24,13 +25,14 @@ class App {
   }
 
   setRouter() {
-    const { MAIN, LOGIN, CALENDAR, CHART } = NAV_LINK;
+    const { MAIN, LOGIN, CALENDAR, CHART, USER } = NAV_LINK;
 
     router.initRoutes(this.$app, {
       [MAIN.link]: MainPage,
       [LOGIN.link]: LoginPage,
       [CALENDAR.link]: CalendarPage,
       [CHART.link]: ChartPage,
+      [USER.link]: UserPage,
       NotFound: NotFoundPage,
     });
   }
@@ -40,12 +42,15 @@ class App {
   }
 
   render() {
+    const { LOGIN, USER } = NAV_LINK;
     const { user } = User.state;
+
     if (user) {
-      if (window.location.pathname === '/login') window.location.href = '/';
+      if (window.location.pathname === LOGIN.link)
+        window.location.href = USER.link;
       else router.render(window.location.pathname);
     } else {
-      router.render('/login');
+      router.render(LOGIN.link);
     }
   }
 

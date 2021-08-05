@@ -12,6 +12,7 @@ export const NAV_LINK = {
   CALENDAR: { value: 'calendar', link: '/calendar', icon: calendar },
   CHART: { value: 'chart', link: '/chart', icon: chart },
   LOGIN: { value: 'login', link: '/login' },
+  USER: { value: 'user', link: '/user' },
 };
 
 export const TAB_LINKS = [NAV_LINK.MAIN, NAV_LINK.CALENDAR, NAV_LINK.CHART];

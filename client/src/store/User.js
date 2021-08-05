@@ -11,6 +11,12 @@ class User extends Observable {
       route.goLoginPage();
     }
   }
+
+  async removeUser() {
+    await api.fetchLogout();
+    this.state.user = null;
+    route.goLoginPage();
+  }
 }
 
 const initialState = {
