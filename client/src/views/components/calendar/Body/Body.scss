@@ -1,6 +1,15 @@
 @import '@styles/_responsive.scss';
 @import '@styles/_animation.scss';
 
+@include keyframe(fadein) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .calendar-body {
   width: 100%;
   border: 1px solid #ccd3d3;
@@ -83,10 +92,7 @@ span {
 
 @media (min-width: #{$breakpoint-tablet + 1px}) {
   .day-content__info {
-    animation: fadein 1.5s;
-    -moz-animation: fadein 1.5s;
-    -webkit-animation: fadein 1.5s;
-    -o-animation: fadein 1.5s;
+    @include animation(fadein, 1.5s);
   }
 }
 

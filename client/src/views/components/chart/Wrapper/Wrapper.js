@@ -1,4 +1,5 @@
 import Component from '@lib/Component';
+import $ from '@utils/dom';
 import './Wrapper.scss';
 
 class Wrapper extends Component {
@@ -9,14 +10,9 @@ class Wrapper extends Component {
   }
 
   render() {
-    const { content } = this.props;
+    const { className = '', children = [] } = this.props;
 
-    const $chartWrapper = document.createElement('div');
-    $chartWrapper.className = 'chart-wrapper';
-
-    $chartWrapper.appendChild(content);
-
-    return $chartWrapper;
+    return $('div', { class: `chart-wrapper ${className}` }, ...children);
   }
 }
 

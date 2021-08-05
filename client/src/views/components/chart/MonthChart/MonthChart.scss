@@ -22,6 +22,11 @@
   }
 }
 
+.total-value {
+  padding-left: 5px;
+  font-weight: 500;
+}
+
 @media (max-width: #{$breakpoint-tablet-landscape}) {
   .month-chart {
     flex-direction: column;
@@ -44,7 +49,7 @@
     }
 
     canvas {
-      width: 60%;
+      width: 50%;
     }
   }
 }
@@ -52,7 +57,7 @@
 @media (max-width: #{$breakpoint-mobile}) {
   .month-chart {
     canvas {
-      width: 80%;
+      width: 60%;
     }
   }
 }

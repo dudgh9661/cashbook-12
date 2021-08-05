@@ -1,32 +1,21 @@
-@keyframes fadein {
-  from {
-    opacity: 0;
+@mixin keyframe($animation_name) {
+  @keyframes #{$animation_name} {
+    @content;
   }
-  to {
-    opacity: 1;
+  @-moz-keyframes #{$animation_name} {
+    @content;
   }
-}
-@-moz-keyframes fadein {
-  from {
-    opacity: 0;
+  @-webkit-keyframes #{$animation_name} {
+    @content;
   }
-  to {
-    opacity: 1;
+  @-o-keyframes #{$animation_name} {
+    @content;
   }
 }
-@-webkit-keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-o-keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+
+@mixin animation($name, $duration) {
+  animation: $name $duration;
+  -moz-animation: $name $duration;
+  -webkit-animation: $name $duration;
+  -o-animation: $name $duration;
 }

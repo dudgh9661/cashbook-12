@@ -1,3 +1,16 @@
+@import '@styles/_animation.scss';
+
+@include keyframe(fadeinfromtop) {
+  from {
+    margin-top: -5%;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
 .chart-wrapper {
   background: var(--color-off-white);
   border: 1px solid #ccd3d3;
@@ -5,4 +18,8 @@
   border-radius: 10px;
   padding: 50px;
   margin-bottom: 15px;
+
+  &.fade {
+    @include animation(fadeinfromtop, 1.5s);
+  }
 }

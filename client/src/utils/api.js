@@ -81,4 +81,17 @@ export default {
     return requestGet(`${API_END_POINT}/auth/user`);
   },
   getCategories: () => requestGet(`${API_END_POINT}/categories`),
+  fetchMonthHistories: (year, month) => {
+    return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
+  },
+  fetchMonthExpensesReport: (year, month) => {
+    return requestGet(
+      `${API_END_POINT}/histories/category/all?year=${year}&month=${month}`,
+    );
+  },
+  fetchCategoryExpensesReport: (categoryId, year) => {
+    return requestGet(
+      `${API_END_POINT}/histories/category/${categoryId}?year=${year}`,
+    );
+  },
 };

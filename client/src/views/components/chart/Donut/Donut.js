@@ -1,5 +1,6 @@
 import Component from '@lib/Component';
 import DonutChart from 'donut-chart-js';
+import $ from '@utils/dom';
 
 class Donut extends Component {
   constructor(props) {
@@ -9,20 +10,17 @@ class Donut extends Component {
   }
 
   render() {
+    return $('canvas', { id: 'donutChart', width: 230, height: 230 });
+  }
+
+  didMount() {
     const { data } = this.props;
 
-    const $canvas = document.createElement('canvas');
-    $canvas.id = 'donutChart';
-    $canvas.width = 230;
-    $canvas.height = 230;
-
-    new DonutChart($canvas, {
+    new DonutChart(this.$element, {
       data,
       holeSize: 0.65,
       animationSpeed: 0.5,
     });
-
-    return $canvas;
   }
 }
 
