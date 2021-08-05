@@ -11,7 +11,8 @@ class DataList extends Component {
   }
 
   render() {
-    return $('ul', { class: 'data-list' }, ...this.renderItem());
+    const { className = '' } = this.props;
+    return $('ul', { class: `data-list ${className}` }, ...this.renderItem());
   }
 
   renderItem() {
@@ -42,6 +43,7 @@ class DataList extends Component {
 
   setEvent() {
     const { handleClickItem } = this.props;
+    if (!handleClickItem) return;
 
     this.addEvent('click', '.data-list__item', e => {
       const id = e.target.dataset.itemId;

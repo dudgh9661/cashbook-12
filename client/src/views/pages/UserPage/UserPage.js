@@ -1,6 +1,6 @@
 import Component from '@lib/Component';
 import { User } from '@store';
-import { Layout, UserInfo } from '@components';
+import { Layout, UserInfo, SmallChart, SmallCalendar } from '@components';
 import $ from '@utils/dom';
 import './UserPage.scss';
 
@@ -26,13 +26,18 @@ class UserPage extends Component {
         children: [
           $(
             'div',
-            { class: 'login-page__main' },
+            { class: 'user-page__main' },
             $(
               'div',
-              { class: 'login-page__main--left' },
+              { class: 'user-page__main--left' },
               new UserInfo({ name }),
             ),
-            $('div', { class: 'login-page__main--right' }),
+            $(
+              'div',
+              { class: 'user-page__main--right' },
+              new SmallChart({ isSample: !user }),
+              new SmallCalendar({ isSample: !user }),
+            ),
           ),
         ],
       }),

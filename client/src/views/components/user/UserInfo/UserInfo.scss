@@ -1,7 +1,15 @@
+@import '@styles/_responsive.scss';
+
 .user-info {
   display: flex;
   flex-direction: column;
   justify-items: center;
+
+  &__account {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 
   &__msg {
     display: flex;
@@ -11,8 +19,10 @@
     margin-bottom: 10px;
   }
 
-  img {
-    width: 100%;
+  &__img {
+    img {
+      width: 100%;
+    }
   }
 
   &__logout {
@@ -22,6 +32,53 @@
 
     &:hover {
       color: var(--color-primary);
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-laptop}) {
+  .user-info__msg {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet-landscape}) {
+  .user-info {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    &__account {
+      width: 50%;
+    }
+
+    &__msg {
+      font-size: 38px;
+      line-height: 48px;
+    }
+
+    &__img {
+      width: 30%;
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet}) {
+  .user-info {
+    &__msg {
+      font: var(--font-display-medium);
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile}) {
+  .user-info {
+    &__msg {
+      font: var(--font-display-small);
+    }
+
+    &__logout {
+      font-size: 16px;
     }
   }
 }

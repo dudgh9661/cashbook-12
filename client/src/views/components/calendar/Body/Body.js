@@ -47,7 +47,7 @@ class CalendarBody extends Component {
   }
 
   renderCalendar() {
-    const { today, current, history } = this.props;
+    const { today, current, history, isSmall = false } = this.props;
     const hasToday =
       today.year === current.year && today.month === current.month;
 
@@ -63,9 +63,9 @@ class CalendarBody extends Component {
           $(
             'td',
             {
-              class: `calendar-body__day ${
+              class: `calendar-body__day ${isSmall ? 'small' : ''} ${
                 hasToday && today.date === date ? 'today' : ''
-              } ${curHistory ? 'exist' : ''}`,
+              } ${!isSmall && curHistory ? 'exist' : ''}`,
             },
             this.renderDay(curHistory, date),
           ),

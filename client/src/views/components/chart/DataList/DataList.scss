@@ -57,6 +57,27 @@
   }
 }
 
+@media (min-width: #{$breakpoint-tablet-landscape + 1px}) and (max-width: #{$breakpoint-laptop}) {
+  .data-list.small {
+    .data-list__item {
+      padding: 14px 5px;
+
+      &--left {
+        .pct {
+          margin-left: 10px;
+          font: var(--font-body-regular);
+        }
+      }
+
+      &--right {
+        .value {
+          font: var(--font-body-medium);
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: #{$breakpoint-tablet}) {
   .data-list {
     &__item {
