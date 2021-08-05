@@ -46,7 +46,7 @@ const onClickPaymentItem = e => {
 };
 
 const onClickButton = async () => {
-  const flag = FormStore.state.type === 'income' ? 1 : -1;
+  const flag = FormStore.state.isIncome ? 1 : -1;
   const body = {
     date: FormStore.state.date,
     content: FormStore.state.content,
@@ -55,6 +55,7 @@ const onClickButton = async () => {
     paymentId: FormStore.state.paymentId,
     userId: User.state.user && User.state.user.id,
   };
+
   if (FormStore.state.id === null) {
     History.addHistory(body);
   } else {
@@ -157,6 +158,10 @@ class Form extends Component {
       return;
     }
 
+    if (Payment.payments.find(p => p.name === name)) {
+      alert('이미 등록된 결제 수단입니다!');
+    }
+
     Payment.addPayment(name);
     this.onClickModalCancel();
   }
@@ -180,7 +185,7 @@ class Form extends Component {
     if (FormStore.state.showMobileForm) {
       $form.classList.add('form--mobile-show');
     }
-    console.log(FormStore.state.showMobileForm, $form.classList);
+
     if (custom) {
       $form.classList.add(custom);
     }

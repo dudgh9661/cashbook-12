@@ -22,6 +22,9 @@ class FormStore extends Observable {
   setIsIncome(isIncome) {
     this.state.isIncome = isIncome;
     this.setCategory('', '');
+    if (isIncome) {
+      this.setPayment('1', '현금');
+    }
   }
 
   setId(id) {

@@ -1,5 +1,6 @@
 import Observable from '@lib/Observable';
 import api from '../utils/api';
+import FormStore from '../views/components/form/FormStore';
 
 class Payment extends Observable {
   async setPayments() {
@@ -11,6 +12,7 @@ class Payment extends Observable {
   async addPayment(name) {
     const payment = await api.postPayment({ name });
 
+    FormStore.setPayment(payment.id, payment.name);
     this.state.payments = [payment, ...this.state.payments];
   }
 
