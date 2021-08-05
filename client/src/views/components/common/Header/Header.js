@@ -13,12 +13,12 @@ import {
 const onClickNextMonth = () => {
   DateInfo.setNextMonth();
   History.setCurrentMonthHistory();
-  HistoryReport.setExpenseReport();
+  HistoryReport.setMonthReport();
 };
 const onClickPrevtMonth = () => {
   DateInfo.setPrevMonth();
   History.setCurrentMonthHistory();
-  HistoryReport.setExpenseReport();
+  HistoryReport.setMonthReport();
 };
 const onClickMainTab = () => router.push('/');
 const onClickCalendarTab = () => router.push('/calendar');

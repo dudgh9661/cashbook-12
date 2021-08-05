@@ -21,9 +21,14 @@ export default {
   fetchMonthHistories: (year, month) => {
     return requestGet(`${API_END_POINT}/histories?year=${year}&month=${month}`);
   },
-  fetchCategoryHistories: (year, month) => {
+  fetchMonthExpensesReport: (year, month) => {
     return requestGet(
       `${API_END_POINT}/histories/category/all?year=${year}&month=${month}`,
+    );
+  },
+  fetchCategoryExpensesReport: (categoryId, year) => {
+    return requestGet(
+      `${API_END_POINT}/histories/category/${categoryId}?year=${year}`,
     );
   },
 };

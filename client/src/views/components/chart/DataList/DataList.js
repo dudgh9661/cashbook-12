@@ -17,10 +17,14 @@ class DataList extends Component {
   renderItem() {
     const { data, total } = this.props;
 
-    return data.map(({ label, value, color }) => {
+    return data.map(({ id, label, value, color }) => {
       return $(
         'li',
-        { class: 'data-list__item' },
+        {
+          class: 'data-list__item',
+          'data-item-id': id,
+          'data-item-name': label,
+        },
         $(
           'div',
           { class: 'data-list__item--left' },
@@ -33,6 +37,16 @@ class DataList extends Component {
           $('span', { class: 'value' }, moneyWithComma(value)),
         ),
       );
+    });
+  }
+
+  setEvent() {
+    const { handleClickItem } = this.props;
+
+    this.addEvent('click', '.data-list__item', e => {
+      const id = e.target.dataset.itemId;
+      const name = e.target.dataset.itemName;
+      if (id) handleClickItem({ id, name });
     });
   }
 }

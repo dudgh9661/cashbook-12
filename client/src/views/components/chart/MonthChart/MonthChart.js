@@ -7,9 +7,13 @@ import Donut from '../Donut/Donut';
 import DataList from '../DataList/DataList';
 import './MonthChart.scss';
 
+const handleClickItem = categoryId => {
+  HistoryReport.setCategoryReport(categoryId);
+};
+
 class MonthChart extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.init();
   }
@@ -48,7 +52,11 @@ class MonthChart extends Component {
             `${curMonth} 지출 금액 `,
             $('span', { class: 'total-value' }, ''),
           ),
-          new DataList({ data: category, total }),
+          new DataList({
+            data: category,
+            total,
+            handleClickItem,
+          }),
         ),
       );
     }
@@ -59,7 +67,7 @@ class MonthChart extends Component {
   }
 
   didMount() {
-    HistoryReport.setExpenseReport();
+    HistoryReport.setMonthReport();
   }
 
   setEvent() {
