@@ -96,7 +96,6 @@ export default {
     return requestPost(`${API_END_POINT}/histories`, body);
   },
   updateHistory: (id, body) => {
-    console.log(id, body);
     return requestPut(`${API_END_POINT}/histories/${id}`, body);
   },
   deleteHistory: id => {
@@ -111,9 +110,7 @@ export default {
   deletePayment: id => {
     return requestDelete(`${API_END_POINT}/payments/${id}`);
   },
-  fetchUser: () => {
-    return requestGet(`${API_END_POINT}/auth/user`);
-  },
+
   getCategories: () => {
     return requestGet(`${API_END_POINT}/categories`);
   },
