@@ -9,9 +9,14 @@ const initState = () => ({
   paymentName: '',
   date: '',
   isValid: false,
+  id: '',
 });
 
 class FormStore extends Observable {
+  setId(id) {
+    this.state.id = id;
+  }
+
   setContent(content) {
     this.state.content = content;
     this.setValid();

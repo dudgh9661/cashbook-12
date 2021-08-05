@@ -45,15 +45,19 @@ const onClickPaymentItem = e => {
 };
 
 const onClickButton = async () => {
-  History.addHistory({
-    date: FormStore.state.date,
-    content: FormStore.state.content,
-    // todo 수입, 지출 구분
-    amount: +FormStore.state.amount.replaceAll(',', '') * -1,
-    categoryId: FormStore.state.categoryId,
-    paymentId: FormStore.state.paymentId,
-    userId: User.state.user && User.state.user.id,
-  });
+  if (FormStore.state.id) {
+    History.addHistory({
+      date: FormStore.state.date,
+      content: FormStore.state.content,
+      // todo 수입, 지출 구분
+      amount: +FormStore.state.amount.replaceAll(',', '') * -1,
+      categoryId: FormStore.state.categoryId,
+      paymentId: FormStore.state.paymentId,
+      userId: User.state.user && User.state.user.id,
+    });
+  } else {
+  }
+
   FormStore.resetState();
 };
 
