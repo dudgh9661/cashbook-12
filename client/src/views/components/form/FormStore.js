@@ -4,7 +4,7 @@ const initState = () => ({
   content: '',
   amount: '',
   date: '',
-  isIncome: false,
+  isIncome: true,
   isValid: false,
   id: null,
   showMobileForm: false,
