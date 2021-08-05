@@ -18,16 +18,6 @@ export const debounce = (func, wait) => {
 export const dateFormat = str => {
   const dateObj = new Date(str);
 
-  return [
-    dateObj.getFullYear(),
-    dateObj.getMonth() + 1,
-    dateObj.getDate(),
-  ].join('-');
-};
-
-export const formDateFormat = str => {
-  const dateObj = new Date(str);
-
   const years = dateObj.getFullYear().toString();
   const month = (dateObj.getMonth() + 1).toString();
   const date = dateObj.getDate().toString();
@@ -36,7 +26,7 @@ export const formDateFormat = str => {
     years,
     month.length === 1 ? 0 + month : month,
     date.length === 1 ? 0 + date : date,
-  ].join('');
+  ].join('-');
 };
 
 export const makeObjectKeysLowerCase = obj => {
