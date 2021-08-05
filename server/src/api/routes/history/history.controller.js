@@ -31,7 +31,8 @@ export const handleGetMonthHistory = async (req, res, next) => {
     const { year, month } = req.query;
     // const user = req.user;
     if (year && month) {
-      const result = await getMonthHistory(year, month, 3);
+      // TODO: 아이디로 구분
+      const result = await getMonthHistory(year, month, 1);
       res.status(200).json(result);
     } else {
       res.status(400).json('need year and month query');

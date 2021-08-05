@@ -102,15 +102,19 @@
 
 @media (max-width: #{$breakpoint-tablet}) {
   .history-item {
-    &__row {
+    .history-item__menu {
+      display: none;
+    }
+    &:hover {
       .history-item__menu {
-        display: none;
+        // display: none;
       }
     }
     &__col {
       &-description {
         font: var(--font-body-small);
         .tag {
+          width: 10px;
           flex: 0 0 10px;
           height: 10px;
           content: none;
