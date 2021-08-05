@@ -1,11 +1,16 @@
 import Component from '@lib/Component';
 import $ from '@utils/dom';
+import { User } from '@store';
 import { GITHUB_REDIRECT_URL } from '@constants';
 import github from '@assets/svgs/github.svg';
-import './LoginForm.scss';
 import LoginGuide from '../LoginGuide/LoginGuide';
+import './LoginForm.scss';
 
-class LoginModal extends Component {
+const createUser = name => {
+  User.createUser(name);
+};
+
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -20,8 +25,16 @@ class LoginModal extends Component {
       $(
         'div',
         { class: 'login-form__name' },
-        $('input', { type: 'text', placeholder: '아이디를 입력하세요.' }),
-        $('button', { type: 'button' }, '아이디로 로그인'),
+        $('input', {
+          type: 'text',
+          placeholder: '아이디를 입력하세요.',
+          id: 'id-input',
+        }),
+        $(
+          'button',
+          { type: 'button', class: 'id-login-btn' },
+          '아이디 생성 및 로그인',
+        ),
       ),
       $('div', { class: 'login-form__div' }, $('span', {}, 'or')),
       $(
@@ -38,10 +51,24 @@ class LoginModal extends Component {
   }
 
   setEvent() {
+    this.addEvent('keypress', '#id-input', e => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        this.handleCreateUser();
+      }
+    });
+
+    this.addEvent('click', '.id-login-btn', this.handleCreateUser.bind(this));
+
     this.addEvent('click', '.github-login-btn', () => {
       window.location.href = GITHUB_REDIRECT_URL;
     });
   }
+
+  handleCreateUser() {
+    const idInputValue = this.$element.querySelector('#id-input').value;
+    createUser(idInputValue);
+  }
 }
 
-export default LoginModal;
+export default LoginForm;

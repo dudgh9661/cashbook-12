@@ -17,6 +17,15 @@ class User extends Observable {
     this.state.user = null;
     route.goLoginPage();
   }
+
+  async createUser(name) {
+    try {
+      await api.fetchCreateUser(name);
+      this.setUser();
+    } catch (err) {
+      route.goLoginPage();
+    }
+  }
 }
 
 const initialState = {

@@ -14,6 +14,24 @@ const requestGet = async url => {
   }
 };
 
+const requestPost = async (url, data) => {
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (res.ok) {
+      return res;
+    }
+    throw new Error(res);
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 const requestDelete = async url => {
   try {
     const res = await fetch(url, { method: 'DELETE' });
@@ -26,6 +44,9 @@ const requestDelete = async url => {
 export default {
   fetchUser: () => {
     return requestGet(`${API_END_POINT}/auth/user`);
+  },
+  fetchCreateUser: name => {
+    return requestPost(`${API_END_POINT}/auth/name`, { name });
   },
   fetchLogout: () => {
     return requestDelete(`${API_END_POINT}/auth`);
