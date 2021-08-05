@@ -18,12 +18,11 @@ class Linear extends Component {
   didMount() {
     const { data } = this.props;
 
-    setTimeout(() => {
-      LinearChart('linearChart', MONTHS, data, {
-        highlightIndex: data.length - 1,
-        wayPointsCount: 10,
-      });
-    }, 0);
+    LinearChart(this.$element, MONTHS, data, {
+      highlightIndex: data.length - 1,
+      wayPointsCount: 10,
+      canvasHeight: 120,
+    });
   }
 }
 
