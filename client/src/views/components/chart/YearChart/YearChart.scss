@@ -14,18 +14,6 @@
   }
 }
 
-@media (max-width: #{$breakpoint-tablet-landscape}) {
-  .year-chart {
-    &__content {
-      overflow-x: scroll;
-
-      canvas {
-        width: 150%;
-      }
-    }
-  }
-}
-
 @media (max-width: #{$breakpoint-tablet}) {
   .year-chart {
     &__title {
@@ -36,7 +24,7 @@
       overflow-x: scroll;
 
       canvas {
-        width: 200%;
+        width: 120%;
       }
     }
   }
@@ -52,7 +40,7 @@
       overflow-x: scroll;
 
       canvas {
-        width: 300%;
+        width: 150%;
       }
     }
   }
