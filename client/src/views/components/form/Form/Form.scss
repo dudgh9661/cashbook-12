@@ -175,6 +175,10 @@
       &:nth-child(5) {
         order: 4;
         flex: 1 1 33%;
+        .dropdown__list--active {
+          margin-top: 6px;
+          width: 100%;
+        }
       }
       &:nth-child(6) {
         order: 6;

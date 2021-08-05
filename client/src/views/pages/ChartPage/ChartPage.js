@@ -1,6 +1,7 @@
 import Component from '@lib/Component';
 import { Layout, MonthChart, YearChart, HistoryList } from '@components';
 import $ from '@utils/dom';
+import './ChartPage.scss';
 
 class ChartPage extends Component {
   constructor() {

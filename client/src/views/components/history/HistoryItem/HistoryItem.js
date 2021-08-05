@@ -139,7 +139,7 @@ class HistoryItem extends Component {
             `,
           )
           .join('')}  
-      </table>        
+      </table>
     `;
 
     return $history;
