@@ -3,6 +3,7 @@ import { chevronDown } from '@assets/icons';
 import './Dropdown.scss';
 
 const onClickDropdown = e => {
+  e.stopPropagation();
   const $dropdownList = e.target.closest('label').nextElementSibling;
   $dropdownList.classList.toggle('dropdown__list--active');
 };
