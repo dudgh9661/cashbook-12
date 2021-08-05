@@ -19,7 +19,9 @@ class Input extends Component {
       suffix,
       customClass,
       value,
+      type,
       readonly = false,
+      max,
     } = this.props;
 
     const $input = document.createElement('div');
@@ -34,7 +36,9 @@ class Input extends Component {
         }
         <input class="input" ${
           readonly ? 'readonly' : ''
-        } type="text" placeholder="${placeholder}" id="${id}" value="${value}"/>
+        } max="2021-12-31" type="${
+      type || 'text'
+    }" placeholder="${placeholder}" id="${id}" value="${value}"/>
         ${
           suffix
             ? `<span class="input--suffix ${suffixClass}">${suffix}</span>`

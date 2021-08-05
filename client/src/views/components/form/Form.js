@@ -278,6 +278,7 @@ class Form extends Component {
         id: 'input-date',
         label: '일자',
         placeholder: '입력하세요',
+        type: 'date',
         value: FormStore.state.date,
       }).getElement(),
       new Dropdown({
