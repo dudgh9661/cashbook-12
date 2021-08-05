@@ -30,7 +30,7 @@ class History extends Component {
 
     $history.append(
       new HistoryHeader().getElement(),
-      new HistoryList().getElement(),
+      new HistoryList({}).getElement(),
       $btn,
     );
 

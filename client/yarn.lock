@@ -3410,10 +3410,10 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-linear-chart-js@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/linear-chart-js/-/linear-chart-js-1.0.5.tgz#2ff431eca9c32760919604de7240a9d4afcdb26b"
-  integrity sha512-yhRZXpK4uNbP+DzF/6wQnfjdneD0K7Gn7/xHUowaZcOPaFLclujZKMv+N1EblYWTS4cu89q4grXxxeOsIbHK+g==
+linear-chart-js@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/linear-chart-js/-/linear-chart-js-1.0.18.tgz#b8f4486805a5ee8a357e460fdc285e18a4cc22d2"
+  integrity sha512-CS4T6WHGHjIkTuL8LZL6oAXtbB8I3WneNhFLVPtH2n5OK+LoJLGx8Fn7BK3HbwnO8Nq9oKy9WzD/VnMG6nz3Lw==
 
 load-json-file@^4.0.0:
   version "4.0.0"
