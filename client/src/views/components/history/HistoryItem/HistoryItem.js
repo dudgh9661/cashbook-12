@@ -34,10 +34,12 @@ class HistoryItem extends Component {
       h => +h.id === +id,
     );
 
+    const isIncome = category.type === 'income';
+
     FormStore.setId(id);
-    FormStore.setIsIncome(amount > 0);
+    FormStore.setIsIncome(isIncome);
     FormStore.setContent(content);
-    FormStore.setAmount((amount * (amount > 0 ? 1 : -1)).toString());
+    FormStore.setAmount((isIncome ? Math.abs(amount) : amount).toString());
     FormStore.setDate(formDateFormat(timestamp));
     FormStore.setCategory(category.id, category.name);
     FormStore.setPayment(payment.id, payment.name);
