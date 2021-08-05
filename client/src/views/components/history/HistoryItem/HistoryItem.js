@@ -28,6 +28,9 @@ class HistoryItem extends Component {
     document.documentElement.scrollTop = 0;
 
     const $button = e.target.closest('button');
+    if ($button.classList.contains('history-item__menu-edit--mobile')) {
+      FormStore.toggleShowMobileForm();
+    }
     const { id } = $button.dataset;
     const { timestamp, historyItemList } = this.props;
     const { content, category, amount, payment } = historyItemList.find(
@@ -116,7 +119,21 @@ class HistoryItem extends Component {
                       </td>
 
                     <td class="history-item__menu--mobile">
-                      ${menu}             
+                      <div>
+                          <button data-id="${
+                            history.id
+                          }" class="history-item__menu-delete--mobile">
+                            삭제
+                          </button>
+                          <button data-id="${
+                            history.id
+                          }" class="history-item__menu-edit--mobile">
+                            수정
+                          </button>
+                      </div>
+                      <button class="history-item__menu-button--mobile">
+                        ${menu}
+                      </button>            
                     </td>`
                 }                        
                 </tr>
@@ -136,6 +153,12 @@ class HistoryItem extends Component {
       this.onClickEdit.bind(this),
     );
     this.addEvent('click', '#history-item__menu-delete', onClickDelete);
+    this.addEvent(
+      'click',
+      '.history-item__menu-edit--mobile',
+      this.onClickEdit.bind(this),
+    );
+    this.addEvent('click', '.history-item__menu-delete--mobile', onClickDelete);
   }
 }
 
