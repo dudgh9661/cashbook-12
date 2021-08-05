@@ -11,7 +11,8 @@ class DataList extends Component {
   }
 
   render() {
-    return $('ul', { class: 'data-list' }, ...this.renderItem());
+    const { className = '' } = this.props;
+    return $('ul', { class: `data-list ${className}` }, ...this.renderItem());
   }
 
   renderItem() {

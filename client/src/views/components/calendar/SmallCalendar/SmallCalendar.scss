@@ -1,3 +1,5 @@
+@import '@styles/_responsive.scss';
+
 .small-calendar {
   display: flex;
   justify-content: space-between;
@@ -36,6 +38,26 @@
         font-weight: 500;
         color: var(--color-primary-dark);
       }
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-laptop}) {
+  .small-calendar {
+    flex-direction: column;
+
+    &__total {
+      width: 100%;
+      margin-bottom: 15px;
+
+      &--value {
+        display: inline-flex;
+        margin-right: 10px;
+      }
+    }
+
+    &__calendar {
+      width: 100%;
     }
   }
 }

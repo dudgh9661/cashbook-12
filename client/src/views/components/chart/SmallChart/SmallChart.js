@@ -57,6 +57,7 @@ class SmallChart extends Component {
             $('span', { class: 'total-value' }, ''),
           ),
           new DataList({
+            className: 'small',
             data: category.slice(0, 2),
             total,
           }),
