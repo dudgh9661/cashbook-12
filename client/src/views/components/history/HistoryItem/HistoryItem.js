@@ -44,7 +44,7 @@ class HistoryItem extends Component {
   }
 
   render() {
-    const { historyItemList, timestamp } = this.props;
+    const { historyItemList, timestamp, type } = this.props;
     const [month, date, day] = getDateFromString(timestamp);
 
     const incomeTotal = moneyWithComma(
@@ -62,16 +62,21 @@ class HistoryItem extends Component {
 
     const $history = document.createElement('li');
     $history.classList.add('history-item');
+
     $history.innerHTML = `
       <div class="history-item__header">
         <span>
           <b>${month}월 ${date}일</b>
           ${day}
         </span>
-        <div> 
-          <span class="history-item__header-income">수입  ${incomeTotal}</span>
-          <span>지출  ${expenditureTotal}</span>
-        </div>        
+        ${
+          type === 'simple'
+            ? ''
+            : `<div> 
+                <span class="history-item__header-income">수입  ${incomeTotal}</span>
+                <span>지출  ${expenditureTotal}</span>
+              </div>        `
+        }        
       </div>
       <table>
         ${historyItemList
@@ -89,23 +94,30 @@ class HistoryItem extends Component {
                   <span class="history-item__col-payment-amount">${moneyWithComma(
                     +history.amount,
                   )}원</span>
-                </td>                 
-                <td class="history-item__menu">
-                  <button type="button"data-id="${
-                    history.id
-                  }" id="history-item__menu-edit">${pencil(
-                25,
-                25,
-              )}/<button>                  
-                  <button type="button" data-id="${
-                    history.id
-                  }" id="history-item__menu-delete">${trashBin(25, 25)}/<button>
-                </td>
+                </td>         
+                ${
+                  type === 'simple'
+                    ? ''
+                    : `<td class="history-item__menu">
+                        <button type="button"data-id="${
+                          history.id
+                        }" id="history-item__menu-edit">${pencil(
+                        25,
+                        25,
+                      )}/<button>                  
+                        <button type="button" data-id="${
+                          history.id
+                        }" id="history-item__menu-delete">${trashBin(
+                        25,
+                        25,
+                      )}/<button>
+                      </td>
 
-                <td class="history-item__menu--mobile">
-                  ${menu}             
-                </td>
-              </tr>
+                    <td class="history-item__menu--mobile">
+                      ${menu}             
+                    </td>`
+                }                        
+                </tr>
             `,
           )
           .join('')}  

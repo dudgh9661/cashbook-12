@@ -103,12 +103,8 @@
 @media (max-width: #{$breakpoint-tablet}) {
   .history-item {
     .history-item__menu {
-      display: none;
-    }
-    &:hover {
-      .history-item__menu {
-        // display: none;
-      }
+      display: flex;
+      flex-direction: column;
     }
     &__col {
       &-description {
