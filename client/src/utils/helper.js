@@ -29,6 +29,12 @@ export const dateFormat = str => {
   ].join('-');
 };
 
+export const getYearMonthDate = str => {
+  const dateObj = new Date(str);
+
+  return [dateObj.getFullYear, dateObj.getMonth + 1, dateObj.getDate];
+};
+
 export const makeObjectKeysLowerCase = obj => {
   const newObj = Object.fromEntries(
     Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]),

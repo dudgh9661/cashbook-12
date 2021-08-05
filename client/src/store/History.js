@@ -1,6 +1,6 @@
 import Observable from '@lib/Observable';
 import api from '@utils/api';
-import { makeObjectKeysLowerCase } from '@utils/helper';
+import { makeObjectKeysLowerCase, getYearMonthDate } from '@utils/helper';
 import DateInfo from './DateInfo';
 
 const getCurrentMonthHistory = async () => {
@@ -62,11 +62,18 @@ class History extends Observable {
         paymentId,
         userId,
       });
+      const [historyYear, hositryMonth] = getYearMonthDate(date);
+      const { year, month } = DateInfo.state.current;
 
-      const newHistory = await res.json();
-      this.state.historyArr = [...this.state.historyArr, newHistory].map(
-        makeObjectKeysLowerCase,
-      );
+      if (historyYear !== year || hositryMonth !== month) {
+        DateInfo.setMonth(date);
+        await this.setCurrentMonthHistory();
+      } else {
+        const newHistory = await res.json();
+        this.state.historyArr = [...this.state.historyArr, newHistory].map(
+          makeObjectKeysLowerCase,
+        );
+      }
     } catch (e) {
       console.log(e);
     }
