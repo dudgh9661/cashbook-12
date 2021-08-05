@@ -5,17 +5,23 @@ const initState = () => ({
   amount: '',
   date: '',
   isIncome: false,
+  isValid: false,
+  id: null,
+  showMobileForm: false,
   categoryId: '',
   categoryName: '',
   paymentId: '',
   paymentName: '',
-  isValid: false,
-  id: null,
 });
 
 class FormStore extends Observable {
+  toggleShowMobileForm() {
+    this.state.showMobileForm = !this.state.showMobileForm;
+  }
+
   setIsIncome(isIncome) {
     this.state.isIncome = isIncome;
+    this.setCategory('', '');
   }
 
   setId(id) {

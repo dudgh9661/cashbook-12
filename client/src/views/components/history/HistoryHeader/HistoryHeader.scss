@@ -19,8 +19,9 @@
   }
 }
 
-@media (max-width: #{$breakpoint-mobile}) {
+@media (max-width: 650px) {
   .history-header {
+    margin-top: 20px;
     padding: 20px 0;
     display: flex;
     flex-wrap: wrap;

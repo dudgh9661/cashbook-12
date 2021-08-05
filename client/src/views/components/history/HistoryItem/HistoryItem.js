@@ -2,7 +2,7 @@ import Component from '@lib/Component';
 import { Tag } from '@components';
 import { moneyWithComma, getDateFromString } from '@utils';
 import { formDateFormat } from '@utils/helper';
-import { trashBin, pencil } from '@assets/icons';
+import { trashBin, pencil, menu } from '@assets/icons';
 import History from '@store/History';
 import FormStore from '../../form/FormStore';
 import './HistoryItem.scss';
@@ -35,8 +35,9 @@ class HistoryItem extends Component {
     );
 
     FormStore.setId(id);
+    FormStore.setIsIncome(amount > 0);
     FormStore.setContent(content);
-    FormStore.setAmount(amount);
+    FormStore.setAmount((amount * (amount > 0 ? 1 : -1)).toString());
     FormStore.setDate(formDateFormat(timestamp));
     FormStore.setCategory(category.id, category.name);
     FormStore.setPayment(payment.id, payment.name);
@@ -99,6 +100,10 @@ class HistoryItem extends Component {
                   <button type="button" data-id="${
                     history.id
                   }" id="history-item__menu-delete">${trashBin(25, 25)}/<button>
+                </td>
+
+                <td class="history-item__menu--mobile">
+                  ${menu}             
                 </td>
               </tr>
             `,
