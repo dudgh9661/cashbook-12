@@ -99,4 +99,5 @@ export default {
   postPayment: body => requestPost(`${API_END_POINT}/payments`, body),
   fetchPayments: () => requestGet(`${API_END_POINT}/payments`),
   deletePayment: id => requestDelete(`${API_END_POINT}/payments/${id}`),
+  getCategories: () => requestGet(`${API_END_POINT}/categories`),
 };
