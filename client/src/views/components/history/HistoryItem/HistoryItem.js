@@ -1,11 +1,12 @@
 import Component from '@lib/Component';
 import { Tag } from '@components';
 import { moneyWithComma, getDateFromString } from '@utils';
+import { formDateFormat } from '@utils/helper';
 import { trashBin, pencil } from '@assets/icons';
 import History from '@store/History';
+import FormStore from '../../form/FormStore';
 import './HistoryItem.scss';
 
-const onClickEdit = () => {};
 const onClickDelete = e => {
   const $btn = e.target.closest('button');
   const { id } = $btn.dataset;
@@ -20,6 +21,24 @@ class HistoryItem extends Component {
     super(props);
 
     this.init();
+  }
+
+  onClickEdit(e) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+    const $button = e.target.closest('button');
+    const { id } = $button.dataset;
+    const { timestamp, historyItemList } = this.props;
+    const { content, category, amount, payment } = historyItemList.find(
+      h => +h.id === +id,
+    );
+
+    FormStore.setContent(content);
+    FormStore.setAmount(amount);
+    FormStore.setDate(formDateFormat(timestamp));
+    FormStore.setCategory(category.id, category.name);
+    FormStore.setPayment(payment.id, payment.name);
   }
 
   render() {
@@ -91,7 +110,11 @@ class HistoryItem extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '#history-item__menu-edit', onClickEdit);
+    this.addEvent(
+      'click',
+      '#history-item__menu-edit',
+      this.onClickEdit.bind(this),
+    );
     this.addEvent('click', '#history-item__menu-delete', onClickDelete);
   }
 }
