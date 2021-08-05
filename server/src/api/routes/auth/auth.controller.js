@@ -4,7 +4,6 @@ import {
   getGithubAccessToken,
   createUser,
 } from '../../../services/auth';
-import config from '../../../config';
 import jwt from '../../../utils/jwt';
 
 export const handleGetAuth = async (req, res, next) => {
@@ -25,7 +24,6 @@ export const handleGithubCallback = async (req, res, next) => {
     const token = jwt.sign({ ...user, isLogin: true });
 
     res.cookie('token', token, {
-      secure: !config.isDev,
       httpOnly: true,
     });
 
@@ -46,7 +44,6 @@ export const handleCreateUser = async (req, res, next) => {
       const token = jwt.sign({ ...user, isLogin: true });
 
       res.cookie('token', token, {
-        secure: !config.isDev,
         httpOnly: true,
       });
 

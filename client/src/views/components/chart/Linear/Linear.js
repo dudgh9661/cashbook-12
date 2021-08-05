@@ -20,7 +20,7 @@ class Linear extends Component {
     LinearChart(this.$element, MONTHS, data, {
       highlightIndex: data.length - 1,
       wayPointsCount: 10,
-      canvasHeight: 120,
+      canvasHeight: 350,
     });
   }
 }
