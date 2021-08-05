@@ -15,5 +15,8 @@
 @media (max-width: 700px) {
   .history__add-button--mobile {
     display: block;
+    &.hide {
+      display: none;
+    }
   }
 }

@@ -11,6 +11,26 @@ const onClickAdd = () => {
   document.documentElement.scrollTop = 0;
 };
 
+const onScrollHandler = () => {
+  const $btn = document.querySelector('.history__add-button--mobile');
+  if (
+    !$btn.classList.contains('hide') &&
+    document.documentElement.scrollTop > 150
+  ) {
+    $btn.classList.add('hide');
+  } else if (
+    $btn.classList.contains('hide') &&
+    document.documentElement.scrollTop <= 150
+  ) {
+    $btn.classList.remove('hide');
+  }
+};
+
+const addScrollEvent = () => {
+  window.removeEventListener('scroll', onScrollHandler);
+  window.addEventListener('scroll', onScrollHandler);
+};
+
 class History extends Component {
   constructor() {
     super();
@@ -39,6 +59,7 @@ class History extends Component {
 
   setEvent() {
     this.addEvent('click', '.history__add-button--mobile', onClickAdd);
+    addScrollEvent();
   }
 }
 
