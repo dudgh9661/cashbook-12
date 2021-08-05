@@ -1,3 +1,28 @@
 .not-found-page {
-  color: var(--color-primary);
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15vh;
+
+    img {
+      width: 50%;
+      max-width: 500px;
+      margin: 20px 0;
+    }
+
+    .text-404 {
+      font: normal 400 200px/56px 'Do Hyeon', sans-serif;
+      color: var(--color-primary-dark);
+      text-shadow: var(--color-primary-light) 1px 0 10px;
+      margin-bottom: 10px;
+    }
+
+    .text-guide {
+      font: var(--font-display-large);
+      word-break: keep-all;
+      text-align: center;
+    }
+  }
 }

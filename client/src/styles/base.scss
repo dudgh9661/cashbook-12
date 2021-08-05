@@ -36,6 +36,10 @@ button {
   margin: 0;
   padding: 0;
   display: inline-block;
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
 }
 
 a {

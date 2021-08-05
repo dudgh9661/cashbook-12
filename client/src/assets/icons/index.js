@@ -7,3 +7,8 @@ export { default as chevronLeft } from './chevron-left';
 export { default as chevronDown } from './chevron-down';
 export { default as minus } from './minus';
 export { default as cancel } from './cancel';
+export { default as pencil } from './pencil';
+export { default as trashBin } from './trash-bin';
+export { default as plus } from './plus';
+export { default as menu } from './menu';
+export { default as add } from './add';
