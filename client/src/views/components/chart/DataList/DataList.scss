@@ -1,5 +1,18 @@
 @import '@styles/_responsive.scss';
-@import '@styles/_animation-slidein.scss';
+@import '@styles/_animation.scss';
+
+@include keyframe(slidein) {
+  from {
+    margin-left: -50%;
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+    opacity: 1;
+  }
+}
 
 .data-list {
   overflow: hidden;
@@ -13,10 +26,7 @@
 
     @for $i from 1 through 10 {
       &:nth-child(#{$i}n) {
-        animation: slidein #{$i * 0.3}s;
-        -moz-animation: slidein #{$i * 0.3}s;
-        -webkit-animation: slidein #{$i * 0.3}s;
-        -o-animation: slidein #{$i * 0.3}s;
+        @include animation(slidein, #{$i * 0.3}s);
       }
     }
 
