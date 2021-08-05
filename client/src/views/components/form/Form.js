@@ -46,26 +46,35 @@ const onClickPaymentItem = e => {
 };
 
 const onClickButton = async () => {
-  const flag = FormStore.state.isIncome ? 1 : -1;
+  const amount = +FormStore.state.amount.replaceAll(',', '');
   const body = {
     date: FormStore.state.date,
     content: FormStore.state.content,
-    amount: +FormStore.state.amount.replaceAll(',', '') * flag,
+    amount: FormStore.state.isIncome ? Math.abs(amount) : amount,
     categoryId: FormStore.state.categoryId,
     paymentId: FormStore.state.paymentId,
     userId: User.state.user && User.state.user.id,
   };
 
-  if (FormStore.state.id === null) {
-    History.addHistory(body);
-  } else {
-    History.updateHistory(FormStore.state.id, body);
-  }
-
+  History.addHistory(body);
   FormStore.resetState();
 };
 
-const sendButttonActive = () => {
+const editButtonActive = () => {
+  const $btn = document.querySelector('.form__edit-btn--edit');
+  if (!$btn) {
+    return;
+  }
+  if (FormStore.state.isValid) {
+    $btn.classList.add('form__edit-btn--active');
+    $btn.disabled = false;
+  } else {
+    $btn.classList.remove('form__edit-btn--active');
+    $btn.disabled = true;
+  }
+};
+
+const postButttonActive = () => {
   const $btn = document.querySelector('.form__btn');
   if (!$btn) {
     return;
@@ -77,6 +86,26 @@ const sendButttonActive = () => {
     $btn.classList.remove('form__btn--active');
     $btn.disabled = true;
   }
+};
+
+const formButtonToggleActive = () => {
+  if (FormStore.state.id) {
+    editButtonActive();
+  } else {
+    postButttonActive();
+  }
+};
+
+const closeDropdown = () => {
+  const $activeDropdown = document.querySelector('.dropdown__list--active');
+  if ($activeDropdown) {
+    $activeDropdown.classList.remove('dropdown__list--active');
+  }
+};
+
+const addDropdownCloseGlobalEvent = () => {
+  document.removeEventListener('click', closeDropdown);
+  document.addEventListener('click', closeDropdown);
 };
 
 const paymentsDropdownListItem = (id, name) =>
@@ -116,15 +145,15 @@ const onClickEditCancel = () => {
 };
 
 const onClickEdit = () => {
-  const flag = FormStore.state.type === 'income' ? 1 : -1;
   History.updateHistory(FormStore.state.id, {
     date: FormStore.state.date,
     content: FormStore.state.content,
-    amount: +FormStore.state.amount.replaceAll(',', '') * flag,
+    amount: +FormStore.state.amount.replaceAll(',', ''),
     categoryId: FormStore.state.categoryId,
     paymentId: FormStore.state.paymentId,
-    userId: 1 || (User.state.user && User.state.user.id),
+    userId: User.state.user && User.state.user.id,
   });
+
   FormStore.resetState();
 };
 
@@ -167,7 +196,7 @@ class Form extends Component {
   }
 
   setObserver() {
-    FormStore.observe('isValid', sendButttonActive);
+    FormStore.observe('isValid', formButtonToggleActive);
     FormStore.observe('categoryName', this.reRender.bind(this));
     FormStore.observe('paymentName', this.reRender.bind(this));
     FormStore.observe('isIncome', this.reRender.bind(this));
@@ -347,6 +376,7 @@ class Form extends Component {
     );
     this.addEvent('click', '.form__edit-btn--edit', onClickEdit);
     this.addEvent('click', '.form__edit-btn--cancel', onClickEditCancel);
+    addDropdownCloseGlobalEvent();
   }
 
   didMount() {
