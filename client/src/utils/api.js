@@ -55,7 +55,7 @@ const requestDelete = async url => {
       method: 'DELETE',
     });
     if (res.ok) {
-      return await res.json();
+      return await res;
     }
     throw new Error(res);
   } catch (err) {
