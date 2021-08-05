@@ -4,6 +4,7 @@ const initState = () => ({
   content: '',
   amount: '',
   date: '',
+  isIncome: false,
   categoryId: '',
   categoryName: '',
   paymentId: '',
@@ -13,6 +14,10 @@ const initState = () => ({
 });
 
 class FormStore extends Observable {
+  setIsIncome(isIncome) {
+    this.state.isIncome = isIncome;
+  }
+
   setId(id) {
     this.state.id = id;
   }

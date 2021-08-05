@@ -9,3 +9,4 @@ export { default as minus } from './minus';
 export { default as cancel } from './cancel';
 export { default as pencil } from './pencil';
 export { default as trashBin } from './trash-bin';
+export { default as plus } from './plus';
