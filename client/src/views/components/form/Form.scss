@@ -49,6 +49,7 @@
         opacity: 0.7;
 
         &.form__edit-btn--active {
+          opacity: 1;
           border: 2px solid var(--color-primary);
           background-color: var(--color-primary);
         }
@@ -255,7 +256,7 @@
         order: 7;
         border-bottom: 0;
         flex: 1 1 33%;
-        button {
+        .form__btn {
           width: 30px;
           height: 30px;
           margin-top: 4px;
@@ -303,6 +304,7 @@
         .dropdown__list--active {
           margin-top: 6px;
           width: 100%;
+          opacity: 1;
         }
       }
       &:nth-child(4) {

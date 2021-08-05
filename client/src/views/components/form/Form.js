@@ -30,7 +30,7 @@ const onClickCategoryItem = e => {
 
 const onClickPaymentItem = e => {
   const $button = e.target.closest('button');
-  if ($button.dataset.delete && $button.dataset.id !== undefined) {
+  if ($button && $button.dataset.delete && $button.dataset.id !== undefined) {
     const paymentId = $button.dataset.id;
     Payment.deletePayment(paymentId);
     return;
@@ -50,7 +50,7 @@ const onClickButton = async () => {
   const body = {
     date: FormStore.state.date,
     content: FormStore.state.content,
-    amount: FormStore.state.isIncome ? Math.abs(amount) : amount,
+    amount: FormStore.state.isIncome ? Math.abs(amount) : -amount,
     categoryId: FormStore.state.categoryId,
     paymentId: FormStore.state.paymentId,
     userId: User.state.user && User.state.user.id,
@@ -145,10 +145,12 @@ const onClickEditCancel = () => {
 };
 
 const onClickEdit = () => {
+  const amount = +FormStore.state.amount.replaceAll(',', '');
+
   History.updateHistory(FormStore.state.id, {
     date: FormStore.state.date,
     content: FormStore.state.content,
-    amount: +FormStore.state.amount.replaceAll(',', ''),
+    amount: FormStore.state.isIncome ? Math.abs(amount) : -amount,
     categoryId: FormStore.state.categoryId,
     paymentId: FormStore.state.paymentId,
     userId: User.state.user && User.state.user.id,
@@ -178,7 +180,7 @@ class Form extends Component {
     this.reRender();
   }
 
-  onClickModalConfirm() {
+  onClickAddPaymentModalConfirm() {
     const $modalInput = document.querySelector('.modal-input');
     const name = $modalInput.value;
 
@@ -186,8 +188,7 @@ class Form extends Component {
       alert('결제수단을 적어주세요!');
       return;
     }
-
-    if (Payment.payments.find(p => p.name === name)) {
+    if (Payment.state.payments.find(p => p.name === name)) {
       alert('이미 등록된 결제 수단입니다!');
     }
 
@@ -343,7 +344,7 @@ class Form extends Component {
         headerText: '추가하실 결제수단을 적어주세요.',
         confirmText: '등록',
         onCancelHadnler: this.onClickModalCancel.bind(this),
-        onConfirmHandler: this.onClickModalConfirm.bind(this),
+        onConfirmHandler: this.onClickAddPaymentModalConfirm.bind(this),
         toggleModal: this.onClickModalCancel.bind(this),
         children: [$modalInput],
       }).getElement(),
