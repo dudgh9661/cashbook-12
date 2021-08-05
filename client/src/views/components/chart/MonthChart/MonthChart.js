@@ -2,7 +2,7 @@ import Component from '@lib/Component';
 import { DateInfo, HistoryReport } from '@store';
 import { animateNumber } from '@utils';
 import $ from '@utils/dom';
-import ChartWrapper from '../Wrapper/Wrapper';
+import Wrapper from '../../common/Wrapper/Wrapper';
 import Donut from '../Donut/Donut';
 import DataList from '../DataList/DataList';
 import './MonthChart.scss';
@@ -61,7 +61,7 @@ class MonthChart extends Component {
       );
     }
 
-    return new ChartWrapper({
+    return new Wrapper({
       children: [$chartContent],
     }).getElement();
   }

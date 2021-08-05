@@ -1,4 +1,7 @@
 import Component from '@lib/Component';
+import { User } from '@store';
+import { Layout, Modal, LoginForm, Welcome, MonthChart } from '@components';
+import $ from '@utils/dom';
 import './LoginPage.scss';
 
 class LoginPage extends Component {
@@ -8,19 +11,39 @@ class LoginPage extends Component {
     this.init();
   }
 
+  setObserver() {
+    User.observe('user', this.toggleModal.bind(this));
+  }
+
   render() {
-    const $div = document.createElement('div');
-    $div.className = 'login-page';
-    $div.innerText = 'This is Login Page';
+    return $(
+      'div',
+      { class: 'login-page' },
+      new Layout({
+        children: [
+          $(
+            'div',
+            { class: 'login-page__main' },
+            $('div', { class: 'login-page__main--left' }, new Welcome()),
+            $('div', { class: 'login-page__main--right' }, new MonthChart()),
+          ),
+        ],
+      }),
 
-    const $loginTest = document.createElement('a');
-    $loginTest.textContent = '이거 눌러서 로그인 하세용~';
-    $loginTest.href =
-      'https://github.com/login/oauth/authorize?client_id=04986225983a20a0d8c4';
+      new Modal({
+        visible: false,
+        hasFooter: false,
+        children: [new LoginForm()],
+      }),
+    );
+  }
 
-    $div.append($loginTest);
-
-    return $div;
+  toggleModal() {
+    if (User.state.user) {
+      this.$element.classList.remove('login-modal--active');
+    } else {
+      this.$element.classList.add('login-modal--active');
+    }
   }
 }
 

@@ -19,8 +19,8 @@ const onClickPrevtMonth = () => {
 };
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.currentPath = window.location.pathname;
     this.init();
@@ -66,10 +66,6 @@ class Header extends Component {
   setEvent() {
     this.addEvent('click', '#go-left', onClickPrevtMonth);
     this.addEvent('click', '#go-right', onClickNextMonth);
-  }
-
-  didMount() {
-    User.setUser();
   }
 }
 

@@ -49,6 +49,7 @@ class HistoryReport extends Observable {
     this.init();
 
     const data = await getMonthExpenses();
+    if (!data) return;
     this.state.curMonthReport = {
       total: data.reduce((acc, cur) => acc + cur.value, 0),
       category: data,

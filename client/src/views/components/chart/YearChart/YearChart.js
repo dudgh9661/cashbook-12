@@ -2,7 +2,7 @@ import Component from '@lib/Component';
 import { HistoryReport } from '@store';
 import $ from '@utils/dom';
 import Linear from '../Linear/Linear';
-import ChartWrapper from '../Wrapper/Wrapper';
+import Wrapper from '../../common/Wrapper/Wrapper';
 import './YearChart.scss';
 
 class YearChart extends Component {
@@ -32,7 +32,7 @@ class YearChart extends Component {
       $('div', { class: 'year-chart__content' }, new Linear({ data })),
     );
 
-    return new ChartWrapper({
+    return new Wrapper({
       className: 'fade',
       children: [$chartContent],
     }).getElement();

@@ -1,0 +1,12 @@
+.welcome {
+  &__msg {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font: var(--font-display-large);
+  }
+
+  img {
+    width: 100%;
+  }
+}
