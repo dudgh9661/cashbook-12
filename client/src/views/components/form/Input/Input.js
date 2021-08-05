@@ -21,7 +21,6 @@ class Input extends Component {
       value,
       type,
       readonly = false,
-      max,
     } = this.props;
 
     const $input = document.createElement('div');
