@@ -42,6 +42,7 @@ class DataList extends Component {
 
   setEvent() {
     const { handleClickItem } = this.props;
+    if (!handleClickItem) return;
 
     this.addEvent('click', '.data-list__item', e => {
       const id = e.target.dataset.itemId;
