@@ -3,7 +3,7 @@
 > **TEAM. `🧑🏻‍💻 동진 && 👩🏻‍💻 그림`**
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/22045163/127591247-b1285eea-8499-40f8-902a-04daf0ed1739.png" alt="preview" width="18%" />
+<img src="./README_image/user-big.png" alt="preview" />
 <p>
     
 <h3 align="center">
@@ -19,15 +19,10 @@
 - **Back-End** Node.js / Express / Sequelize ORM
 - **ETC** AWS EC2 / Github / Slack
 
-## Chart 패키지 배포
+### Chart 패키지 배포
 
-### Donut Chart ([doughnut-chart-js](https://www.npmjs.com/package/doughnut-chart-js))
-
-<img src="https://user-images.githubusercontent.com/22045163/127589185-a683f09f-f61d-48b6-960a-5d9ba81ef264.gif" alt="donut-chart" width="30%" />
-
-### Linear Chart ([linear-chart-js](https://www.npmjs.com/package/linear-chart-js))
-    
-<img src="https://user-images.githubusercontent.com/22045163/127590785-6e2b9bc6-a76e-4d8c-a708-58f23f24cbf8.gif" alt="linear-chart" width="60%" />
+- Donut Chart ([doughnut-chart-js](https://www.npmjs.com/package/doughnut-chart-js))
+- Linear Chart ([linear-chart-js](https://www.npmjs.com/package/linear-chart-js))
 
 ## 프로젝트 구조
 
@@ -67,7 +62,7 @@ server/src
 
 ### 데이터베이스 스키마
 
-![](https://i.imgur.com/Lg7h8Nb.png)
+![erd](./README_image/database-erd.png)
 
 ## 설치 및 실행
 
@@ -101,6 +96,19 @@ yarn build
 cd ../server
 yarn start
 ```
+
+## 실행 결과
+
+<img src="./README_image/login-big.png" alt="login" width="76%" /> <img src="./README_image/login-small.png" alt="login" width="23%" />
+
+<img src="./README_image/user-big.png" alt="user" width="76%" /> <img src="./README_image/user-small.png" alt="user" width="23%" />
+
+<img src="./README_image/main-big.png" alt="main" width="62%" /> <img src="./README_image/main-small.png" alt="main" width="18%" /> <img src="./README_image/main-small2.png" alt="main" width="18%" />
+
+<img src="./README_image/calendar-big.png" alt="calendar" width="76%" /> <img src="./README_image/calendar-small.png" alt="calendar" width="23%" />
+
+<img src="./README_image/chart-big.png" alt="chart" width="76%" /> <img src="./README_image/chart-small.png" alt="chart" width="23%" />
+<img src="./README_image/chart-big2.png" alt="chart" width="76%" /> <img src="./README_image/chart-small2.png" alt="chart" width="23%" />
 
 ## 라이센스
 
