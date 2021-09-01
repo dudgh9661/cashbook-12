@@ -21,7 +21,7 @@
 
 ### Chart 패키지 배포
 
-- Donut Chart ([doughnut-chart-js](https://www.npmjs.com/package/doughnut-chart-js))
+- Donut Chart ([donut-chart-js](https://www.npmjs.com/package/donut-chart-js))
 - Linear Chart ([linear-chart-js](https://www.npmjs.com/package/linear-chart-js))
 
 ## 프로젝트 구조
